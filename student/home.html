@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusMind: Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../shared.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <div class="dashboard-grid">
+        <aside class="sidebar bg-slate-800 text-slate-100 p-6 flex flex-col justify-between">
+            <div>
+                <h2 class="text-2xl font-bold text-white mb-8">CampusMind</h2>
+                <nav class="space-y-2">
+                    <a href="home.html" class="flex items-center px-4 py-2 rounded-lg bg-slate-700">Home</a>
+                    <a href="resources.html" class="flex items-center px-4 py-2 rounded-lg hover:bg-slate-700">Resource Hub</a>
+                    <a href="booking.html" class="flex items-center px-4 py-2 rounded-lg hover:bg-slate-700">Book Appointment</a>
+                    <a href="forum.html" class="flex items-center px-4 py-2 rounded-lg hover:bg-slate-700">Peer Support Forum</a>
+                </nav>
+            </div>
+            <a href="../login.html" class="w-full flex items-center justify-center px-4 py-2 font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700">Logout</a>
+        </aside>
+
+        <main class="bg-transparent p-8 overflow-y-auto">
+            <h1 class="text-3xl font-bold text-slate-800 animate-fade-in-up">Welcome, Student!</h1>
+            <p class="text-slate-600 mt-2">Your confidential space for mental wellness and support.</p>
+            
+            <div class="mt-8 p-6 bg-white/70 rounded-lg shadow-sm backdrop-blur-sm">
+                <h2 class="text-xl font-semibold text-slate-700 animate-breathing-text">How are you feeling today?</h2>
+                <p class="text-slate-500 mt-1">Quickly find the support you need.</p>
+                <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <button onclick="toggleChatSize()" class="p-4 bg-blue-100 text-blue-800 rounded-lg font-semibold hover:bg-blue-200">Talk to AI Assistant</button>
+                    <a href="booking.html" class="block text-center p-4 bg-green-100 text-green-800 rounded-lg font-semibold hover:bg-green-200">Book a Counselor</a>
+                    <a href="resources.html" class="block text-center p-4 bg-purple-100 text-purple-800 rounded-lg font-semibold hover:bg-purple-200">Explore Resources</a>
+                </div>
+            </div>
+
+            <div class="mt-12">
+                <h2 class="text-2xl font-bold text-slate-800 mb-2 text-center">Why Your Well-being Matters</h2>
+                <p class="text-slate-600 text-center mb-8 max-w-2xl mx-auto">In our fast-paced world, prioritizing your mental health is essential for success and a fulfilling student life. Here's why it's so important:</p>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+                        <img src="Untitled design.jpg" alt="Student focusing on studies" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-bold text-lg text-slate-800 mb-2">Enhance Academic Success</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                A healthy mind is key to effective learning and focus. Managing stress improves concentration and memory, helping you excel in your studies and achieve your academic goals.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+                        <img src="Untitled design (1).jpg" alt="Friends talking and laughing" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-bold text-lg text-slate-800 mb-2">Build Stronger Relationships</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                Good mental health helps you communicate better, empathize, and form meaningful connections. It's the foundation for a supportive social network with friends and family.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+                        <img src="Untitled design (2).jpg" alt="Person looking out a window thoughtfully" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-bold text-lg text-slate-800 mb-2">Develop Personal Resilience</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                Life is full of challenges. Developing mental resilience equips you with the strength to navigate setbacks, adapt to change, and bounce back stronger from adversity.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12">
+                <h2 class="text-xl font-semibold text-slate-700">Featured Resources</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+                    <div class="bg-white/70 rounded-lg shadow-sm overflow-hidden backdrop-blur-sm">
+                        <iframe class="w-full h-48" src="https://www.youtube.com/embed/86x-u-tz0MA" title="Managing Academic Stress" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div class="p-4">
+                            <h3 class="font-semibold">Managing Academic Stress</h3>
+                            <p class="text-sm text-slate-500 mt-1">A guide to handle pressure during exams.</p>
+                        </div>
+                    </div>
+                     <div class="bg-white/70 rounded-lg shadow-sm overflow-hidden backdrop-blur-sm">
+                        <iframe class="w-full h-48" src="https://www.youtube.com/embed/inpok4MKVLM" title="Mindfulness Meditation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div class="p-4">
+                            <h3 class="font-semibold">Video: Mindfulness Meditation</h3>
+                            <p class="text-sm text-slate-500 mt-1">5-minute guided meditation for calm.</p>
+                        </div>
+                    </div>
+                     <div class="bg-white/70 rounded-lg shadow-sm overflow-hidden backdrop-blur-sm">
+                        <iframe class="w-full h-48" src="https://www.youtube.com/embed/z6_Q29m_R4g" title="Overcoming Social Anxiety" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div class="p-4">
+                            <h3 class="font-semibold">Audio: Overcoming Social Anxiety</h3>
+                            <p class="text-sm text-slate-500 mt-1">Listen to tips on building confidence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <button class="chat-toggle floating small" id="chatToggle" onclick="toggleChatSize()">
+        🤖
+        <div class="notification-bubble" id="notificationBubble" style="display: none;">1</div>
+    </button>
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header">
+            <div class="bot-info">
+                <div class="bot-avatar">🤖</div>
+                <div class="bot-details">
+                    <h3>CampusMind Assistant</h3>
+                    <div class="bot-status">
+                        <span class="status-dot"></span>
+                        <span>Online & ready to help</span>
+                    </div>
+                </div>
+            </div>
+            <div class="header-controls">
+                <button class="header-btn" onclick="toggleHistory()" title="Chat History">📋</button>
+                <button class="header-btn" onclick="toggleFullscreen()" title="Fullscreen">⛶</button>
+                <button class="header-btn" onclick="closeChat()" title="Close">✕</button>
+            </div>
+        </div>
+        <div class="chat-spaces">
+            <div class="space-tab active" onclick="switchSpace('general')">💬 General Chat</div>
+            <div class="space-tab" onclick="switchSpace('study')">📚 Study Help</div>
+            <div class="space-tab" onclick="switchSpace('wellness')">🧘 Wellness</div>
+            <div class="space-tab" onclick="switchSpace('crisis')">🆘 Crisis Support</div>
+        </div>
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="history-panel" id="historyPanel">
+            <div class="history-header">
+                <h3>Chat History</h3>
+                <button class="header-btn" onclick="toggleHistory()" title="Close">✕</button>
+            </div>
+            <div class="history-list" id="historyList"></div>
+        </div>
+        <div class="chat-input">
+            <div class="input-wrapper">
+                <input type="text" id="messageInput" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
+            </div>
+            <button class="send-btn" id="sendBtn" onclick="sendMessage()">➤</button>
+        </div>
+    </div>
+    
+    <script src="../shared.js"></script>
+</body>
+</html>

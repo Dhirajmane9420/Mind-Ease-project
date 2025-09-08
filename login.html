@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusMind: Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div id="app" class="w-full min-h-screen">
+        <div id="createAccountPage" class="flex flex-col items-center justify-center min-h-screen">
+            <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-2xl shadow-lg">
+                <div class="text-center">
+                    <h1 class="text-3xl font-bold text-slate-800">Create an Account</h1>
+                    <p id="createAccountSubtitle" class="mt-2 text-slate-600">First, please select your role.</p>
+                </div>
+                <div id="signupRoleSelector" class="space-y-4 pt-4">
+                    <button onclick="selectSignupRole('student')" class="w-full px-4 py-3 font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700">I am a Student</button>
+                    <button onclick="selectSignupRole('counselor')" class="w-full px-4 py-3 font-semibold text-white bg-green-600 rounded-lg hover:bg-green-700">I am a Counselor</button>
+                    <button onclick="selectSignupRole('admin')" class="w-full px-4 py-3 font-semibold text-white bg-slate-700 rounded-lg hover:bg-slate-800">I am an Admin</button>
+                </div>
+                <div id="signupForm" class="hidden">
+                    <div class="space-y-4">
+                        <div>
+                            <label for="signup-name" class="block text-sm font-medium text-slate-700">Full Name</label>
+                            <input type="text" id="signup-name" class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm">
+                        </div>
+                        <div>
+                            <label for="signup-email" class="block text-sm font-medium text-slate-700">Email address</label>
+                            <input type="email" id="signup-email" class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm">
+                        </div>
+                         <div>
+                            <label for="signup-password" class="block text-sm font-medium text-slate-700">Password</label>
+                            <input type="password" id="signup-password" class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm">
+                        </div>
+                    </div>
+                    <div class="space-y-4 pt-6">
+                        <button onclick="handleSignup()" class="w-full px-4 py-3 font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700">Create Account</button>
+                        <button onclick="resetSignup()" class="w-full text-center text-sm text-slate-600 hover:text-slate-800">Back</button>
+                    </div>
+                </div>
+                <div class="text-center pt-4">
+                    <p class="text-sm text-slate-600">Already have an account? <button id="show-signin-button" class="font-medium text-blue-600 hover:text-blue-500">Sign In</button></p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="roleSelectionPage" class="hidden flex flex-col items-center justify-center min-h-screen">
+            <div class="w-full max-w-md p-8 space-y-8 bg-white rounded-2xl shadow-lg">
+                <div class="text-center">
+                    <h1 class="text-3xl font-bold text-slate-800">CampusMind</h1>
+                    <p class="mt-2 text-slate-600">Welcome back! Please select your role to sign in.</p>
+                </div>
+                <div class="space-y-4">
+                    <button onclick="showLoginPage('student')" class="w-full px-4 py-3 font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700">Student Login</button>
+                    <button onclick="showLoginPage('counselor')" class="w-full px-4 py-3 font-semibold text-white bg-green-600 rounded-lg hover:bg-green-700">Counselor Login</button>
+                    <button onclick="showLoginPage('admin')" class="w-full px-4 py-3 font-semibold text-white bg-slate-700 rounded-lg hover:bg-slate-800">Admin Login</button>
+                </div>
+                <div class="text-center pt-2">
+                    <button onclick="showCreateAccountPage()" class="text-sm text-slate-600 hover:text-slate-800">Don't have an account? Create one</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="studentLoginPage" class="hidden flex flex-col items-center justify-center min-h-screen">
+            <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-2xl shadow-lg">
+                <div class="text-center">
+                    <h1 class="text-3xl font-bold text-blue-800">Student Portal</h1>
+                    <p class="mt-2 text-slate-600">Sign in to access your dashboard</p>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <label for="student-email" class="block text-sm font-medium text-slate-700">Email address</label>
+                        <input type="email" id="student-email" class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm" value="student@example.com">
+                    </div>
+                    <div>
+                        <label for="student-password" class="block text-sm font-medium text-slate-700">Password</label>
+                        <input type="password" id="student-password" class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm" value="pass123">
+                    </div>
+                </div>
+                <div id="student-login-error" class="hidden text-red-500 text-sm text-center pt-2"></div>
+                <div class="space-y-4 pt-4">
+                    <button onclick="handleLogin('student')" class="w-full px-4 py-3 font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700">Login</button>
+                    <button onclick="showRoleSelection()" class="w-full text-center text-sm text-slate-600 hover:text-slate-800">Back to role selection</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="counselorLoginPage" class="hidden flex flex-col items-center justify-center min-h-screen">
+            <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-2xl shadow-lg">
+                <div class="text-center">
+                    <h1 class="text-3xl font-bold text-green-800">Counselor Portal</h1>
+                    <p class="mt-2 text-slate-600">Sign in to access your dashboard</p>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <label for="counselor-email" class="block text-sm font-medium text-slate-700">Email address</label>
+                        <input type="email" id="counselor-email" class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm" value="counselor@example.com">
+                    </div>
+                    <div>
+                        <label for="counselor-password" class="block text-sm font-medium text-slate-700">Password</label>
+                        <input type="password" id="counselor-password" class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm" value="pass123">
+                    </div>
+                </div>
+                <div id="counselor-login-error" class="hidden text-red-500 text-sm text-center pt-2"></div>
+                <div class="space-y-4 pt-4">
+                    <button onclick="handleLogin('counselor')" class="w-full px-4 py-3 font-semibold text-white bg-green-600 rounded-lg hover:bg-green-700">Login</button>
+                    <button onclick="showRoleSelection()" class="w-full text-center text-sm text-slate-600 hover:text-slate-800">Back to role selection</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="adminLoginPage" class="hidden flex flex-col items-center justify-center min-h-screen">
+             <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-2xl shadow-lg">
+                <div class="text-center">
+                    <h1 class="text-3xl font-bold text-slate-800">Admin Portal</h1>
+                    <p class="mt-2 text-slate-600">Sign in to access the dashboard</p>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <label for="admin-email" class="block text-sm font-medium text-slate-700">Email address</label>
+                        <input type="email" id="admin-email" class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm" value="admin@example.com">
+                    </div>
+                    <div>
+                        <label for="admin-password" class="block text-sm font-medium text-slate-700">Password</label>
+                        <input type="password" id="admin-password" class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm" value="pass123">
+                    </div>
+                </div>
+                <div id="admin-login-error" class="hidden text-red-500 text-sm text-center pt-2"></div>
+                <div class="space-y-4 pt-4">
+                    <button onclick="handleLogin('admin')" class="w-full px-4 py-3 font-semibold text-white bg-slate-700 rounded-lg hover:bg-slate-800">Login</button>
+                    <button onclick="showRoleSelection()" class="w-full text-center text-sm text-slate-600 hover:text-slate-800">Back to role selection</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <script src="login.js"></script>
+</body>
+</html>

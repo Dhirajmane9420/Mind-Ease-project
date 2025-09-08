@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div>
+                <div class="brand">
+                    <div class="logo"></div>
+                    <h1>CampusMind Admin</h1>
+                </div>
+                <p class="muted">Digital Psychological Intervention System</p>
+                <div id="nav" class="nav">
+                    <button data-tab="overview" class="active">Overview</button>
+                    <button data-tab="screenings">Screenings <span class="chip">22</span></button>
+                    <button data-tab="appointments">Appointments</button>
+                    <button data-tab="peer">Peer Support</button>
+                    <button data-tab="resources">Resources</button>
+                    <button data-tab="counsellors">Counsellors</button>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <button id="themeToggle" class="btn">Toggle Theme</button>
+                <button id="logoutBtn" class="btn danger">Logout</button>
+            </div>
+        </aside>
+
+        <main class="content">
+            <div class="topbar">
+                <div class="search">
+                    <input type="search" id="searchInput" placeholder="Search students, bookings...">
+                </div>
+                <div class="actions">
+                    <button id="exportCSV" class="btn">Export CSV</button>
+                    <button class="btn primary">New Booking</button>
+                </div>
+            </div>
+
+            <div class="card filter-card">
+                <div class="filters">
+                    <select id="filterDept"> <option value="">All Departments</option> <option>Engineering</option> <option>Science</option> <option>Arts</option> <option>Commerce</option> <option>Health Sciences</option> </select>
+                    <select id="filterYear"> <option value="">All Years</option> <option>1</option> <option>2</option> <option>3</option> <option>4</option> <option>PG</option> </select>
+                    <select id="filterLang"> <option value="">All Languages</option> <option>English</option><option>Hindi</option><option>Tamil</option><option>Bengali</option></select>
+                    <select id="filterRisk"> <option value="">All Risk Levels</option> <option>Low</option> <option>Moderate</option> <option>High</option> <option>Crisis</option> </select>
+                    <select id="dateRange"> <option value="30">Last 30 Days</option> <option value="90">Last 90 Days</option> <option value="365">Last Year</option> </select>
+                    <button id="resetFilters" class="btn">Reset</button>
+                    <div class="filter-count" id="activeFilterCount">0 active filters</div>
+                </div>
+            </div>
+
+            <div id="tab-overview" class="tab">
+                <div class="grid-overview">
+                    <div class="card stat"><h3>Screenings (30d)</h3><p class="kpi">1,128</p></div>
+                    <div class="card stat"><h3>Appointments (30d)</h3><p class="kpi">278</p></div>
+                    <div class="card stat"><h3>Avg. Wait Time</h3><p class="kpi">2.3d</p></div>
+                    <div class="card stat"><h3>Peer Flags</h3><p class="kpi">14</p></div>
+                    <div class="card chart-trends"><canvas id="chartTrends"></canvas></div>
+                    <div class="card chart-risk"><canvas id="chartRisk"></canvas></div>
+                    <div class="card table-container">
+                        <h3>Recent Appointments <span class="count" id="apptCount"></span></h3>
+                        <table id="tableAppointments"><thead><tr><th>ID</th><th>Dept</th><th>Status</th><th>Date</th></tr></thead><tbody></tbody></table>
+                    </div>
+                    <div class="card table-container">
+                        <h3>Peer Forum Flags <span class="count" id="flagCount"></span></h3>
+                        <table id="tablePeerFlags"><thead><tr><th>Thread</th><th>Category</th><th>Flags</th><th></th></tr></thead><tbody></tbody></table>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="tab-screenings" class="tab" style="display:none">
+                <div class="card">
+                    <h3>Screening Results</h3>
+                    <table id="tableScreenings"><thead><tr><th>Date</th><th>Student ID</th><th>Tool</th><th>Score</th><th>Severity</th></tr></thead><tbody></tbody></table>
+                    <div class="footer"><span id="screenCount"></span></div>
+                </div>
+            </div>
+            
+            <div id="tab-appointments" class="tab" style="display:none"></div>
+            <div id="tab-peer" class="tab" style="display:none"></div>
+            <div id="tab-resources" class="tab" style="display:none"></div>
+            <div id="tab-counsellors" class="tab" style="display:none"></div>
+        </main>
+    </div>
+    <script src="dashboard.js"></script>
+</body>
+</html>
