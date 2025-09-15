@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" class="light">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,30 +8,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="dashboard.css">
 </head>
-
 <body>
     <div id="dashboard-layout">
-        
         <aside class="sidebar">
             <div>
-                <h2 class="text-2xl font-bold text-white p-4 border-b border-slate-700">CampusMind</h2>
+                <h2 class="text-2xl font-bold text-white p-4 border-b border-slate-700">MindEase</h2>
                 <nav class="p-4 space-y-2">
                     <a href="#" id="students-link" class="sidebar-link active">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1 15.5V11a1 1 0 012 0v6.5a1 1 0 01-2 0zm0-8a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"/></svg>
                         <span>Students</span>
                     </a>
-                    <a href="#" id="messages-link" class="sidebar-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11H8a1 1 0 000 2h8a1 1 0 000-2zm0-4H8a1 1 0 000 2h8a1 1 0 000-2zm-2 8H8a1 1 0 000 2h6a1 1 0 000-2z"/></svg>
-                        <span>Messages</span>
-                    </a>
-                    <a href="#" id="alerts-link" class="sidebar-link">
-                        <div class="relative flex items-center gap-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2z"/></svg>
-                            <span>Alerts</span>
-                            <span class="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">3</span>
-                        </div>
-                    </a>
-                    <a href="#" class="sidebar-link">
+                    <a href="report.html" id="report-link" class="sidebar-link">
                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 6a6 6 0 00-6 6h2a4 4 0 014-4V6z"/></svg>
                          <span>Report</span>
                     </a>
@@ -43,9 +29,7 @@
                 </nav>
             </div>
             <div class="p-4 border-t border-slate-700">
-                <button id="logout-btn" class="w-full bg-red-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-red-600 transition">
-                    Logout
-                </button>
+                <button id="logout-btn" class="w-full bg-red-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-red-600 transition">Logout</button>
             </div>
         </aside>
 
@@ -54,124 +38,36 @@
                 <div>
                     <h1 id="greeting-header" class="text-3xl font-bold">Welcome</h1>
                 </div>
-                <button id="menu-btn" class="lg:hidden p-2 rounded-md">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
-                </button>
-                <div class="flex items-center space-x-4 order-2 md:order-3 ml-auto">
-                    <button id="theme-toggle" aria-label="Toggle dark mode" class="p-2 rounded-full"><svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor"><path class="light-icon" d="M12 7a5 5 0 100 10 5 5 0 000-10z"/><path class="dark-icon hidden" d="M12.79 3.09A8.995 8.995 0 003.5 12a8.995 8.995 0 009.29 8.91c.21-.02.42-.04.63-.07A11.002 11.002 0 0113 2a10.957 10.957 0 00-.21 1.09z"/></svg></button>
-                    <img src="https://i.ibb.co/3WfC195/cat.jpg" alt="User Avatar" class="rounded-full w-10 h-10" />
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" aria-label="Toggle dark mode"><svg></svg></button>
+                    <img src="https://placehold.co/40x40/e2e8f0/334155?text=C" alt="User Avatar" class="rounded-full w-10 h-10" />
                     <span id="counselor-name-display" class="hidden sm:inline font-medium">Counselor</span>
                 </div>
             </header>
-
-             <div class="relative w-full max-w-lg mb-10">
-                <input type="text" placeholder="Search for students..." class="w-full pl-10 pr-4 py-2 rounded-lg border bg-white/50 border-slate-300/70 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-500"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M10 18a7.952 7.952 0 004.897-1.688l4.388 4.388a1 1 0 001.415-1.415l-4.388-4.388A7.952 7.952 0 0018 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zM4 10a6 6 0 1112 0 6 6 0 01-12 0z"/></svg></div>
-            </div>
             
-            <div id="dashboard-content" class="flex flex-col lg:flex-row lg:space-x-6 space-y-6 lg:space-y-0 text-slate-800">
-                <div class="w-full lg:w-64 flex-shrink-0 space-y-6">
-                    <div class="card p-6 space-y-6">
-                        <h2 class="text-lg font-semibold">Appointment for</h2>
-                        <div class="space-y-3 text-sm">
-                            <div class="flex items-center"><label class="cursor-pointer font-medium p-2 rounded-md">Active</label></div>
-                            <div class="flex items-center"><label class="cursor-pointer font-medium p-2 rounded-md">In Progress</label></div>
-                            <div class="flex items-center"><label class="cursor-pointer font-medium p-2 rounded-md">Critical</label></div>
-                        </div>
-                    </div>
+            <div id="dashboard-content">
+                 <div class="relative w-full max-w-lg mb-10">
+                    <input type="text" placeholder="Search for students..." class="w-full pl-10 pr-4 py-2 rounded-lg border"/>
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-500"><svg></svg></div>
                 </div>
-                <div class="flex-grow">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-                        <div class="card p-4 flex flex-col items-center text-center">
-                            <img src="https://i.ibb.co/L5QyL35/cartoon-1.jpg" alt="David G." class="rounded-full w-20 h-20 mb-3" />
-                            <h3 class="font-semibold flex items-center"><span class="critical-dot"></span>David G.</h3>
-                            <p class="text-sm text-slate-500">CS</p>
-                            <p class="text-sm text-slate-500">Individual Counselling</p>
-                            <p class="text-xs text-slate-500 mt-1">06 Feb, 11:00 AM - 11:45 AM</p>
-                        </div>
-                        <div class="card p-4 flex flex-col items-center text-center">
-                            <img src="https://i.ibb.co/tCg3c9W/cartoon-2.jpg" alt="Maria S." class="rounded-full w-20 h-20 mb-3" />
-                            <h3 class="font-semibold flex items-center"><span class="critical-dot"></span>Maria S.</h3>
-                            <p class="text-sm text-slate-500">BA</p>
-                            <p class="text-sm text-slate-500">Individual Counselling</p>
-                            <p class="text-xs text-slate-500 mt-1">06 Feb, 11:00 AM - 11:45 AM</p>
-                        </div>
-                        <div class="card p-4 flex flex-col items-center text-center">
-                            <img src="https://i.ibb.co/2Nn55r4/cartoon-3.jpg" alt="Alex J." class="rounded-full w-20 h-20 mb-3" />
-                            <h3 class="font-semibold flex items-center"><span class="critical-dot"></span>Alex J.</h3>
-                            <p class="text-sm text-slate-500">IT</p>
-                            <p class="text-sm text-slate-500">Individual Counselling</p>
-                            <p class="text-xs text-slate-500 mt-1">06 Feb, 11:00 AM - 11:45 AM</p>
-                        </div>
-                        <div class="card p-4 flex flex-col items-center text-center">
-                            <img src="https://i.ibb.co/w0Yd4Qh/cartoon-4.jpg" alt="Darrell Stewart" class="rounded-full w-20 h-20 mb-3" />
-                            <h3 class="font-semibold">Darrell Stewart</h3>
-                            <p class="text-sm text-slate-500">MBA</p>
-                            <p class="text-sm text-slate-500">Individual Counselling</p>
-                            <p class="text-xs text-slate-500 mt-1">06 Feb, 11:00 AM - 11:45 AM</p>
-                        </div>
-                        <div class="card p-4 flex flex-col items-center text-center">
-                            <img src="https://i.ibb.co/y4L1F1t/cartoon-5.jpg" alt="Savannah Nguyen" class="rounded-full w-20 h-20 mb-3" />
-                            <h3 class="font-semibold">Savannah Nguyen</h3>
-                            <p class="text-sm text-slate-500">CE</p>
-                            <p class="text-sm text-slate-500">Individual Counselling</p>
-                            <p class="text-xs text-slate-500 mt-1">06 Feb, 11:00 AM - 11:45 AM</p>
-                        </div>
-                        <div class="card p-4 flex flex-col items-center text-center">
-                            <img src="https://i.ibb.co/L5QyL35/cartoon-1.jpg" alt="Jane Cooper" class="rounded-full w-20 h-20 mb-3" />
-                            <h3 class="font-semibold">Jane Cooper</h3>
-                            <p class="text-sm text-slate-500">Medical</p>
-                            <p class="text-sm text-slate-500">Individual Counselling</p>
-                            <p class="text-xs text-slate-500 mt-1">06 Feb, 11:00 AM - 11:45 AM</p>
-                        </div>
-                        <div class="card p-4 flex flex-col items-center text-center">
-                            <img src="https://i.ibb.co/tCg3c9W/cartoon-2.jpg" alt="Courtney Henry" class="rounded-full w-20 h-20 mb-3" />
-                            <h3 class="font-semibold">Courtney Henry</h3>
-                            <p class="text-sm text-slate-500">BSc</p>
-                            <p class="text-sm text-slate-500">Individual Counselling</p>
-                            <p class="text-xs text-slate-500 mt-1">06 Feb, 11:00 AM - 11:45 AM</p>
-                        </div>
-                        <div class="card p-4 flex flex-col items-center text-center">
-                            <img src="https://i.ibb.co/2Nn55r4/cartoon-3.jpg" alt="Arlene McCoy" class="rounded-full w-20 h-20 mb-3" />
-                            <h3 class="font-semibold">Arlene McCoy</h3>
-                            <p class="text-sm text-slate-500">Medical</p>
-                            <p class="text-sm text-slate-500">Individual Counselling</p>
-                            <p class="text-xs text-slate-500 mt-1">06 Feb, 11:00 AM - 11:45 AM</p>
-                        </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
                     </div>
-                </div>
             </div>
 
-            <<div id="chat-content" class="hidden">
-                <div class="chat-container card">
-                    <div id="chat-list-container" class="chat-list">
-                        <div class="p-4 border-b border-slate-200/50">
-                            <h2 class="text-xl font-bold text-slate-800">Messages</h2>
-                        </div>
-                        <div id="student-list" class="p-2">
-                            </div>
+            <div id="chat-content" class="hidden">
+                <div class="chat-container card" style="height: 70vh; display: flex; flex-direction: column;">
+                    <div id="chat-header" class="p-4 border-b border-slate-200/50 flex items-center gap-4">
+                        <button id="back-to-dashboard-btn" class="font-bold text-lg text-slate-600 hover:text-slate-900">&larr; Back</button>
+                        <h2 id="chat-with-name" class="text-xl font-bold text-slate-800">Chat</h2>
                     </div>
-
-                    <div id="chat-window-container" class="chat-window">
-                        <div id="chat-header" class="p-4 border-b border-slate-200/50 flex items-center gap-4">
-                             <p class="text-slate-500">Select a conversation to begin.</p>
-                        </div>
-                        <div id="chat-messages" class="chat-messages">
-                            </div>
-                        <form id="chat-form" class="p-4 border-t border-slate-200/50 flex items-center gap-2">
-                            <input id="chat-input" type="text" placeholder="Type a message..." class="w-full px-4 py-2 rounded-full border bg-slate-100/50 border-slate-300/70 focus:outline-none focus:ring-2 focus:ring-blue-500" autocomplete="off" />
-                            <button type="submit" class="bg-blue-600 text-white rounded-full p-3 hover:bg-blue-700 transition-colors flex-shrink-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" /></svg>
-                            </button>
-                        </form>
-                    </div>
+                    <div id="chat-messages" class="chat-messages flex-grow p-4 space-y-4 overflow-y-auto"></div>
+                    <form id="chat-form" class="p-4 border-t border-slate-200/50 flex items-center gap-2">
+                        <input id="chat-input" type="text" placeholder="Type a message..." class="w-full px-4 py-2 rounded-full border" autocomplete="off" />
+                        <button type="submit" class="bg-blue-600 text-white rounded-full p-3 hover:bg-blue-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" /></svg>
+                        </button>
+                    </form>
                 </div>
-            </div>
-
-            <div id="alerts-content" class="hidden text-slate-800">
-                <h1 class="text-3xl font-bold mb-6">Critical Alerts</h1>
-                <div id="alerts-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    </div>
             </div>
         </main>
     </div>

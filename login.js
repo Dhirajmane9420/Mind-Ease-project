@@ -1,16 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-    // =========================================
-    // Persistent User Database using localStorage
-    // =========================================
-    if (!localStorage.getItem('campusMindUsers')) {
-        const defaultUsers = {
-            'counselor@example.com': { name: 'Dr. Anya Sharma', password: 'pass123', role: 'counselor' },
-            'student@example.com': { name: 'Test Student', password: 'pass123', role: 'student' }
-        };
-        localStorage.setItem('campusMindUsers', JSON.stringify(defaultUsers));
-    }
-
     // =========================================
     // Element Selectors
     // =========================================
@@ -22,12 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const signupRoleSelector = document.getElementById('signupRoleSelector');
     const signupForm = document.getElementById('signupForm');
     const createAccountSubtitle = document.getElementById('createAccountSubtitle');
-    const showSigninButton = document.getElementById('show-signin-button');
-    
+
     // =========================================
-    // Signup Functionality
+    // Signup Functionality (Connects to Backend)
     // =========================================
-    function handleSignup() {
+    async function handleSignup() {
         const role = signupForm.dataset.role;
         const name = document.getElementById('signup-name').value;
         const email = document.getElementById('signup-email').value;
@@ -37,50 +24,80 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Please fill in all fields.');
             return;
         }
-        const users = JSON.parse(localStorage.getItem('campusMindUsers'));
-        if (users[email]) {
-            alert('An account with this email already exists. Please sign in.');
-            return;
+
+        try {
+            const response = await fetch('http://localhost:3000/api/users/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, password, role }),
+            });
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.msg);
+            }
+            alert(`Account for ${name} created successfully! Please sign in.`);
+            showRoleSelection();
+        } catch (error) {
+            alert(error.message);
         }
-        users[email] = { name, password, role };
-        localStorage.setItem('campusMindUsers', JSON.stringify(users));
-        alert(`Account for ${name} created successfully! You can now sign in.`);
-        showRoleSelection();
     }
-    
+
     // =========================================
-    // Login Functionality
+    // Login Functionality (Connects to Backend)
     // =========================================
-    window.handleLogin = function(role) {
+    window.handleLogin = async function(role) {
         const email = document.getElementById(`${role}-email`).value;
         const password = document.getElementById(`${role}-password`).value;
         const errorDiv = document.getElementById(`${role}-login-error`);
-        const users = JSON.parse(localStorage.getItem('campusMindUsers'));
-        const user = users[email];
 
-        if (user && user.password === password && user.role === role) {
+        try {
+            const response = await fetch('http://localhost:3000/api/users/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password }),
+            });
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.msg);
+            }
+            localStorage.setItem('token', data.token);
+            const userPayload = JSON.parse(atob(data.token.split('.')[1]));
+            if (userPayload.user.role !== role) {
+                throw new Error('Role mismatch. Please log in through the correct portal.');
+            }
+
+            // --- REDIRECT PATHS CORRECTED TO MATCH YOUR STRUCTURE ---
             if (role === 'counselor') {
-                sessionStorage.setItem('loggedInCounselorName', user.name);
                 window.location.href = './counselor/dashboard.html';
             } else if (role === 'student') {
-                sessionStorage.setItem('loggedInStudentName', user.name);
                 window.location.href = './student/home.html';
             } else if (role === 'admin') {
-                sessionStorage.setItem('loggedInAdminName', user.name);
-                window.location.href = './admin/dashboard.html';;
+                window.location.href = './admin/dashboard.html';
             }
-        } else {
+
+        } catch (error) {
             if (errorDiv) {
-                errorDiv.textContent = 'Invalid credentials or role mismatch.';
+                errorDiv.textContent = error.message;
                 errorDiv.classList.remove('hidden');
             }
         }
     }
 
     // =========================================
-    // Page Navigation
+    // Page Navigation (Functions attached to window for HTML onclick)
     // =========================================
-    function showCreateAccountPage() {
+    function hideAllAuthPages() {
+       ['createAccountPage', 'roleSelectionPage', 'studentLoginPage', 'counselorLoginPage', 'adminLoginPage'].forEach(id => {
+            document.getElementById(id).classList.add('hidden');
+        });
+    }
+    
+    window.showRoleSelection = function() {
+        hideAllAuthPages();
+        roleSelectionPage.classList.remove('hidden');
+    }
+    
+    window.showCreateAccountPage = function() {
         hideAllAuthPages();
         createAccountPage.classList.remove('hidden');
         resetSignup();
@@ -102,11 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('signup-email').value = '';
         document.getElementById('signup-password').value = '';
     }
-    
-    function showRoleSelection() {
-        hideAllAuthPages();
-        roleSelectionPage.classList.remove('hidden');
-    }
 
     window.showLoginPage = function(role) {
         hideAllAuthPages();
@@ -115,23 +127,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (role === 'admin') adminLoginPage.classList.remove('hidden');
     }
     
-    function hideAllAuthPages() {
-        createAccountPage.classList.add('hidden');
-        roleSelectionPage.classList.add('hidden');
-        studentLoginPage.classList.add('hidden');
-        counselorLoginPage.classList.add('hidden');
-        adminLoginPage.classList.add('hidden');
-    }
-    
+    // =========================================
+    // Initial Setup
+    // =========================================
     const signupButton = Array.from(document.querySelectorAll('button')).find(btn => btn.textContent === 'Create Account');
     if (signupButton) {
         signupButton.onclick = handleSignup;
     }
-
+    
+    const showSigninButton = document.getElementById('show-signin-button');
     if (showSigninButton) {
         showSigninButton.addEventListener('click', showRoleSelection);
     }
-
-    // This now correctly calls the function to show the initial page.
-    showCreateAccountPage();
+    
+    showRoleSelection();
 });

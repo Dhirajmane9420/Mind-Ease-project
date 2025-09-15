@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CampusMind: Book Appointment</title>
+    <title>MindEase: Book Appointment</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../shared.css">
@@ -14,7 +14,7 @@
     <div class="dashboard-grid">
         <aside class="sidebar bg-slate-800 text-slate-100 p-6 flex flex-col justify-between">
             <div>
-                <h2 class="text-2xl font-bold text-white mb-8">CampusMind</h2>
+                <h2 class="text-2xl font-bold text-white mb-8">MindEase</h2>
                 <nav class="space-y-2">
                     <a href="home.html" class="flex items-center px-4 py-2 rounded-lg hover:bg-slate-700">Home</a>
                     <a href="resources.html" class="flex items-center px-4 py-2 rounded-lg hover:bg-slate-700">Resource Hub</a>
@@ -28,41 +28,21 @@
         <main class="bg-transparent p-8 overflow-y-auto">
             <h1 class="text-3xl font-bold text-slate-800">Book a Confidential Appointment</h1>
             <p class="text-slate-600 mt-2">Your sessions are private. Find a time that works for you.</p>
+            <div id="booking-confirmation" class="my-4"></div>
             <div class="mt-6 bg-white/70 p-6 rounded-lg shadow-sm backdrop-blur-sm">
-                <div class="space-y-6">
-                    <div class="flex items-center justify-between p-4 border rounded-lg bg-white">
-                        <div class="flex items-center">
-                            <img src="https://placehold.co/100x100/e2e8f0/334155?text=Counselor" class="w-16 h-16 rounded-full mr-4" alt="Dr. Anya Sharma">
-                            <div>
-                                <h3 class="font-semibold text-lg">Dr. Anya Sharma</h3>
-                                <p class="text-slate-500">Specializes in Anxiety & Stress Management</p>
-                            </div>
-                        </div>
-                        <button onclick="showBookingModal('Dr. Anya Sharma')" class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700">View Availability</button>
-                    </div>
-                     <div class="flex items-center justify-between p-4 border rounded-lg bg-white">
-                        <div class="flex items-center">
-                            <img src="https://placehold.co/100x100/e2e8f0/334155?text=Counselor" class="w-16 h-16 rounded-full mr-4" alt="Mr. Rohan Verma">
-                            <div>
-                                <h3 class="font-semibold text-lg">Mr. Rohan Verma</h3>
-                                <p class="text-slate-500">Specializes in Academic & Career Counseling</p>
-                            </div>
-                        </div>
-                        <button onclick="showBookingModal('Mr. Rohan Verma')" class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700">View Availability</button>
-                    </div>
-                </div>
+                <div id="counselor-list" class="space-y-6"></div>
             </div>
         </main>
     </div>
 
     <div id="bookingModal" class="modal-overlay hidden">
-        <div class="bg-white rounded-lg shadow-xl p-8 w-full max-w-lg">
-            <h2 id="modalTitle" class="text-2xl font-bold text-slate-800">Available Times</h2>
+    <div class="bg-white rounded-lg shadow-xl p-8 w-full max-w-lg">
+        <h2 id="modalTitle" class="text-2xl font-bold text-slate-800">Available Times</h2>
             <p class="text-slate-600 mt-2">Please select a time slot to book your confidential session.</p>
             <div class="mt-6 space-y-2">
-                <button class="w-full text-left p-3 border rounded-lg hover:bg-slate-100">Thursday, Sep 4 - 10:00 AM</button>
-                <button class="w-full text-left p-3 border rounded-lg hover:bg-slate-100">Thursday, Sep 4 - 11:30 AM</button>
-                <button class="w-full text-left p-3 border rounded-lg hover:bg-slate-100">Friday, Sep 5 - 2:00 PM</button>
+                <button class="time-slot-btn w-full text-left p-3 border rounded-lg hover:bg-slate-100" onclick="selectTimeSlot(this)" data-date="2025-09-18T10:00:00.000Z">Thursday, Sep 18 - 10:00 AM</button>
+                <button class="time-slot-btn w-full text-left p-3 border rounded-lg hover:bg-slate-100" onclick="selectTimeSlot(this)" data-date="2025-09-18T11:30:00.000Z">Thursday, Sep 18 - 11:30 AM</button>
+                <button class="time-slot-btn w-full text-left p-3 border rounded-lg hover:bg-slate-100" onclick="selectTimeSlot(this)" data-date="2025-09-19T14:00:00.000Z">Friday, Sep 19 - 2:00 PM</button>
             </div>
             <div class="mt-6 flex justify-end space-x-4">
                 <button onclick="hideBookingModal()" class="px-4 py-2 bg-slate-200 text-slate-800 font-semibold rounded-lg">Cancel</button>
@@ -71,11 +51,19 @@
         </div>
     </div>
     
-    <button class="chat-toggle floating small" id="chatToggle" onclick="toggleChatSize()">🤖</button>
+    <button class="chat-toggle floating small" id="chatToggle">🤖</button>
     <div class="chatbot-container" id="chatbotContainer">
-        </div>
-    <script src="../shared.js"></script>
+        <div class="chat-header">
+            <h3 id="currentSpaceName">AI Assistant</h3>
+            </div>
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input-area">
+            <input type="text" id="chatInput" placeholder="Ask a question...">
+            </div>
+    </div>
 
+    <script src="../shared.js"></script>
     <script src="booking.js"></script>
+
 </body>
 </html>
