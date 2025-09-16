@@ -1,0 +1,15 @@
+.animate-fade-in-up {
+    animation: fadeInUp 1s ease-out forwards;
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-breathing-text {
+    animation: breathingText 4s ease-in-out infinite;
+    animation-delay: 0.5s;
+}
+@keyframes breathingText {
+    0%, 100% { text-shadow: 0 0 5px rgba(163, 188, 207, 0.2); }
+    50% { text-shadow: 0 0 20px rgba(163, 188, 207, 0.7); }
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindEase: Peer Support Forum</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../shared.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="forum.css">
+</head>
+<body>
+    <div class="dashboard-grid">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar bg-slate-800 text-slate-100 p-6 flex flex-col justify-between">
+            <div>
+                <h2 class="text-2xl font-bold text-white mb-8">MindEase</h2>
+                <nav class="space-y-2">
+                    <a href="home.html" class="flex items-center px-4 py-2 rounded-lg hover:bg-slate-700">Home</a>
+                    <a href="resources.html" class="flex items-center px-4 py-2 rounded-lg hover:bg-slate-700">Resource Hub</a>
+                    <a href="booking.html" class="flex items-center px-4 py-2 rounded-lg hover:bg-slate-700">Book Appointment</a>
+                    <a href="forum.html" class="flex items-center px-4 py-2 rounded-lg bg-slate-700">Peer Support Forum</a>
+                </nav>
+            </div>
+            <a href="../login.html" class="w-full flex items-center justify-center px-4 py-2 font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700">Logout</a>
+        </aside>
+
+        <!-- Main Forum Content -->
+        <main class="bg-transparent p-8 overflow-y-auto">
+            <h1 class="text-3xl font-bold text-slate-800">Peer Support Forum</h1>
+            <p class="text-slate-600 mt-2">A safe, anonymous space to share and connect with fellow students.</p>
+
+            <!-- Create New Post Section -->
+            <div class="mt-8 bg-white/70 p-6 rounded-lg shadow-sm backdrop-blur-sm">
+                <h2 class="text-xl font-semibold text-slate-700 mb-4">Start a New Discussion</h2>
+                <div class="space-y-4">
+                    <input type="text" id="postTitleInput" placeholder="Enter a title for your post..." class="w-full p-3 border border-slate-300 rounded-md focus:ring-2 focus:ring-blue-500">
+                    <textarea id="postContentInput" placeholder="Share your thoughts... (Remember to be respectful and supportive)" rows="4" class="w-full p-3 border border-slate-300 rounded-md focus:ring-2 focus:ring-blue-500"></textarea>
+                    <div class="text-right">
+                        <button id="addPostBtn" class="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors">Post Anonymously</button>
+                    </div>
+                </div>
+            </div>
+
+            <span id="currentSpaceName" class="hidden"></span>
+
+            <!-- Discussion Threads Section -->
+            <div class="mt-8">
+                <h2 class="text-2xl font-semibold text-slate-700 mb-4">Active Discussions</h2>
+                <div id="postsContainer" class="space-y-6">
+                    <!-- Posts will be dynamically inserted here by forum.js -->
+                    <p id="noPostsMessage" class="text-slate-500">No discussions yet. Why not start one?</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Chatbot HTML and Shared JS -->
+    <button class="chat-toggle floating" id="chatToggle">🤖</button>
+<div class="chatbot-container" id="chatbotContainer">
+    <div class="chatbot-header">
+        <div class="bot-info">
+            <div class="bot-avatar">🤖</div>
+            <div class="bot-details">
+                <h3 id="currentSpaceName">AI Assistant</h3>
+                <div class="bot-status"><span class="status-dot"></span>Online</div>
+            </div>
+        </div>
+        <div class="header-controls">
+            <button class="header-btn" onclick="toggleHistory()">📖</button>
+            <button class="header-btn" onclick="toggleFullscreen()">⛶</button>
+            <button class="header-btn" onclick="closeChat()">×</button>
+        </div>
+    </div>
+    <div class="chat-spaces">
+        <button class="space-tab active" onclick="switchSpace('general')">General</button>
+        <button class="space-tab" onclick="switchSpace('study')">Study Help</button>
+        <button class="space-tab" onclick="switchSpace('wellness')">Wellness</button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+        </div>
+    <div class="chat-input">
+        <div class="input-wrapper">
+            <input type="text" id="messageInput" placeholder="Ask for help..." onkeypress="handleKeyPress(event)">
+        </div>
+        <button class="send-btn" id="sendBtn" onclick="sendMessage()">➤</button>
+    </div>
+
+    <div class="history-panel" id="historyPanel">
+        <div class="history-header">
+            <h3>Chat History</h3>
+            <button class="header-btn" onclick="toggleHistory()">×</button>
+        </div>
+        <div class="history-list" id="historyList"></div>
+    </div>
+</div>
+    <script src="../shared.js"></script>
+    <script src="forum.js"></script>
+</body>
+</html>

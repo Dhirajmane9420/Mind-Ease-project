@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div>
+                <div class="brand">
+                    <div class="logo"></div>
+                    <h1>MindEase Admin</h1>
+                </div>
+                <p class="muted">Digital Psychological Intervention System</p>
+                <div id="nav" class="nav">
+                    <button data-tab="overview" class="active">Overview</button>
+                    <button data-tab="screenings">Screenings <span class="chip">22</span></button>
+                    <button data-tab="appointments">Appointments</button>
+                    <button data-tab="peer">Peer Support</button>
+                    <button data-tab="resources">Resources</button>
+                    <button data-tab="counsellors">Counsellors</button>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <button id="themeToggle" class="btn">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <span>Toggle Theme</span>
+                </button>
+                <button id="logoutBtn" class="btn danger">
+                     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <path d="m16 17 5-5-5-5"></path>
+                        <path d="M21 12H9"></path>
+                    </svg>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+        <main class="content">
+            <div class="topbar">
+                <div class="search">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="m21 21-6-6m2-5a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"></path></svg>
+                    <input type="search" id="searchInput" placeholder="Search students, bookings...">
+                </div>
+                <div class="actions">
+                    <button id="exportCSV" class="btn">Export CSV</button>
+                    <button class="btn primary">New Booking</button>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="card" style="margin-bottom: var(--grid-gap); background: var(--panel);">
+                <div class="filters">
+                    <select id="filterDept"> <option value="">All Departments</option> <option>Engineering</option> <option>Science</option> <option>Arts</option> <option>Commerce</option> <option>Health Sciences</option> </select>
+                    <select id="filterYear"> <option value="">All Years</option> <option>1</option> <option>2</option> <option>3</option> <option>4</option> <option>PG</option> </select>
+                    <select id="filterLang"> <option value="">All Languages</option> <option>English</option><option>Hindi</option><option>Tamil</option><option>Bengali</option><option>Telugu</option><option>Marathi</option><option>Kannada</option><option>Malayalam</option> </select>
+                    <select id="filterRisk"> <option value="">All Risk Levels</option> <option>Low</option> <option>Moderate</option> <option>High</option> <option>Crisis</option> </select>
+                    <select id="dateRange"> <option value="30">Last 30 Days</option> <option value="90">Last 90 Days</option> <option value="365">Last Year</option> </select>
+                    <button id="resetFilters" class="btn">Reset</button>
+                    <div class="right small" id="activeFilterCount">0 active filters</div>
+                </div>
+            </div>
+
+            <!-- TAB: Overview -->
+            <div id="tab-overview" class="tab">
+                <div class="grid">
+                    <div class="card" style="grid-column: span 3;"><h3>Screenings (30d)</h3> <div class="stat"><span class="kpi">1,128</span> <span class="trend up">+12%</span></div></div>
+                    <div class="card" style="grid-column: span 3;"><h3>Appointments (30d)</h3> <div class="stat"><span class="kpi">278</span> <span class="trend up">+8%</span></div></div>
+                    <div class="card" style="grid-column: span 3;"><h3>Avg. Wait Time</h3> <div class="stat"><span class="kpi">2.3d</span> <span class="trend down">-0.4d</span></div></div>
+                    <div class="card" style="grid-column: span 3;"><h3>Peer Flags</h3> <div class="stat"><span class="kpi">14</span> <span class="trend flat"></span></div></div>
+
+                    <div class="card" style="grid-column: span 8;">
+                        <h3>Trends (Avg. Score)</h3>
+                        <canvas id="chartTrends"></canvas>
+                        <div class="legend" style="margin-top:10px;">
+                            <div class="flex"><div class="dot" style="background:var(--brand)"></div> PHQ-9</div>
+                            <div class="flex"><div class="dot" style="background:var(--brand-2)"></div> GAD-7</div>
+                        </div>
+                    </div>
+                    <div class="card" style="grid-column: span 4;">
+                        <h3>Risk Distribution</h3>
+                        <canvas id="chartRisk"></canvas>
+                         <div class="legend" style="margin-top:10px; justify-content:center;">
+                            <div class="flex"><div class="dot" style="background:#22c55e"></div>Low</div>
+                            <div class="flex"><div class="dot" style="background:#f59e0b"></div>Mod</div>
+                            <div class="flex"><div class="dot" style="background:#ef4444"></div>High</div>
+                            <div class="flex"><div class="dot" style="background:#93c5fd"></div>Crisis</div>
+                        </div>
+                    </div>
+                     <div class="card" style="grid-column: span 6;">
+                        <h3>Recent Appointments <span class="small right" id="apptCount"></span></h3>
+                        <table id="tableAppointments"><thead><tr><th>ID</th><th>Dept</th><th>Mode</th><th>Status</th><th>Date</th></tr></thead><tbody></tbody></table>
+                    </div>
+                     <div class="card" style="grid-column: span 6;">
+                        <h3>Peer Forum Flags <span class="small right" id="flagCount"></span></h3>
+                        <table id="tablePeerFlags"><thead><tr><th>Thread</th><th>Category</th><th>Flags</th><th>Last Flag</th><th></th></tr></thead><tbody></tbody></table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TAB: Screenings -->
+            <div id="tab-screenings" class="tab" style="display:none">
+                <div class="card">
+                    <div class="flex">
+                        <h3>Screening Results</h3>
+                        <div class="right flex">
+                             <select id="screeningTool"> <option value="">All Tools</option> <option>PHQ-9</option> <option>GAD-7</option> <option>GHQ-12</option> </select>
+                             <select id="screeningSeverity"> <option value="">All Severities</option> <option>Minimal</option> <option>Mild</option> <option>Moderate</option> <option>Moderately Severe</option> <option>Severe</option> </select>
+                            <input type="search" class="input" id="screeningSearch" placeholder="Search by Student ID...">
+                        </div>
+                    </div>
+                     <div class="divider"></div>
+                     <table id="tableScreenings"><thead><tr><th>Date</th><th>Student ID</th><th>Dept</th><th>Tool</th><th>Score</th><th>Severity</th><th>Language</th></tr></thead><tbody></tbody></table>
+                     <div class="footer"><span id="screenCount"></span></div>
+                </div>
+            </div>
+            
+            <!-- TAB: Appointments -->
+            <div id="tab-appointments" class="tab" style="display:none">
+                <div class="card">
+                     <div class="flex">
+                        <h3>All Appointments</h3>
+                        <div class="right flex">
+                             <select id="apptStatus"> <option value="">All Statuses</option> <option>Pending</option> <option>Confirmed</option> <option>Completed</option> <option>Cancelled</option> </select>
+                             <select id="apptMode"> <option value="">All Modes</option> <option>In-person</option> <option>Phone</option> <option>Video</option> </select>
+                            <input type="search" class="input" id="apptSearch" placeholder="Search by Booking ID...">
+                        </div>
+                    </div>
+                     <div class="divider"></div>
+                     <table id="tableAppointmentsFull"><thead><tr><th>ID</th><th>Student</th><th>Dept</th><th>Counsellor</th><th>Mode</th><th>Status</th><th>Date</th></tr></thead><tbody></tbody></table>
+                     <div class="footer"><span id="apptFullCount"></span></div>
+                </div>
+            </div>
+
+             <!-- TAB: Peer Support -->
+            <div id="tab-peer" class="tab" style="display:none">
+                 <div class="card">
+                     <div class="flex">
+                        <h3>Peer Forum Threads</h3>
+                        <div class="right flex">
+                            <select id="peerCategoryFilter"> <option value="">All Categories</option> <option>Anxiety</option><option>Depression</option><option>Academics</option><option>Relationships</option><option>Sleep</option><option>Substance</option> </select>
+                             <select id="peerStatusFilter"> <option value="">All Statuses</option> <option>Open</option><option>Under Review</option><option>Closed</option> </select>
+                        </div>
+                    </div>
+                     <div class="divider"></div>
+                     <table id="tablePeerThreads"><thead><tr><th>Thread</th><th>Author</th><th>Category</th><th>Replies</th><th>Flags</th><th>Status</th><th>Last Post</th></tr></thead><tbody></tbody></table>
+                     <div class="footer"><span id="peerCount"></span></div>
+                </div>
+            </div>
+
+            <!-- TAB: Resources -->
+            <div id="tab-resources" class="tab" style="display:none">
+                 <div class="card">
+                     <div class="flex">
+                        <h3>Psychoeducational Resources</h3>
+                        <div class="right flex">
+                             <select id="resTypeFilter"> <option value="">All Types</option> <option>Video</option><option>Audio</option><option>Guide</option><option>Worksheet</option><option>Helpline</option> </select>
+                             <select id="resLangFilter"> <option value="">All Languages</option> <option>English</option><option>Hindi</option><option>Tamil</option><option>Bengali</option><option>Telugu</option><option>Marathi</option><option>Kannada</option><option>Malayalam</option> </select>
+                            <button class="btn primary" id="openResourceModal">Add Resource</button>
+                        </div>
+                    </div>
+                     <div class="divider"></div>
+                     <table id="tableResources"><thead><tr><th>Title</th><th>Type</th><th>Language</th><th>Topic</th><th>Clicks</th><th>Updated</th></tr></thead><tbody></tbody></table>
+                     <div class="footer"><span id="resCount"></span></div>
+                </div>
+            </div>
+            
+            <!-- TAB: Counsellors -->
+            <div id="tab-counsellors" class="tab" style="display:none">
+                 <div class="card">
+                     <div class="flex">
+                        <h3>Counsellor Details</h3>
+                        <div class="right flex">
+                            <button class="btn warn" id="openCounsellorModal">Edit Availability</button>
+                        </div>
+                    </div>
+                     <div class="divider"></div>
+                     <table id="tableCounsellors"><thead><tr><th>Name</th><th>Specialization</th><th>Languages</th><th>Slots/Wk</th><th>Wait Time</th><th>Email</th></tr></thead><tbody></tbody></table>
+                     <div class="footer"><span id="counsellorCount"></span></div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="counsellorModal" class="modal-backdrop">
+        <div class="modal">
+            <h3>Edit Counsellor Availability</h3>
+            <div class="row">
+                <select id="counsellorSelect"><option>Dr. Meera N</option><option>Mr. Arjun S</option><option>Dr. Kavitha R</option><option>Ms. Sana Q</option></select>
+                <select id="slotDay"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option></select>
+                <input id="slotTime" type="time" class="input">
+            </div>
+            <input id="slotNote" class="input" placeholder="Note (e.g., Blocked for training)" style="width:100%">
+            <div class="footer">
+                <button id="closeCounsellorModal" class="btn">Cancel</button>
+                <button id="saveSlot" class="btn primary">Save Slot</button>
+            </div>
+        </div>
+    </div>
+    <div id="resourceModal" class="modal-backdrop">
+        <div class="modal">
+            <h3>Add Resource</h3>
+            <div class="row">
+                <input id="resTitle" class="input" placeholder="Resource Title...">
+                <input id="resTopic" class="input" placeholder="Topic (e.g., Anxiety)">
+            </div>
+             <div class="row">
+                <select id="resType"><option>Video</option><option>Audio</option><option>Guide</option><option>Worksheet</option><option>Helpline</option></select>
+                <select id="resLang"><option>English</option><option>Hindi</option><option>Tamil</option><option>Bengali</option><option>Telugu</option><option>Marathi</option><option>Kannada</option><option>Malayalam</option></select>
+            </div>
+            <div class="footer">
+                <button id="closeResourceModal" class="btn">Cancel</button>
+                <button id="saveResource" class="btn primary">Add</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

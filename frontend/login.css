@@ -1,0 +1,8 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to bottom right, #E0D9E6, #C9D2DD, #A3BCCF);
+}
+
+.hidden {
+    display: none;
+}

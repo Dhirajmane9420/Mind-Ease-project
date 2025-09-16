@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MindEase: Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+    <div id="dashboard-layout">
+        
+        <aside class="sidebar">
+            <div>
+                <h2 class="text-2xl font-bold text-white p-4 border-b border-slate-700">MindEase</h2>
+                <nav class="p-4 space-y-2">
+                    <a href="dashboard.html" id="students-link" class="sidebar-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1 15.5V11a1 1 0 012 0v6.5a1 1 0 01-2 0zm0-8a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"/></svg>
+                        <span>Students</span>
+                    </a>
+                    <a href="report.html" id="report-link" class="sidebar-link active">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 6a6 6 0 00-6 6h2a4 4 0 014-4V6z"/></svg>
+                         <span>Report</span>
+                    </a>
+                    <a href="#" class="sidebar-link">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1 17a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1h-2zm1-10a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"/></svg>
+                         <span>Settings</span>
+                    </a>
+                </nav>
+            </div>
+            <div class="p-4 border-t border-slate-700">
+                <button id="logout-btn" class="w-full bg-red-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-red-600 transition">
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content p-4 sm:p-8">
+            <header class="flex justify-between items-center mb-8">
+                <div>
+                    <h1 class="text-3xl font-bold text-slate-800">Activity Report</h1>
+                </div>
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="card p-6">
+                    <h3 class="text-slate-500">Total Appointments</h3>
+                    <p id="total-appointments-stat" class="text-4xl font-bold text-slate-800">0</p>
+                </div>
+            </div>
+
+            <div class="card p-6">
+                <h2 class="text-xl font-semibold text-slate-800 mb-4">Detailed Appointment Log</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full text-left text-sm">
+                        <thead class="border-b">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">Student Name</th>
+                                <th scope="col" class="px-6 py-3">Student Email</th>
+                                <th scope="col" class="px-6 py-3">Date</th>
+                                <th scope="col" class="px-6 py-3">Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="report-table-body">
+                            <tr><td colspan="4" class="px-6 py-4">Loading report...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="report.js" defer></script>
+</body>
+</html>
