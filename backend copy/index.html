@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Safe Space for Your Mental Wellness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* --- Combined and Cleaned Styles --- */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom right, #dbeafe, #c7d2fe); /* Gradient from student_home.html */
+        }
+
+        /* --- Dark Mode Background --- */
+        .dark body {
+             background: #09090b;
+        }
+        
+        /* --- Shared Component Styles from student_home.html --- */
+        .custom-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+
+        #mobile-menu-button {
+            --transition-duration: 0.6s;
+        }
+        #mobile-menu-button svg {
+            transition: transform var(--transition-duration) ease-out;
+        }
+        #mobile-menu-button.open svg {
+            transform: rotate(-45deg);
+        }
+        #mobile-menu-button path:nth-child(1) {
+            transition: stroke-dasharray var(--transition-duration) ease-out, stroke-dashoffset var(--transition-duration) ease-out;
+            stroke-dasharray: 12 63;
+        }
+        #mobile-menu-button.open path:nth-child(1) {
+            stroke-dasharray: 20 300;
+            stroke-dashoffset: -32.42px;
+        }
+
+        .footer-grid-pattern {
+            background-image: linear-gradient(to right, #e5e7eb 1px, transparent 1px), linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);
+            background-size: 4rem 4rem;
+            mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%);
+        }
+
+        /* --- Timeline Card Animation Styles --- */
+        .timeline-card {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .timeline-card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="text-slate-800 dark:text-zinc-200">
+
+<header>
+    <nav id="navbar" class="group fixed z-20 w-full border-b border-indigo-200/50 bg-white/40 backdrop-blur-lg md:relative dark:border-zinc-700/50 dark:bg-zinc-950/50 xl:dark:bg-transparent">
+        <div class="m-auto max-w-7xl px-6">
+            <div class="flex flex-wrap items-center justify-between gap-6 py-3 xl:gap-0 xl:py-4">
+                <div class="flex w-full justify-between xl:w-auto">
+                    <a href="/" aria-label="home" class="flex items-center space-x-2">
+                        <svg viewBox="0 0 78 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-auto">
+                            <a href="index.html" aria-label="home" class="flex items-center space-x-2">
+                        <img src="./logo.jpg" class="h-20 w-auto" alt="MindEase Logo"><h4><b> MindEase</b></h4>
+                    </a>
+                            <defs>
+                                <linearGradient id="logo-gradient" x1="10" y1="0" x2="10" y2="20" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#9B99FE"></stop>
+                                    <stop offset="1" stop-color="#2BC8B7"></stop>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </a>
+                    <button id="menu-toggle-btn" aria-label="Open Menu" class="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 xl:hidden">
+                        <svg class="group-data-[state=active]:rotate-180 group-data-[state=active]:scale-0 group-data-[state=active]:opacity-0 m-auto size-6 duration-200" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                        <svg class="group-data-[state=active]:rotate-0 group-data-[state=active]:scale-100 group-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                    </button>
+                </div>
+                <div id="nav-menu" class="bg-white/50 dark:bg-zinc-900 group-data-[state=active]:block xl:group-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border border-white/30 p-6 shadow-2xl shadow-slate-300/20 md:flex-nowrap xl:m-0 xl:flex xl:w-fit xl:gap-6 xl:space-y-0 xl:border-transparent xl:bg-transparent xl:p-0 xl:shadow-none dark:border-zinc-700 dark:shadow-none xl:dark:bg-transparent">
+                    <div class="xl:pr-4">
+                        <ul class="space-y-6 text-base xl:flex xl:gap-8 xl:space-y-0 xl:text-sm">
+                            <li><a href="how-it-works.html" class="text-slate-700 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white block duration-150"><span> How It Works </span></a></li>
+                            <li><a href="resources-page.html" class="text-slate-700 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white block duration-150"><span> Our Resources</span></a></li>
+                            <li><a href="for-institutions.html" class="text-slate-700 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white block duration-150"><span>For Institutions</span></a></li>
+                            <li><a href="about.html" class="text-slate-700 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white block duration-150"><span>About</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit xl:border-l xl:pl-6 border-slate-200 dark:xl:border-zinc-700">
+                        <button id="theme-toggle" type="button" aria-label="Toggle theme" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium h-9 w-9 border border-white/30 bg-white/20 hover:bg-white/40 text-slate-700 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-800 dark:text-zinc-50 dark:hover:text-zinc-50">
+                            <svg id="theme-toggle-dark-icon" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                            <svg id="theme-toggle-light-icon" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                        </button>
+                        <a href="login.html" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium h-9 px-3 border border-white/30 bg-white/20 hover:bg-white/40 text-slate-700 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-800 dark:text-zinc-50 dark:hover:text-zinc-50"><span>Login</span></a>
+                        <a href="signup.html" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium h-9 px-3 bg-slate-800 text-slate-50 hover:bg-slate-900/90 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/90"><span>Sign Up</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section class="bg-transparent">
+        <div class="mx-auto flex max-w-7xl">
+            <div class="w-full px-6 py-28 lg:w-1/2 lg:py-20">
+                <div class="relative mx-auto max-w-xl text-center lg:text-left">
+                    <a href="/" class="rounded-lg mx-auto flex w-fit items-center gap-2 border border-white/30 bg-white/20 p-1 pr-2 backdrop-blur-md dark:border-zinc-700 lg:ml-0">
+                        <span class="bg-white/40 text-slate-700 dark:bg-zinc-800 rounded-md px-2 py-1 text-xs">New</span>
+                        <span class="text-sm text-slate-600"> Now available in regional languages!</span>
+                        <svg class="size-5 ml-1 text-slate-500 dark:text-zinc-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12.75 15l3-3m0 0l-3-3m3 3h-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </a>
+                    <h1 class="mt-10 text-balance text-4xl font-bold md:text-5xl xl:text-5xl text-slate-800 dark:text-white">A Safe Space for Your Mental Wellness</h1>
+                    <p class="mt-8 text-slate-600 dark:text-zinc-400">A confidential, stigma-free platform offering AI-guided support, professional counseling, and peer connections to help you navigate the challenges of college life.</p>
+                    <div>
+                        <form id="waitlist-form" action="" class="mx-auto my-10 max-w-sm lg:my-12 lg:ml-0 lg:mr-auto">
+                            <div class="has-[input:focus]:ring-blue-400 relative grid grid-cols-[1fr_auto] items-center rounded-2xl border border-white/30 bg-white/20 backdrop-blur-md pr-1 shadow-lg shadow-slate-400/10 has-[input-focus]:ring-2 dark:border-zinc-700 dark:bg-zinc-900/50 dark:shadow-none">
+                                <svg class="text-slate-500 pointer-events-none absolute inset-y-0 left-5 my-auto size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
+                                <input placeholder="Your mail address" class="h-14 w-full bg-transparent pl-12 focus:outline-none placeholder:text-slate-500" type="email" />
+                                <div class="md:pr-1.5 lg:pr-0">
+                                    <a href="signup.html" aria-label="Get Started" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium h-10 px-4 py-2 bg-slate-800 text-slate-50 hover:bg-slate-900/90 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/90">
+    <span class="hidden md:block">Get Started</span>
+    <svg class="relative mx-auto size-5 md:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 3 3 9-3 9 19-9Z"/><path d="M6 12h16"/></svg>
+</a>
+                                </div>
+                            </div>
+                        </form>
+                        <ul class="list-inside list-disc space-y-2 text-slate-600 dark:text-zinc-400">
+                            <li>Confidential & Secure</li>
+                            <li>Available 24/7</li>
+                            <li>Tailored for Students</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden lg:block lg:w-1/2 [mask-image:linear-gradient(to_right,transparent,black_50%)]">
+                <video autoplay loop muted playsinline class="h-full w-full object-cover">
+                    <source src="./Mesmerizing_Plasma_Animation_Generation.webm" type="video/webm">
+                    <source src="./Mesmerizing_Plasma_Animation_Generation.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <section>
+        <div id="timeline-container" class="w-full md:px-10 overflow-x-hidden"> <div class="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
+                <h2 class="text-lg md:text-4xl mb-4 text-slate-800 dark:text-white max-w-4xl">Our Journey to Support Student Wellness</h2>
+                <p class="text-slate-600 dark:text-neutral-300 text-sm md:text-base max-w-lg">We recognized the growing mental health challenges students face and have been passionately building a platform to provide accessible and stigma-free support.</p>
+            </div>
+            <div id="timeline-content" class="relative max-w-7xl mx-auto pb-20">
+                
+                <div class="flex justify-start pt-10 md:pt-40 md:gap-10">
+                    <div class="sticky flex flex-col md:flex-row z-10 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
+                        <div class="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-white/40 backdrop-blur-md dark:bg-black flex items-center justify-center">
+                            <div class="h-4 w-4 rounded-full bg-blue-300 dark:bg-neutral-800 border border-blue-400/50 dark:border-neutral-700 p-2"></div>
+                        </div>
+                         <h3 class="hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-slate-500 dark:text-neutral-500">The Challenge</h3>
+                    </div>
+                    <div class="relative pl-20 pr-4 md:pl-4 w-full timeline-card">
+                        <h3 class="md:hidden block text-2xl mb-4 text-left font-bold text-slate-500 dark:text-neutral-500">The Challenge</h3>
+                        <div>
+                            <p class="text-slate-700 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">Students today face immense academic pressure, social anxiety, and the stress of balancing life and education. Traditional support systems are often hard to access and carry a stigma.</p>
+                            <div class="grid grid-cols-2 gap-4">
+                                <img src="https://images.unsplash.com/photo-1516534775068-ba3e7458af70?q=80&w=2940&auto=format&fit=crop" alt="Stressed student studying" class="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?q=80&w=2835&auto=format&fit=crop" alt="Student feeling isolated" class="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-lg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-start pt-10 md:pt-40 md:gap-10">
+                    <div class="sticky flex flex-col md:flex-row z-10 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
+                         <div class="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-white/40 backdrop-blur-md dark:bg-black flex items-center justify-center">
+                            <div class="h-4 w-4 rounded-full bg-blue-300 dark:bg-neutral-800 border border-blue-400/50 dark:border-neutral-700 p-2"></div>
+                        </div>
+                        <h3 class="hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-slate-500 dark:text-neutral-500">Our Solution</h3>
+                    </div>
+                     <div class="relative pl-20 pr-4 md:pl-4 w-full timeline-card">
+                        <h3 class="md:hidden block text-2xl mb-4 text-left font-bold text-slate-500 dark:text-neutral-500">Our Solution</h3>
+                          <div>
+                            <p class="text-slate-700 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">We created a digital-first platform offering a suite of tools designed for students. From an AI companion for immediate support to confidential booking with counselors, our goal is to provide help whenever and wherever it's needed.</p>
+                            <div class="grid grid-cols-2 gap-4">
+                                <img src="image.png" alt="Person using laptop for therapy" class="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2940&auto=format&fit=crop" alt="Supportive community of students" class="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-lg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+               <div class="flex justify-start pt-10 md:pt-40 md:gap-10">
+    <div class="sticky flex flex-col md:flex-row z-10 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
+        <div class="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-white/40 backdrop-blur-md dark:bg-black flex items-center justify-center">
+            <div class="h-4 w-4 rounded-full bg-blue-300 dark:bg-neutral-800 border border-blue-400/50 dark:border-neutral-700 p-2"></div>
+        </div>
+        <h3 class="hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-slate-500 dark:text-neutral-500">How We Help</h3>
+    </div>
+    <div class="relative pl-20 pr-4 md:pl-4 w-full timeline-card">
+        <h3 class="md:hidden block text-2xl mb-4 text-left font-bold text-slate-500 dark:text-neutral-500">How We Help</h3>
+        <div>
+            <p class="text-slate-700 dark:text-neutral-200 text-sm md:text-base font-normal mb-6">Our platform is built on pillars of accessibility, confidentiality, and community. Core features include:</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-white/50 dark:bg-zinc-900/50 p-6 rounded-xl border border-white/50 dark:border-zinc-800 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-indigo-100 dark:bg-indigo-900/50 p-3 rounded-full">
+                            <i data-lucide="bot" class="w-6 h-6 text-indigo-600 dark:text-indigo-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-800 dark:text-white">AI-Powered First Aid</h4>
+                            <p class="text-sm text-slate-600 dark:text-zinc-400">Instant coping strategies.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/50 dark:bg-zinc-900/50 p-6 rounded-xl border border-white/50 dark:border-zinc-800 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-indigo-100 dark:bg-indigo-900/50 p-3 rounded-full">
+                            <i data-lucide="calendar-plus" class="w-6 h-6 text-indigo-600 dark:text-indigo-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-800 dark:text-white">Confidential Booking</h4>
+                            <p class="text-sm text-slate-600 dark:text-zinc-400">Schedule with counselors.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/50 dark:bg-zinc-900/50 p-6 rounded-xl border border-white/50 dark:border-zinc-800 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-indigo-100 dark:bg-indigo-900/50 p-3 rounded-full">
+                            <i data-lucide="book-open-check" class="w-6 h-6 text-indigo-600 dark:text-indigo-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-800 dark:text-white">Resource Hub</h4>
+                            <p class="text-sm text-slate-600 dark:text-zinc-400">Videos, audios, and guides.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/50 dark:bg-zinc-900/50 p-6 rounded-xl border border-white/50 dark:border-zinc-800 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-indigo-100 dark:bg-indigo-900/50 p-3 rounded-full">
+                            <i data-lucide="users" class="w-6 h-6 text-indigo-600 dark:text-indigo-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-800 dark:text-white">Peer Support Forum</h4>
+                            <p class="text-sm text-slate-600 dark:text-zinc-400">Connect with other students.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+                
+                <div id="static-line-container" class="absolute md:left-8 left-8 top-0 overflow-hidden w-[2px] bg-gradient-to-b from-transparent from-0% via-slate-300 dark:via-neutral-700 to-transparent to-99% [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]">
+                    <div id="animated-line" class="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-t from-purple-500 via-blue-500 to-transparent from-0% via-10% rounded-full"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+    
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Theme Toggle Script ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        const htmlEl = document.documentElement;
+
+        const setTheme = (theme) => {
+            if (theme === 'dark') {
+                htmlEl.classList.add('dark');
+                themeToggleLightIcon.classList.remove('hidden');
+                themeToggleDarkIcon.classList.add('hidden');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                htmlEl.classList.remove('dark');
+                themeToggleDarkIcon.classList.remove('hidden');
+                themeToggleLightIcon.classList.add('hidden');
+                localStorage.setItem('theme', 'light');
+            }
+        };
+
+        const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        setTheme(currentTheme);
+
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', function() {
+                const isDark = htmlEl.classList.contains('dark');
+                setTheme(isDark ? 'light' : 'dark');
+            });
+        }
+        
+        // --- Navbar Toggle Script ---
+        const menuToggleBtn = document.getElementById('menu-toggle-btn');
+        const navbar = document.getElementById('navbar');
+        if(menuToggleBtn && navbar) {
+            menuToggleBtn.addEventListener('click', function() {
+                const currentState = navbar.getAttribute('data-state');
+                if (currentState === 'active') {
+                    navbar.removeAttribute('data-state');
+                    menuToggleBtn.setAttribute('aria-label', 'Open Menu');
+                } else {
+                    navbar.setAttribute('data-state', 'active');
+                    menuToggleBtn.setAttribute('aria-label', 'Close Menu');
+                }
+            });
+        }
+
+        // --- Form Submission Script ---
+        const waitlistForm = document.getElementById('waitlist-form');
+        if(waitlistForm) {
+            waitlistForm.addEventListener('submit', async function(event) {
+                event.preventDefault(); 
+                const emailInput = waitlistForm.querySelector('input[type="email"]');
+                const email = emailInput.value;
+                if (!email || !email.includes('@')) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+                console.log('Form submitted with email:', email);
+                alert('Thank you for joining our community! We will be in touch.');
+                emailInput.value = '';
+            });
+        }
+        
+        // --- Timeline Line Animation Script ---
+        const timelineContainer = document.getElementById('timeline-container');
+        const timelineContent = document.getElementById('timeline-content');
+        const staticLineContainer = document.getElementById('static-line-container');
+        const animatedLine = document.getElementById('animated-line');
+
+        if (timelineContainer && timelineContent && staticLineContainer && animatedLine) {
+            let contentHeight = 0;
+            const setLineHeight = () => {
+                contentHeight = timelineContent.offsetHeight;
+                staticLineContainer.style.height = `${contentHeight}px`;
+            };
+            
+            setLineHeight();
+            window.addEventListener('resize', setLineHeight);
+
+            const animateLine = () => {
+                const { top } = timelineContainer.getBoundingClientRect();
+                const containerHeight = timelineContainer.offsetHeight;
+                const viewportHeight = window.innerHeight;
+                const startOffset = viewportHeight * 0.1;
+                const endOffset = viewportHeight * 0.5;
+                const distance = startOffset - top;
+                const totalAnimateDistance = (containerHeight - endOffset) - startOffset;
+
+                let progress = 0;
+                if (distance > 0) {
+                    progress = distance / totalAnimateDistance;
+                }
+                progress = Math.min(1, Math.max(0, progress));
+
+                const newHeight = progress * contentHeight;
+                const newOpacity = progress > 0.05 ? 1 : progress / 0.05;
+
+                requestAnimationFrame(() => {
+                    animatedLine.style.height = `${newHeight}px`;
+                    animatedLine.style.opacity = newOpacity;
+                });
+            };
+
+            window.addEventListener('scroll', animateLine);
+            animateLine();
+        }
+
+        // --- Timeline Card Animation Script ---
+        const timelineCards = document.querySelectorAll('.timeline-card');
+        if (timelineCards.length > 0) {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            timelineCards.forEach(card => {
+                observer.observe(card);
+            });
+        }
+    });
+</script>
+</body>
+</html>

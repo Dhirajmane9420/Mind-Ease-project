@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - MindEase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom right, #dbeafe, #c7d2fe); /* Gradient from student_home.html */
+        }
+        .step-card {
+            opacity: 0;
+            transform: translateY(30px) scale(0.98);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .step-card.is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    </style>
+</head>
+<body class="text-slate-800 dark:text-zinc-200">
+
+<header>
+    <!-- Your existing navbar code from index.html goes here -->
+    <nav id="navbar" class="group fixed z-20 w-full border-b border-indigo-200/50 bg-white/40 backdrop-blur-lg md:relative dark:border-zinc-700/50 dark:bg-zinc-950/50 xl:dark:bg-transparent">
+        <div class="m-auto max-w-7xl px-6">
+            <div class="flex flex-wrap items-center justify-between gap-6 py-3 xl:gap-0 xl:py-4">
+                <div class="flex w-full justify-between xl:w-auto">
+                    <a href="index.html" aria-label="home" class="flex items-center space-x-3">
+                        <img src="./logo.jpg" class="h-12 w-auto" alt="MindEase Logo">
+                        <span class="text-xl font-bold text-slate-900 dark:text-white">MindEase</span>
+                    </a>
+                    <button id="menu-toggle-btn" aria-label="Open Menu" class="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 xl:hidden"><!-- SVG Icons --></button>
+                </div>
+                <div id="nav-menu" class="hidden w-full flex-wrap items-center justify-end xl:flex xl:w-fit">
+                     <div class="xl:pr-4">
+                        <ul class="space-y-6 text-base xl:flex xl:gap-8 xl:space-y-0 xl:text-sm">
+                            <li><a href="how-it-works.html" class="text-slate-900 dark:text-white font-semibold block duration-150"><span> How It Works </span></a></li>
+                            <li><a href="resources-page.html" class="text-slate-700 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white block duration-150"><span> Our Resources</span></a></li>
+                            <li><a href="for-institutions.html" class="text-slate-700 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white block duration-150"><span>For Institutions</span></a></li>
+                            <li><a href="about.html" class="text-slate-700 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white block duration-150"><span>About</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit xl:border-l xl:pl-6 border-slate-200 dark:xl:border-zinc-700">
+                        <button id="theme-toggle" type="button"><!-- ... --></button>
+                        <a href="login.html" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium h-9 px-3 border border-white/30 bg-white/20 hover:bg-white/40 text-slate-700 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-800 dark:text-zinc-50 dark:hover:text-zinc-50"><span>Login</span></a>
+                        <a href="signup.html" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium h-9 px-3 bg-slate-800 text-slate-50 hover:bg-slate-900/90 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/90"><span>Sign Up</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="py-20 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-slate-800 dark:text-white">Your Path to Wellness</h1>
+        <p class="mt-4 text-lg text-slate-600 dark:text-zinc-400">A simple, confidential, and supportive journey from your first check-in to finding the right resources for you.</p>
+    </div>
+
+    <div class="mt-20 max-w-2xl mx-auto space-y-12">
+        <!-- Step 1 Card -->
+        <div class="step-card flex items-start gap-6">
+            <div class="flex flex-col items-center">
+                <div class="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-500 text-white font-bold text-xl shadow-lg">1</div>
+                <div class="w-px h-24 bg-indigo-200 dark:bg-zinc-700 mt-4"></div>
+            </div>
+            <div>
+                <h3 class="text-2xl font-bold text-slate-800 dark:text-white mb-2">Create Your Account</h3>
+                <p class="text-slate-600 dark:text-zinc-400">Sign up in minutes to create your secure, confidential profile. Your privacy is our top priority.</p>
+            </div>
+        </div>
+
+        <!-- Step 2 Card -->
+        <div class="step-card flex items-start gap-6">
+             <div class="flex flex-col items-center">
+                <div class="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-500 text-white font-bold text-xl shadow-lg">2</div>
+                <div class="w-px h-24 bg-indigo-200 dark:bg-zinc-700 mt-4"></div>
+            </div>
+            <div>
+                <h3 class="text-2xl font-bold text-slate-800 dark:text-white mb-2">Take a Quick Assessment</h3>
+                <p class="text-slate-600 dark:text-zinc-400">Answer a few simple questions to help us understand your current well-being. This is not a diagnosis, just a starting point.</p>
+            </div>
+        </div>
+
+        <!-- Step 3 Card -->
+        <div class="step-card flex items-start gap-6">
+             <div class="flex flex-col items-center">
+                <div class="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-500 text-white font-bold text-xl shadow-lg">3</div>
+                <div class="w-px h-24 bg-indigo-200 dark:bg-zinc-700 mt-4"></div>
+            </div>
+            <div>
+                <h3 class="text-2xl font-bold text-slate-800 dark:text-white mb-2">Explore Personalized Resources</h3>
+                <p class="text-slate-600 dark:text-zinc-400">Based on your assessment, discover a library of curated videos, articles, and audio exercises tailored to your needs.</p>
+            </div>
+        </div>
+
+        <!-- Step 4 Card -->
+        <div class="step-card flex items-start gap-6">
+            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-500 text-white font-bold text-xl shadow-lg">4</div>
+            <div>
+                <h3 class="text-2xl font-bold text-slate-800 dark:text-white mb-2">Connect and Grow</h3>
+                <p class="text-slate-600 dark:text-zinc-400">Engage with our AI assistant for immediate support, connect with peers in the community forum, or book a session with a professional counselor.</p>
+            </div>
+        </div>
+    </div>
+
+    <a href="index.html" aria-label="home" class="flex items-center space-x-3">
+        <img src="./logo.jpg" class="h-12 w-auto" alt="MindEase Logo">
+        <span class="text-xl font-bold text-slate-900 dark:text-white">MindEase</span>
+    </a>
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        lucide.createIcons();
+        
+        // --- Animation on Scroll ---
+        const cards = document.querySelectorAll('.step-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        cards.forEach(card => observer.observe(card));
+
+        // --- Navbar and Theme Toggle Logic ---
+        // (Include the full script from your index.html here)
+    });
+</script>
+</body>
+</html>

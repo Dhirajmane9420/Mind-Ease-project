@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Institutions - MindEase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+         body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom right, #dbeafe, #c7d2fe); /* Gradient from student_home.html */
+        }
+    </style>
+</head>
+<body class="text-slate-800 dark:text-zinc-200">
+
+<header>
+    <!-- Your existing navbar code from index.html goes here -->
+    <nav id="navbar" class="group fixed z-20 w-full border-b border-indigo-200/50 bg-white/40 backdrop-blur-lg md:relative dark:border-zinc-700/50 dark:bg-zinc-950/50 xl:dark:bg-transparent">
+        <div class="m-auto max-w-7xl px-6">
+            <div class="flex flex-wrap items-center justify-between gap-6 py-3 xl:gap-0 xl:py-4">
+                <div class="flex w-full justify-between xl:w-auto">
+                    <a href="index.html" aria-label="home" class="flex items-center space-x-3">
+                        <img src="./logo.jpg" class="h-12 w-auto" alt="MindEase Logo">
+                        <span class="text-xl font-bold text-slate-900 dark:text-white">MindEase</span>
+                    </a>
+                    <button id="menu-toggle-btn" aria-label="Open Menu" class="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 xl:hidden"><!-- SVG Icons --></button>
+                </div>
+                <div id="nav-menu" class="hidden w-full flex-wrap items-center justify-end xl:flex xl:w-fit">
+                     <div class="xl:pr-4">
+                        <ul class="space-y-6 text-base xl:flex xl:gap-8 xl:space-y-0 xl:text-sm">
+                            <li><a href="how-it-works.html" class="text-slate-700 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white block duration-150"><span> How It Works </span></a></li>
+                            <li><a href="resources-page.html" class="text-slate-700 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white block duration-150"><span> Our Resources</span></a></li>
+                            <li><a href="for-institutions.html" class="text-slate-900 dark:text-white font-semibold block duration-150"><span>For Institutions</span></a></li>
+                            <li><a href="about.html" class="text-slate-700 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white block duration-150"><span>About</span></a></li>
+                        </ul>
+                    </div>
+                     <div class="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit xl:border-l xl:pl-6 border-slate-200 dark:xl:border-zinc-700">
+                        <button id="theme-toggle" type="button"><!-- ... --></button>
+                        <a href="login.html" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium h-9 px-3 border border-white/30 bg-white/20 hover:bg-white/40 text-slate-700 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-800 dark:text-zinc-50 dark:hover:text-zinc-50"><span>Login</span></a>
+                        <a href="signup.html" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium h-9 px-3 bg-slate-800 text-slate-50 hover:bg-slate-900/90 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/90"><span>Sign Up</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="py-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-800 dark:text-white">Partner with MindEase</h1>
+            <p class="mt-4 text-lg text-slate-600 dark:text-zinc-400">Empower your students with accessible, modern, and confidential mental health support.</p>
+        </div>
+
+        <div class="mt-16 grid md:grid-cols-2 gap-8 items-center">
+            <div class="bg-white/50 dark:bg-zinc-900/50 p-8 rounded-2xl shadow-lg border border-white/50 dark:border-zinc-800">
+                <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-4">Our Commitment to Institutions</h2>
+                <ul class="space-y-3 text-slate-600 dark:text-zinc-400">
+                    <li class="flex items-start gap-3"><i data-lucide="shield-check" class="w-5 h-5 text-indigo-500 mt-1 flex-shrink-0"></i><span><strong>Data Privacy & Anonymity:</strong> All student data is anonymized. Institutions receive aggregated, non-identifiable wellness reports to understand campus-wide trends, never individual data.</span></li>
+                    <li class="flex items-start gap-3"><i data-lucide="bar-chart" class="w-5 h-5 text-indigo-500 mt-1 flex-shrink-0"></i><span><strong>Actionable Insights:</strong> Our analytics dashboard provides a high-level overview of student well-being, helping you identify stress trends during exam periods or among specific departments.</span></li>
+                    <li class="flex items-start gap-3"><i data-lucide="users" class="w-5 h-5 text-indigo-500 mt-1 flex-shrink-0"></i><span><strong>Seamless Integration:</strong> MindEase can be integrated with your existing student portal, providing easy access and encouraging adoption.</span></li>
+                    <li class="flex items-start gap-3"><i data-lucide="book-marked" class="w-5 h-5 text-indigo-500 mt-1 flex-shrink-0"></i><span><strong>Resource Augmentation:</strong> Our platform complements your existing counseling services by providing 24/7 first-line support and a rich library of self-help resources.</span></li>
+                </ul>
+            </div>
+            <div>
+                 <img src="https://images.unsplash.com/photo-1557426272-d781e3779654?q=80&w=2070&auto=format&fit=crop" alt="Professional meeting" class="rounded-2xl shadow-lg w-full h-full object-cover">
+            </div>
+        </div>
+    </div>
+
+    <a href="index.html" aria-label="home" class="flex items-center space-x-3">
+        <img src="./logo.jpg" class="h-12 w-auto" alt="MindEase Logo">
+        <span class="text-xl font-bold text-slate-900 dark:text-white">MindEase</span>
+    </a>
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        lucide.createIcons();
+        // --- Navbar and Theme Toggle Logic ---
+        // (Include the full script from your index.html here)
+    });
+</script>
+</body>
+</html>
