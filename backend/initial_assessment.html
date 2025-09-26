@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initial Wellness Check-in</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom right, #dbeafe, #c7d2fe); /* Gradient: blue-100 to indigo-200 */
+        }
+        /* Custom radio button styles */
+        .custom-radio input:checked + label {
+            border-color: #4f46e5;
+            background-color: #eef2ff;
+            color: #3730a3;
+            font-weight: 600;
+        }
+        /* Style for question slides */
+        .question-slide {
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+        }
+        .question-slide.hidden-slide {
+            opacity: 0;
+            transform: translateX(20px);
+            display: none;
+        }
+        .progress-bar-fill {
+            transition: width 0.4s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
+    <div class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl w-full space-y-8">
+            <div>
+                <a href="welcome.html" class="flex justify-center items-center">
+                    <i data-lucide="shield-half" class="h-10 w-auto text-indigo-600"></i>
+                     <span class="ml-3 text-2xl font-bold text-slate-900">Wellness Portal</span>
+                </a>
+                <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-slate-900">
+                    A Quick Wellness Check-in
+                </h2>
+                 <p class="mt-2 text-center text-sm text-slate-600">
+                    Your answers are confidential and will help us personalize your experience.
+                </p>
+            </div>
+            
+            <form id="assessment-form" class="mt-8 bg-white p-8 rounded-2xl shadow-md" action="#" method="POST">
+                
+                <!-- Progress Bar -->
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span id="progress-text" class="text-sm font-medium text-slate-700">Question 1 of 6</span>
+                    </div>
+                    <div class="w-full bg-slate-200 rounded-full h-2.5">
+                        <div id="progress-bar" class="bg-indigo-600 h-2.5 rounded-full progress-bar-fill" style="width: 16%"></div>
+                    </div>
+                </div>
+
+                <div class="mt-10 min-h-[180px] relative">
+                    <!-- Question 1 -->
+                    <div id="question-0" class="question-slide">
+                        <label class="text-base font-semibold text-slate-800">1. Over the last 2 weeks, how often have you felt little interest or pleasure in doing things?</label>
+                        <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3 custom-radio">
+                            <input type="radio" name="q1" id="q1-1" value="0" class="sr-only" required><label for="q1-1" class="block w-full text-center p-3 border rounded-lg cursor-pointer transition-colors hover:bg-slate-100">Not at all</label>
+                            <input type="radio" name="q1" id="q1-2" value="1" class="sr-only"><label for="q1-2" class="block w-full text-center p-3 border rounded-lg cursor-pointer transition-colors hover:bg-slate-100">Several days</label>
+                            <input type="radio" name="q1" id="q1-3" value="2" class="sr-only"><label for="q1-3" class="block w-full text-center p-3 border rounded-lg cursor-pointer transition-colors hover:bg-slate-100">More than half the days</label>
+                            <input type="radio" name="q1" id="q1-4" value="3" class="sr-only"><label for="q1-4" class="block w-full text-center p-3 border rounded-lg cursor-pointer transition-colors hover:bg-slate-100">Nearly every day</label>
+                        </div>
+                    </div>
+                    <!-- Question 2 -->
+                     <div id="question-1" class="question-slide absolute top-0 left-0 w-full hidden-slide">
+                        <label class="text-base font-semibold text-slate-800">2. How often have you been bothered by feeling nervous, anxious, or on edge?</label>
+                        <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3 custom-radio">
+                            <input type="radio" name="q2" id="q2-1" value="0" class="sr-only" required><label for="q2-1" class="block w-full text-center p-3 border rounded-lg cursor-pointer transition-colors hover:bg-slate-100">Not at all</label>
+                            <input type="radio" name="q2" id="q2-2" value="1" class="sr-only"><label for="q2-2" class="block w-full text-center p-3 border rounded-lg cursor-pointer transition-colors hover:bg-slate-100">Several days</label>
+                            <input type="radio" name="q2" id="q2-3" value="2" class="sr-only"><label for="q2-3" class="block w-full text-center p-3 border rounded-lg cursor-pointer transition-colors hover:bg-slate-100">More than half the days</label>
+                            <input type="radio" name="q2" id="q2-4" value="3" class="sr-only"><label for="q2-4" class="block w-full text-center p-3 border rounded-lg cursor-pointer transition-colors hover:bg-slate-100">Nearly every day</label>
+                        </div>
+                    </div>
+                    <!-- Question 3 -->
+                     <div id="question-2" class="question-slide absolute top-0 left-0 w-full hidden-slide">
+                        <label class="text-base font-semibold text-slate-800">3. How often have you been bothered by not being able to stop or control worrying?</label>
+                        <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3 custom-radio">
+                            <input type="radio" name="q3" id="q3-1" value="0" class="sr-only" required><label for="q3-1" class="block w-full text-center p-3 border rounded-lg cursor-pointer transition-colors hover:bg-slate-100">Not at all</label>
+                            <input type="radio" name="q3" id="q3-2" value="1" class="sr-only"><label for="q3-2" class="block w-full text-center p-3 border rounded-lg cursor-pointer transition-colors hover:bg-slate-100">Several days</label>
+                            <input type="radio" name="q3" id="q3-3" value="2" class="sr-only"><label for="q3-3" class="block w-full text-center p-3 border rounded-lg cursor-pointer transition-colors hover:bg-slate-100">More than half the days</label>
+                            <input type="radio" name="q3" id="q3-4" value="3" class="sr-only"><label for="q3-4" class="block w-full text-center p-3 border rounded-lg cursor-pointer transition-colors hover:bg-slate-100">Nearly every day</label>
+                        </div>
+                    </div>
+                    <!-- Question 4 -->
+                    <div id="question-3" class="question-slide absolute top-0 left-0 w-full hidden-slide">
+                        <label class="text-base font-semibold text-slate-800">4. How often have you felt down, depressed, or hopeless?</label>
+                        <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3 custom-radio">
+                            <input type="radio" name="q4" id="q4-1" value="0" class="sr-only" required><label for="q4-1" class="block w-full text-center p-3 border rounded-lg cursor-pointer transition-colors hover:bg-slate-100">Not at all</label>
+                            <input type="radio" name="q4" id="q4-2" value="1" class="sr-only"><label for="q4-2" class="block w-full text-center p-3 border rounded-lg cursor-pointer transition-colors hover:bg-slate-100">Several days</label>
+                            <input type="radio" name="q4" id="q4-3" value="2" class="sr-only"><label for="q4-3" class="block w-full text-center p-3 border rounded-lg cursor-pointer transition-colors hover:bg-slate-100">More than half the days</label>
+                            <input type="radio" name="q4" id="q4-4" value="3" class="sr-only"><label for="q4-4" class="block w-full text-center p-3 border rounded-lg cursor-pointer transition-colors hover:bg-slate-100">Nearly every day</label>
+                        </div>
+                    </div>
+                    <!-- Question 5 -->
+                    <div id="question-4" class="question-slide absolute top-0 left-0 w-full hidden-slide">
+                        <label class="text-base font-semibold text-slate-800">5. Over the last 2 weeks, how would you rate your sleep quality?</label>
+                        <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3 custom-radio">
+                            <input type="radio" name="q5" id="q5-1" value="0" class="sr-only" required><label for="q5-1" class="block w-full text-center p-3 border rounded-lg cursor-pointer transition-colors hover:bg-slate-100">Very Good</label>
+                            <input type="radio" name="q5" id="q5-2" value="1" class="sr-only"><label for="q5-2" class="block w-full text-center p-3 border rounded-lg cursor-pointer transition-colors hover:bg-slate-100">Good</label>
+                            <input type="radio" name="q5" id="q5-3" value="2" class="sr-only"><label for="q5-3" class="block w-full text-center p-3 border rounded-lg cursor-pointer transition-colors hover:bg-slate-100">Poor</label>
+                            <input type="radio" name="q5" id="q5-4" value="3" class="sr-only"><label for="q5-4" class="block w-full text-center p-3 border rounded-lg cursor-pointer transition-colors hover:bg-slate-100">Very Poor</label>
+                        </div>
+                    </div>
+                    <!-- Question 6 -->
+                    <div id="question-5" class="question-slide absolute top-0 left-0 w-full hidden-slide">
+                        <label class="text-base font-semibold text-slate-800">6. How often have you been feeling tired or having little energy?</label>
+                        <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3 custom-radio">
+                            <input type="radio" name="q6" id="q6-1" value="0" class="sr-only" required><label for="q6-1" class="block w-full text-center p-3 border rounded-lg cursor-pointer transition-colors hover:bg-slate-100">Not at all</label>
+                            <input type="radio" name="q6" id="q6-2" value="1" class="sr-only"><label for="q6-2" class="block w-full text-center p-3 border rounded-lg cursor-pointer transition-colors hover:bg-slate-100">Several days</label>
+                            <input type="radio" name="q6" id="q6-3" value="2" class="sr-only"><label for="q6-3" class="block w-full text-center p-3 border rounded-lg cursor-pointer transition-colors hover:bg-slate-100">More than half the days</label>
+                            <input type="radio" name="q6" id="q6-4" value="3" class="sr-only"><label for="q6-4" class="block w-full text-center p-3 border rounded-lg cursor-pointer transition-colors hover:bg-slate-100">Nearly every day</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Validation Message -->
+                <p id="validation-message" class="text-red-500 text-sm text-center h-4"></p>
+
+                <!-- Navigation Buttons -->
+                <div class="mt-10 flex justify-between items-center">
+                    <button type="button" id="back-btn" class="text-sm font-semibold text-slate-600 hover:text-slate-900 invisible">Back</button>
+                    <button type="button" id="next-btn" class="group flex items-center justify-center rounded-md border border-transparent bg-indigo-600 py-2.5 px-6 text-base font-semibold text-white hover:bg-indigo-700">Next</button>
+                    <button type="submit" id="submit-btn" class="group hidden flex items-center justify-center rounded-md border border-transparent bg-indigo-600 py-2.5 px-6 text-base font-semibold text-white hover:bg-indigo-700">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        lucide.createIcons();
+        const assessmentForm = document.getElementById('assessment-form');
+        const nextBtn = document.getElementById('next-btn');
+        const backBtn = document.getElementById('back-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const validationMessage = document.getElementById('validation-message');
+        
+        const questions = document.querySelectorAll('.question-slide');
+        const totalQuestions = questions.length;
+        let currentQuestionIndex = 0;
+
+        function showQuestion(index) {
+            questions.forEach((question, i) => {
+                if (i === index) {
+                    setTimeout(() => {
+                        question.classList.remove('hidden-slide');
+                    }, 50);
+                } else {
+                    question.classList.add('hidden-slide');
+                }
+            });
+            // Update Progress
+            const progress = ((index + 1) / totalQuestions) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `Question ${index + 1} of ${totalQuestions}`;
+            
+            // Update Buttons
+            backBtn.classList.toggle('invisible', index === 0);
+            nextBtn.classList.toggle('hidden', index === totalQuestions - 1);
+            submitBtn.classList.toggle('hidden', index !== totalQuestions - 1);
+            
+            validationMessage.textContent = '';
+        }
+        
+        function validateCurrentQuestion() {
+            const currentQuestion = questions[currentQuestionIndex];
+            const radioButtons = currentQuestion.querySelectorAll('input[type="radio"]');
+            return Array.from(radioButtons).some(radio => radio.checked);
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (validateCurrentQuestion()) {
+                if (currentQuestionIndex < totalQuestions - 1) {
+                    currentQuestionIndex++;
+                    showQuestion(currentQuestionIndex);
+                }
+            } else {
+                validationMessage.textContent = 'Please select an answer to continue.';
+            }
+        });
+        
+        backBtn.addEventListener('click', () => {
+             if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion(currentQuestionIndex);
+            }
+        });
+
+        assessmentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if(validateCurrentQuestion()){
+                 // In a real application, you would save the results and then
+                // the backend would determine the user's starting point.
+                // For now, we'll just redirect to the main home page.
+                window.location.href = 'student_home.html';
+            } else {
+                 validationMessage.textContent = 'Please select an answer to submit.';
+            }
+        });
+        
+        // Initialize first question
+        showQuestion(currentQuestionIndex);
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Resources Hub</title>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Tailwind CSS for header/sidebar compatibility -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="text-slate-800">
+
+    <div id="app-container" class="relative">
+
+        <!-- Sidebar -->
+        <aside id="sidebar" class="sidebar bg-violet-50 text-slate-800 w-64 space-y-6 py-7 px-2 fixed inset-y-0 left-0 h-screen">
+            <div class="px-4 mb-8">
+                <h2 class="text-xl font-bold text-slate-900">John Doe</h2>
+                <p class="text-sm text-slate-500">Student ID: ****1234</p>
+            </div>
+            <nav class="flex-grow">
+                <a href="student_home.html" class="flex items-center space-x-3 py-2.5 px-4 rounded-lg text-slate-700 hover:bg-indigo-100 hover:text-indigo-700"><i data-lucide="home" class="w-5 h-5"></i><span>Home</span></a>
+                <a href="ai_assistant.html" class="flex items-center space-x-3 py-2.5 px-4 rounded-lg text-slate-700 hover:bg-indigo-100 hover:text-indigo-700"><i data-lucide="bot" class="w-5 h-5"></i><span>AI Assistant</span></a>
+                <a href="resources.html" class="flex items-center space-x-3 py-2.5 px-4 rounded-lg text-indigo-700 bg-indigo-100 font-semibold"><i data-lucide="book-open-check" class="w-5 h-5"></i><span>Resources</span></a>
+                <a href="peer_support.html" class="flex items-center space-x-3 py-2.5 px-4 rounded-lg text-slate-700 hover:bg-indigo-100 hover:text-indigo-700"><i data-lucide="users" class="w-5 h-5"></i><span>Peer Support</span></a>
+                <a href="test_assessment.html" class="flex items-center space-x-3 py-2.5 px-4 rounded-lg text-slate-700 hover:bg-indigo-100 hover:text-indigo-700"><i data-lucide="clipboard-list" class="w-5 h-5"></i><span>Test Assessment</span></a>
+                <a href="bookings.html" class="flex items-center space-x-3 py-2.5 px-4 rounded-lg text-slate-700 hover:bg-indigo-100 hover:text-indigo-700"><i data-lucide="calendar-plus" class="w-5 h-5"></i><span>Bookings</span></a>
+            </nav>
+            <div class="absolute bottom-0 w-full left-0 px-2 pb-4">
+                <a href="welcome.html" id="logout-button" class="flex items-center space-x-3 py-2.5 px-4 rounded-lg text-slate-700 hover:bg-red-100 hover:text-red-700"><i data-lucide="log-out" class="w-5 h-5"></i><span>Logout</span></a>
+            </div>
+        </aside>
+
+        <!-- Main content -->
+        <div id="main-panel" class="flex flex-col min-h-screen overflow-hidden">
+            <!-- Header -->
+             <header class="sticky top-0 z-40 w-full border-b border-indigo-200/50 bg-blue-200/70 backdrop-blur-xl">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between items-center h-16">
+                        <div class="flex-shrink-0 flex items-center"><i data-lucide="shield-half" class="h-8 w-auto text-indigo-600"></i><span class="ml-2 text-xl font-bold text-slate-900">Wellness Portal</span></div>
+                        <div class="flex items-center gap-4">
+                            <nav class="hidden md:flex items-center gap-8"><a href="student_home.html" class="text-sm font-medium text-slate-700 hover:text-indigo-600">Dashboard</a><a href="peer_support.html" class="text-sm font-medium text-slate-700 hover:text-indigo-600">Community</a><a href="bookings.html" class="text-sm font-medium text-slate-700 hover:text-indigo-600">Appointments</a></nav>
+                            <div class="md-hidden"><button id="mobile-menu-button"><svg stroke-width="2" fill="none" stroke="currentColor" viewBox="0 0 32 32" class="h-6 w-6 text-slate-800"><path d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path><path d="M7 16 27 16"></path></svg></button></div>
+                            <div class="relative"><button id="profile-button" class="bg-slate-200 rounded-full h-10 w-10 flex items-center justify-center text-slate-600"><i data-lucide="user" class="w-5 h-5"></i></button><div id="profile-dropdown" class="origin-top-right absolute right-0 mt-2 w-64 rounded-xl shadow-lg bg-white p-4 hidden z-50"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+            
+            <!-- This is where your new content goes -->
+            <main>
+                <section class="stress-level-section">
+                    <div class="header-content">
+                        <h1 class="main-title">How are you feeling today?</h1>
+                        <p class="main-description">
+                            Select a level to reflect your current state of mind. Understanding where you are is the first step toward wellness.
+                        </p>
+                    </div>
+                    <div id="gradient-selector-card" class="stress-selector-container">
+                        <div id="radial-gradient-overlay" class="radial-gradient-overlay"></div>
+                        <div class="selector-track">
+                            <div class="selector-item"><div class="selector-circle" data-index="0"></div><div class="selector-line" data-index="0"></div></div>
+                            <div class="selector-item"><div class="selector-circle" data-index="1"></div><div class="selector-line" data-index="1"></div></div>
+                            <div class="selector-item"><div class="selector-circle" data-index="2"></div><div class="selector-line" data-index="2"></div></div>
+                            <div class="selector-item"><div class="selector-circle" data-index="3"></div></div>
+                        </div>
+                        <div class="selector-labels">
+                            <div class="selector-label-item"><span data-index="0">Calm</span></div>
+                            <div class="selector-label-item"><span data-index="1">Mild</span></div>
+                            <div class="selector-label-item"><span data-index="2">Moderate</span></div>
+                            <div class="selector-label-item"><span data-index="3">High</span></div>
+                        </div>
+                    </div>
+                </section>
+            
+                <div class="main-container">
+                    <div class="bento-grid-container">
+                        <div class="bento-grid">
+                            <div class="feature-card" style="--col-span-md: 4; --col-span-lg: 4;">
+                                <div class="card-content">
+                                    <h2 class="feature-title" id="main-video-title">Find Your Calm</h2>
+                                    <p class="feature-description">Take a moment to breathe and immerse yourself in a peaceful, calming scene.</p>
+                                    <div class="skeleton-one">
+                                       <iframe 
+                                            id="main-video-player" 
+                                            class="video-player" 
+                                            src="https://www.youtube.com/embed/4784368?autoplay=1&mute=1&loop=1&playlist=4784368" 
+                                            frameborder="0" 
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                            allowfullscreen>
+                                        </iframe>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="feature-card" style="--col-span-md: 2; --col-span-lg: 2;">
+                                <div class="card-content">
+                                    <h2 class="feature-title">Mindful Audio</h2>
+                                    <p class="feature-description">Listen to guided meditations and soothing sounds to relax your mind.</p>
+                                    <div id="audio-player-container">
+                                         <audio id="audio-element" src=""></audio>
+                                        <img src="https://images.unsplash.com/photo-1507525428034-b723a9ce6890" alt="Album Art" id="album-art">
+                                        <div class="track-info"><h3 id="track-title">Ocean Waves</h3><p id="track-artist">Nature Sounds</p></div>
+                                        <div class="progress-container" id="progress-container"><div class="progress-bar" id="progress-bar"></div></div>
+                                        <div class="time-container"><span id="current-time">0:00</span><span id="duration">0:00</span></div>
+                                        <div class="controls-container">
+                                            <button id="prev-btn" class="control-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"></path></svg></button>
+                                            <button id="play-pause-btn" class="control-btn play">
+                                                <svg id="play-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+                                                <svg id="pause-icon" viewBox="0 0 24 24" fill="currentColor" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>
+                                            </button>
+                                            <button id="next-btn" class="control-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"></path></svg></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="feature-card" style="--col-span-md: 3; --col-span-lg: 3;">
+                                <div class="card-content">
+                                    <h2 class="feature-title">Daily Inspiration</h2>
+                                    <p class="feature-description">A moment of reflection to inspire your day.</p>
+                                    <div id="quote-container">
+                                        <blockquote id="quote-text">The present moment is filled with joy and happiness.</blockquote>
+                                        <cite id="quote-author">- Thich Nhat Hanh</cite>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="feature-card" style="--col-span-md: 3; --col-span-lg: 3;">
+                                <div class="card-content">
+                                    <h2 class="feature-title">Global Community</h2>
+                                    <p class="feature-description">Connect with a supportive global community dedicated to mental wellness.</p>
+                                    <div class="skeleton-four">
+                                       <img src="https://cdn.dribbble.com/users/434314/screenshots/3610280/media/de6c7c5d414f850723a2318685897115.gif" class="community-gif" alt="Animation of community connection cards">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <section class="resource-library-section">
+                    <div class="header-content">
+                        <h2 class="main-title">Resource Library</h2>
+                        <p class="main-description">Search our library to find exactly what you need.</p>
+                    </div>
+                    <div class="search-bar-container">
+                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        <input type="search" id="resource-search" placeholder="Search for audios or videos...">
+                    </div>
+                    <div class="strip-container">
+                        <h3>Calming Videos</h3>
+                        <div class="resource-strip" id="video-strip"></div>
+                    </div>
+                    <div class="strip-container">
+                        <h3>Guided Audios</h3>
+                        <div class="resource-strip" id="audio-strip"></div>
+                    </div>
+                </section>
+            
+                <section id="recommendation-section" class="recommendation-section"></section>
+            
+            </main>
+        </div>
+    </div>
+    
+    <!-- Link to the external JS file -->
+    <script src="script.js"></script>
+</body>
+</html>
+

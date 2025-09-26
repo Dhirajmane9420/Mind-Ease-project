@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book an Appointment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(to bottom right, #dbeafe, #c7d2fe); }
+        .sidebar { transition: transform 0.3s ease-in-out; transform: translateX(-100%); z-index: 50; }
+        .sidebar.open { transform: translateX(0); }
+        @media (min-width: 768px) { #main-panel { transition: margin-left 0.3s ease-in-out; } }
+        #mobile-menu-button { --transition-duration: 0.6s; }
+        #mobile-menu-button svg { transition: transform var(--transition-duration) ease-out; }
+        #mobile-menu-button.open svg { transform: rotate(-45deg); }
+        #mobile-menu-button path:nth-child(1) { transition: stroke-dasharray var(--transition-duration) ease-out, stroke-dashoffset var(--transition-duration) ease-out; stroke-dasharray: 12 63; }
+        #mobile-menu-button.open path:nth-child(1) { stroke-dasharray: 20 300; stroke-dashoffset: -32.42px; }
+    </style>
+</head>
+<body class="text-slate-800">
+    <div id="app-container" class="relative">
+        <aside id="sidebar" class="sidebar bg-violet-50 text-slate-800 w-64 space-y-6 py-7 px-2 fixed inset-y-0 left-0 h-screen">
+            <div class="px-4 mb-8"><h2 class="text-xl font-bold text-slate-900">John Doe</h2><p class="text-sm text-slate-500">Student ID: ****1234</p></div>
+            <nav class="flex-grow">
+                 <a href="student_home.html" class="flex items-center space-x-3 py-2.5 px-4 rounded-lg text-slate-700 hover:bg-indigo-100 hover:text-indigo-700"><i data-lucide="home" class="w-5 h-5"></i><span>Home</span></a>
+                 <a href="ai_assistant.html" class="flex items-center space-x-3 py-2.5 px-4 rounded-lg text-slate-700 hover:bg-indigo-100 hover:text-indigo-700"><i data-lucide="bot" class="w-5 h-5"></i><span>AI Assistant</span></a>
+                 <a href="resources.html" class="flex items-center space-x-3 py-2.5 px-4 rounded-lg text-slate-700 hover:bg-indigo-100 hover:text-indigo-700"><i data-lucide="book-open-check" class="w-5 h-5"></i><span>Resources</span></a>
+                 <a href="peer_support.html" class="flex items-center space-x-3 py-2.5 px-4 rounded-lg text-slate-700 hover:bg-indigo-100 hover:text-indigo-700"><i data-lucide="users" class="w-5 h-5"></i><span>Peer Support</span></a>
+                 <a href="test_assessment.html" class="flex items-center space-x-3 py-2.5 px-4 rounded-lg text-slate-700 hover:bg-indigo-100 hover:text-indigo-700"><i data-lucide="clipboard-list" class="w-5 h-5"></i><span>Test Assessment</span></a>
+                 <a href="bookings.html" class="flex items-center space-x-3 py-2.5 px-4 rounded-lg text-indigo-700 bg-indigo-100 font-semibold"><i data-lucide="calendar-plus" class="w-5 h-5"></i><span>Bookings</span></a>
+            </nav>
+            <div class="absolute bottom-0 w-full left-0 px-2 pb-4"><a href="welcome.html" id="logout-button" class="flex items-center space-x-3 py-2.5 px-4 rounded-lg text-slate-700 hover:bg-red-100 hover:text-red-700"><i data-lucide="log-out" class="w-5 h-5"></i><span>Logout</span></a></div>
+        </aside>
+
+        <div id="main-panel" class="flex flex-col min-h-screen overflow-hidden">
+             <header class="sticky top-0 z-40 w-full border-b border-indigo-200/50 bg-blue-200/70 backdrop-blur-xl">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-16"><div class="flex-shrink-0 flex items-center"><i data-lucide="shield-half" class="h-8 w-auto text-indigo-600"></i><span class="ml-2 text-xl font-bold text-slate-900">Wellness Portal</span></div><div class="flex items-center gap-4"><nav class="hidden md:flex items-center gap-8"><a href="student_home.html" class="text-sm font-medium text-slate-700 hover:text-indigo-600">Dashboard</a><a href="peer_support.html" class="text-sm font-medium text-slate-700 hover:text-indigo-600">Community</a><a href="bookings.html" class="text-sm font-medium text-slate-700 hover:text-indigo-600">Appointments</a></nav><div class="md:hidden"><button id="mobile-menu-button"><svg stroke-width="2" fill="none" stroke="currentColor" viewBox="0 0 32 32" class="h-6 w-6 text-slate-800"><path d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path><path d="M7 16 27 16"></path></svg></button></div><div class="relative"><button id="profile-button" class="bg-slate-200 rounded-full h-10 w-10 flex items-center justify-center text-slate-600"><i data-lucide="user" class="w-5 h-5"></i></button><div id="profile-dropdown" class="origin-top-right absolute right-0 mt-2 w-64 rounded-xl shadow-lg bg-white p-4 hidden z-50"></div></div></div></div></div>
+            </header>
+            <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+            
+            <main class="flex-1 p-4 lg:p-8">
+                 <div class="w-full max-w-4xl mx-auto">
+                    <h1 class="text-3xl font-bold text-slate-800 text-center">Book a Confidential Session</h1>
+                    <p class="mt-2 text-slate-600 text-center">Your privacy is protected. Select a counselor and find a time that works for you.</p>
+
+                    <form id="booking-form">
+                        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <!-- Counselor Selection -->
+                            <div>
+                                <h2 class="text-xl font-semibold text-slate-700 mb-4">1. Select a Counselor</h2>
+                                <div id="counselor-list" class="space-y-4">
+                                    <!-- Counselors will be dynamically loaded here -->
+                                    <p class="text-slate-500">Loading counselors...</p>
+                                </div>
+                            </div>
+
+                            <!-- Date & Time Selection -->
+                            <div>
+                                 <h2 class="text-xl font-semibold text-slate-700 mb-4">2. Choose a Date & Time</h2>
+                                 <input id="date-picker" type="date" class="w-full p-3 border border-slate-300/50 rounded-lg mb-4 bg-white/40 backdrop-blur-sm">
+                                 <div id="time-slots" class="grid grid-cols-3 gap-2">
+                                    <!-- Time slots will be dynamically generated, for now they are static -->
+                                    <button type="button" data-time="09:00" class="time-slot p-2 border border-slate-300/50 rounded-lg bg-white/40 backdrop-blur-sm hover:bg-indigo-100 transition-colors">09:00 AM</button>
+                                    <button type="button" data-time="10:00" class="time-slot p-2 border border-slate-300/50 rounded-lg bg-white/40 backdrop-blur-sm hover:bg-indigo-100 transition-colors">10:00 AM</button>
+                                    <button type="button" data-time="11:00" class="time-slot p-2 border border-slate-300/50 rounded-lg bg-white/40 backdrop-blur-sm hover:bg-indigo-100 transition-colors">11:00 AM</button>
+                                    <button type="button" data-time="13:00" class="time-slot p-2 border border-slate-300/50 rounded-lg text-slate-400 bg-slate-50/40 cursor-not-allowed" disabled>01:00 PM</button>
+                                    <button type="button" data-time="14:00" class="time-slot p-2 border border-slate-300/50 rounded-lg bg-white/40 backdrop-blur-sm hover:bg-indigo-100 transition-colors">02:00 PM</button>
+                                    <button type="button" data-time="15:00" class="time-slot p-2 border border-slate-300/50 rounded-lg bg-white/40 backdrop-blur-sm hover:bg-indigo-100 transition-colors">03:00 PM</button>
+                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 pt-6 border-t border-slate-300/50 text-center">
+                            <button type="submit" id="confirm-booking-btn" class="bg-indigo-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-indigo-700 transition-colors text-lg">Confirm Booking</button>
+                            <p id="confirmation-message" class="mt-4 text-green-700 font-semibold hidden"></p>
+                        </div>
+                    </form>
+                 </div>
+            </main>
+        </div>
+    </div>
+    <script>
+        lucide.createIcons();
+        const profileButton = document.getElementById('profile-button');
+        const profileDropdown = document.getElementById('profile-dropdown');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        const mainPanel = document.getElementById('main-panel');
+        profileButton.addEventListener('click', (e) => { e.stopPropagation(); profileDropdown.classList.toggle('hidden'); });
+        document.addEventListener('click', (e) => { if (!profileButton.contains(e.target)) profileDropdown.classList.add('hidden'); });
+        function toggleSidebar() { sidebar.classList.toggle('open'); sidebarOverlay.classList.toggle('hidden'); mobileMenuButton.classList.toggle('open'); }
+        mobileMenuButton.addEventListener('click', (e) => { e.stopPropagation(); toggleSidebar(); });
+        sidebarOverlay.addEventListener('click', toggleSidebar);
+        if (window.innerWidth >= 768) {
+            const triggerZoneWidth = 20;
+            document.addEventListener('mousemove', function(e) {
+                if (sidebar.classList.contains('open')) return;
+                const sidebarRect = sidebar.getBoundingClientRect();
+                if (e.clientX <= triggerZoneWidth) { sidebar.style.transform = 'translateX(0)'; mainPanel.style.marginLeft = '256px'; }
+                else if (e.clientX > sidebarRect.right + triggerZoneWidth) { sidebar.style.transform = 'translateX(-100%)'; mainPanel.style.marginLeft = '0'; }
+            });
+            document.body.addEventListener('mouseleave', function() { if (!sidebar.classList.contains('open')) { sidebar.style.transform = 'translateX(-100%)'; mainPanel.style.marginLeft = '0'; }});
+        }
+        document.querySelectorAll('a[href]').forEach(link => { if (link.href && link.href.includes('.html')) { link.addEventListener('click', e => { e.preventDefault(); window.location.href = link.href; });}});
+        
+        // --- Backend Integration Logic ---
+        const API_URL = 'http://localhost:3000/api'; // Your backend server URL
+        const counselorList = document.getElementById('counselor-list');
+        const bookingForm = document.getElementById('booking-form');
+        const confirmationMessage = document.getElementById('confirmation-message');
+        const timeSlotsContainer = document.getElementById('time-slots');
+        const datePicker = document.getElementById('date-picker');
+
+        let selectedTime = null;
+
+        // Function to fetch counselors from the backend
+        async function fetchCounselors() {
+            try {
+                const response = await fetch(`${API_URL}/users/counselors`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch counselors');
+                }
+                const counselors = await response.json();
+                
+                counselorList.innerHTML = ''; // Clear loading text
+                counselors.forEach(counselor => {
+                    const label = document.createElement('label');
+                    label.className = "flex items-center p-4 border border-slate-300/50 rounded-lg cursor-pointer bg-white/40 backdrop-blur-sm hover:border-indigo-400 transition-colors";
+                    label.innerHTML = `
+                        <input type="radio" name="counselor" value="${counselor._id}" class="h-5 w-5 text-indigo-600 focus:ring-indigo-500 border-gray-300">
+                        <div class="ml-4">
+                            <p class="font-bold text-slate-800">${counselor.name}</p>
+                            <p class="text-sm text-slate-500">Wellness Counselor</p> 
+                        </div>
+                    `;
+                    counselorList.appendChild(label);
+                });
+
+            } catch (error) {
+                console.error('Error fetching counselors:', error);
+                counselorList.innerHTML = '<p class="text-red-500">Could not load counselors. Please try again later.</p>';
+            }
+        }
+        
+        // Handle time slot selection
+        timeSlotsContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('time-slot') && !e.target.disabled) {
+                // Remove selected style from all buttons
+                document.querySelectorAll('.time-slot').forEach(btn => {
+                    btn.classList.remove('bg-indigo-600', 'text-white');
+                    if (!btn.disabled) {
+                         btn.classList.add('bg-white/40', 'hover:bg-indigo-100');
+                    }
+                });
+                // Add selected style to the clicked button
+                e.target.classList.add('bg-indigo-600', 'text-white');
+                e.target.classList.remove('bg-white/40', 'hover:bg-indigo-100');
+                selectedTime = e.target.dataset.time;
+            }
+        });
+
+        // Handle form submission
+        bookingForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(bookingForm);
+            const counselorId = formData.get('counselor');
+            const selectedDate = datePicker.value;
+
+            // Simple validation
+            if (!counselorId) {
+                alert('Please select a counselor.');
+                return;
+            }
+            if (!selectedDate) {
+                alert('Please select a date.');
+                return;
+            }
+            if (!selectedTime) {
+                alert('Please select a time slot.');
+                return;
+            }
+            
+            const [hours, minutes] = selectedTime.split(':');
+            const appointmentDate = new Date(selectedDate);
+            appointmentDate.setUTCHours(hours, minutes, 0, 0);
+
+            // Get token from where you store it (e.g., localStorage)
+            // For this example, we'll use a placeholder.
+            // In a real app, you would get this after the user logs in.
+            const token = localStorage.getItem('token'); 
+             if (!token) {
+                alert('You must be logged in to book an appointment.');
+                // Redirect to login page
+                window.location.href = 'login.html';
+                return;
+            }
+
+
+            try {
+                const response = await fetch(`${API_URL}/appointments`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-auth-token': token
+                    },
+                    body: JSON.stringify({
+                        counselorId: counselorId,
+                        date: appointmentDate.toISOString() 
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.msg || 'Failed to book appointment');
+                }
+
+                const result = await response.json();
+                confirmationMessage.textContent = `Your appointment is confirmed for ${appointmentDate.toLocaleString()}. A confirmation has been sent to your student email.`;
+                confirmationMessage.classList.remove('hidden');
+                bookingForm.reset();
+                 document.querySelectorAll('.time-slot').forEach(btn => {
+                    btn.classList.remove('bg-indigo-600', 'text-white');
+                });
+                selectedTime = null;
+
+
+            } catch (error) {
+                console.error('Booking error:', error);
+                alert(`Booking failed: ${error.message}`);
+                confirmationMessage.textContent = `Booking failed: ${error.message}`;
+                confirmationMessage.classList.remove('hidden');
+                confirmationMessage.classList.remove('text-green-700');
+                confirmationMessage.classList.add('text-red-600');
+            }
+        });
+
+
+        // Fetch counselors when the page loads
+        fetchCounselors();
+    </script>
+</body>
+</html>
+

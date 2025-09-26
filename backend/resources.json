@@ -1,0 +1,385 @@
+{
+  "videos": {
+    "calm": [
+      {
+        "id": "vid_calm_02",
+        "title": "10 Hours of Wild Ocean Waves in 4K UHD",
+        "category": "calm",
+        "type": "video",
+        "duration": "10:00:00",
+        "sourceName": "YouTube",
+        "link": "https://www.youtube.com/watch?v=PuY5BHHfLhA",
+        "thumbnailUrl": "https://images.pexels.com/photos/355288/pexels-photo-355288.jpeg",
+        "tags": ["ocean", "waves", "relaxation", "4k", "beach", "nature sounds"]
+      },
+      {
+        "id": "vid_calm_03",
+        "title": "3-Hour 4K Realtime Fireplace with Crackling Fire Sounds",
+        "category": "calm",
+        "type": "video",
+        "duration": "03:00:00",
+        "sourceName": "YouTube",
+        "link": "https://www.youtube.com/watch?v=Ux8xAuQBdkk",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1542789341-23534a282d74",
+        "tags": ["fireplace", "cozy", "asmr", "relaxation", "ambient", "winter"]
+      },
+      {
+        "id": "vid_calm_04",
+        "title": "Deep Relaxation Space Journey with Ambient Music",
+        "category": "calm",
+        "type": "video",
+        "duration": "03:03:25",
+        "sourceName": "YouTube",
+        "link": "https://www.youtube.com/watch?v=7-YBy63k2Y8",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa",
+        "tags": ["space", "ambient", "relaxation", "4k", "stars", "meditation"]
+      },
+      {
+        "id": "vid_calm_05",
+        "title": "8K Relaxing Redwood Forest with Real Nature Sounds",
+        "category": "calm",
+        "type": "video",
+        "duration": "08:00:14",
+        "sourceName": "YouTube",
+        "link": "https://www.youtube.com/playlist?list=PLbWPytS1GWJItI4oVGyQwNxFstkTArpNz",
+        "thumbnailUrl": "https://images.pexels.com/photos/421927/pexels-photo-421927.jpeg",
+        "tags": ["redwood", "forest", "8k", "nature sounds", "hike", "relaxation"]
+      }
+    ],
+    "mild": [
+      {
+        "id": "vid_mild_02",
+        "title": "Daily Calm | 10 Minute Mindfulness Meditation",
+        "category": "mild",
+        "type": "video",
+        "duration": "00:10:08",
+        "sourceName": "YouTube / Calm",
+        "link": "https://www.youtube.com/watch?v=ZToicYcHIOU",
+        "thumbnailUrl": "https://images.pexels.com/photos/3771089/pexels-photo-3771089.jpeg",
+        "tags": ["meditation", "mindfulness", "beginner", "10-minute", "guided meditation", "daily calm"]
+      },
+      {
+        "id": "vid_mild_03",
+        "title": "Positive Affirmations for Students to Start The Day",
+        "category": "mild",
+        "type": "video",
+        "duration": "00:08:30",
+        "sourceName": "YouTube",
+        "link": "https://www.youtube.com/watch?v=sfZoD1DREY0",
+        "thumbnailUrl": "https://images.pexels.com/photos/4101143/pexels-photo-4101143.jpeg",
+        "tags": ["affirmations", "positive thinking", "students", "confidence", "self-esteem", "morning routine"]
+      },
+      {
+        "id": "vid_mild_04",
+        "title": "15 Minute Super Deep Meditation Music",
+        "category": "mild",
+        "type": "video",
+        "duration": "00:15:00",
+        "sourceName": "YouTube",
+        "link": "https://www.youtube.com/watch?v=aIIEI33EUqI",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe",
+        "tags": ["meditation", "beginner", "inner peace", "relaxing music", "15-minute"]
+      },
+      {
+        "id": "vid_mild_05",
+        "title": "Beginner's Guided Mindfulness Meditation (5 Minutes, No Music)",
+        "category": "mild",
+        "type": "video",
+        "duration": "00:05:52",
+        "sourceName": "YouTube",
+        "link": "https://www.youtube.com/watch?v=WUASVHlfXeI",
+        "thumbnailUrl": "https://images.pexels.com/photos/3862130/pexels-photo-3862130.jpeg",
+        "tags": ["mindfulness", "meditation", "beginner", "guided meditation", "no music", "focus"]
+      }
+    ],
+    "moderate": [
+      {
+        "id": "vid_mod_02",
+        "title": "How to Manage Academic Stress | Tips from an Oxford Tutor",
+        "category": "moderate",
+        "type": "video",
+        "duration": "00:04:23",
+        "sourceName": "YouTube",
+        "link": "https://www.youtube.com/watch?v=mbCDcXEM4Kk",
+        "thumbnailUrl": "https://images.pexels.com/photos/5905709/pexels-photo-5905709.jpeg",
+        "tags": ["academic stress", "student", "university", "exam stress", "study tips", "productivity"]
+      },
+      {
+        "id": "vid_mod_03",
+        "title": "How to Make Stress Your Friend | Kelly McGonigal | TED",
+        "category": "moderate",
+        "type": "video",
+        "duration": "00:14:28",
+        "sourceName": "YouTube / TED",
+        "link": "https://www.youtube.com/watch?v=RcGyVTAoXEU",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1552196563-55cd4e45efb3",
+        "tags": ["stress", "anxiety", "mental health", "science", "ted talk", "resilience"]
+      },
+      {
+        "id": "vid_mod_04",
+        "title": "4-7-8 Calm Breathing Exercise | Relaxing Breath Technique",
+        "category": "moderate",
+        "type": "video",
+        "duration": "00:01:31",
+        "sourceName": "YouTube",
+        "link": "https://www.youtube.com/watch?v=1Dv-ldGLnIY",
+        "thumbnailUrl": "https://images.pexels.com/photos/4056535/pexels-photo-4056535.jpeg",
+        "tags": ["breathing exercise", "4-7-8 breathing", "anxiety relief", "calm", "sleep", "guided"]
+      },
+      {
+        "id": "vid_mod_05",
+        "title": "30 Minute Mindful Walking Meditation",
+        "category": "moderate",
+        "type": "video",
+        "duration": "00:30:00",
+        "sourceName": "YouTube",
+        "link": "https://www.youtube.com/watch?v=Ls3G_FduOIw",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1551632811-561732d1e306",
+        "tags": ["walking meditation", "mindfulness", "guided meditation", "anxiety", "stress relief", "grounding"]
+      }
+    ],
+    "high": [
+      {
+        "id": "vid_high_02",
+        "title": "Anxiety Grounding Techniques: Finding Calm in Chaos",
+        "category": "high",
+        "type": "video",
+        "duration": "00:02:25",
+        "sourceName": "YouTube",
+        "link": "https://www.youtube.com/watch?v=E1GIg0tueWg",
+        "thumbnailUrl": "https://images.pexels.com/photos/128867/pexels-photo-128867.jpeg",
+        "tags": ["grounding", "anxiety", "calm", "stress relief", "overwhelm"]
+      },
+      {
+        "id": "vid_high_03",
+        "title": "Panicking? Try This Super Short Meditation",
+        "category": "high",
+        "type": "video",
+        "duration": "00:02:59",
+        "sourceName": "YouTube",
+        "link": "https://www.youtube.com/watch?v=-bibn6Y7vCk",
+        "thumbnailUrl": "https://images.pexels.com/photos/3771045/pexels-photo-3771045.jpeg",
+        "tags": ["emergency meditation", "panic", "anxiety", "grounding", "present moment"]
+      },
+      {
+        "id": "vid_high_04",
+        "title": "5-4-3-2-1 Grounding Technique (Short)",
+        "category": "high",
+        "type": "video",
+        "duration": "00:00:58",
+        "sourceName": "YouTube",
+        "link": "https://www.youtube.com/shorts/e5EopuKV0xQ",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1584441405886-bc94be6fe54f",
+        "tags": ["grounding", "5-4-3-2-1", "anxiety", "overwhelm", "shorts"]
+      },
+      {
+        "id": "vid_high_05",
+        "title": "Emotional Emergency Pause — Guided Meditation",
+        "category": "high",
+        "type": "video",
+        "duration": "00:01:58",
+        "sourceName": "YouTube",
+        "link": "https://www.youtube.com/watch?v=gybPCbBjrVs",
+        "thumbnailUrl": "https://images.pexels.com/photos/1036620/pexels-photo-1036620.jpeg",
+        "tags": ["emergency", "meditation", "grounding", "breathing", "panic"]
+      }
+    ]
+  },
+  "audios": {
+    "calm": [
+      {
+        "id": "aud_calm_02",
+        "title": "10 Hours of Relaxing Music - Calm Piano & Guitar",
+        "category": "calm",
+        "type": "audio",
+        "duration": "10:00:00",
+        "sourceName": "YouTube",
+        "link": "https://www.youtube.com/watch?v=8WVXk0Gz66E",
+        "thumbnailUrl": "https://images.pexels.com/photos/3783471/pexels-photo-3783471.jpeg",
+        "tags": ["instrumental", "piano", "guitar", "sleep", "study", "calm"]
+      },
+      {
+        "id": "aud_calm_03",
+        "title": "Cozy Indoor Fireplace Ambience",
+        "category": "calm",
+        "type": "audio",
+        "duration": "00:02:18",
+        "sourceName": "Uppbeat",
+        "link": "https://uppbeat.io/sfx/cozy-indoor-fireplace-ambience/1234/5678",
+        "thumbnailUrl": "https://images.pexels.com/photos/1029638/pexels-photo-1029638.jpeg",
+        "tags": ["fireplace", "asmr", "cozy", "sleep", "soundscape", "winter"]
+      },
+      {
+        "id": "aud_calm_04",
+        "title": "Rainforest Wildlife Ambience",
+        "category": "calm",
+        "type": "audio",
+        "duration": "00:01:38",
+        "sourceName": "Uppbeat",
+        "link": "https://uppbeat.io/sfx/rainforest-wildlife-ambience/1234/5679",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1547634233-f871d3853a20",
+        "tags": ["jungle", "rainforest", "nature sounds", "soundscape", "ambient", "birds"]
+      },
+      {
+        "id": "aud_calm_05",
+        "title": "Many Cats Purring Sound Effect",
+        "category": "calm",
+        "type": "audio",
+        "duration": "00:01:01",
+        "sourceName": "YouTube",
+        "link": "https://www.youtube.com/watch?v=NEhek2IO-og",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131",
+        "tags": ["cat", "purring", "asmr", "calm", "sleep", "pets"]
+      }
+    ],
+    "mild": [
+      {
+        "id": "aud_mild_02",
+        "title": "Breathing Meditation (5 Minutes)",
+        "category": "mild",
+        "type": "audio",
+        "duration": "00:05:00",
+        "sourceName": "UCLA Mindful",
+        "link": "https://www.uclahealth.org/uclamindful/guided-meditations",
+        "thumbnailUrl": "https://images.pexels.com/photos/3998243/pexels-photo-3998243.jpeg",
+        "tags": ["meditation", "guided meditation", "breathing", "beginner", "mindfulness", "ucla"]
+      },
+      {
+        "id": "aud_mild_03",
+        "title": "Everything Will Be OK - Positive Affirmations",
+        "category": "mild",
+        "type": "audio",
+        "duration": "00:00:25",
+        "sourceName": "YouTube",
+        "link": "https://youtube.com/shorts/92fU4BBNw-0",
+        "thumbnailUrl": "https://images.pexels.com/photos/7129713/pexels-photo-7129713.jpeg",
+        "tags": ["affirmations", "positive thinking", "anxiety relief", "calm", "shorts"]
+      },
+      {
+        "id": "aud_mild_04",
+        "title": "Relaxing Classical Music for Stress Relief & Studying",
+        "category": "mild",
+        "type": "audio",
+        "duration": "01:12:36",
+        "sourceName": "YouTube",
+        "link": "https://www.youtube.com/playlist?list=PLQkQfzsIUwRaZwdwD2boPiWau0iRyCCTc",
+        "thumbnailUrl": "https://images.pexels.com/photos/164821/pexels-photo-164821.jpeg",
+        "tags": ["classical", "study", "focus", "instrumental", "mozart", "bach", "stress relief"]
+      },
+      {
+        "id": "aud_mild_05",
+        "title": "Loving Kindness Meditation (9 Minutes)",
+        "category": "mild",
+        "type": "audio",
+        "duration": "00:09:00",
+        "sourceName": "UCLA Mindful",
+        "link": "https://www.uclahealth.org/uclamindful/guided-meditations",
+        "thumbnailUrl": "https://images.pexels.com/photos/3755680/pexels-photo-3755680.jpeg",
+        "tags": ["meditation", "guided meditation", "loving-kindness", "compassion", "beginner"]
+      }
+    ],
+    "moderate": [
+      {
+        "id": "aud_mod_02",
+        "title": "Guided Imagery Meditation to Your Special Place",
+        "category": "moderate",
+        "type": "audio",
+        "duration": "00:10:00",
+        "sourceName": "YouTube / City of Hope",
+        "link": "https://www.youtube.com/watch?v=t1rRo6cgM_E",
+        "thumbnailUrl": "https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg",
+        "tags": ["guided imagery", "meditation", "visualization", "stress relief", "anxiety", "calm"]
+      },
+      {
+        "id": "aud_mod_03",
+        "title": "Reduce Test Anxiety & Exam Stress with Isochronic Tones",
+        "category": "moderate",
+        "type": "audio",
+        "duration": "01:00:00",
+        "sourceName": "YouTube",
+        "link": "https://www.youtube.com/watch?v=b3jq1zYYt3M",
+        "thumbnailUrl": "https://images.pexels.com/photos/4144923/pexels-photo-4144923.jpeg",
+        "tags": ["exam stress", "test anxiety", "isochronic tones", "focus", "study", "students"]
+      },
+      {
+        "id": "aud_mod_04",
+        "title": "Simple Walking Meditation",
+        "category": "moderate",
+        "type": "audio",
+        "duration": "00:04:47",
+        "sourceName": "YouTube",
+        "link": "https://www.youtube.com/watch?v=uzOh2ZZp3dg",
+        "thumbnailUrl": "https://images.pexels.com/photos/5325766/pexels-photo-5325766.jpeg",
+        "tags": ["walking meditation", "mindfulness", "anxiety", "stress relief", "grounding"]
+      },
+      {
+        "id": "aud_mod_05",
+        "title": "10 Minute Guided Box Breathing Meditation",
+        "category": "moderate",
+        "type": "audio",
+        "duration": "00:10:00",
+        "sourceName": "YouTube",
+        "link": "https://www.youtube.com/watch?v=Jy617u3-Rls",
+        "thumbnailUrl": "https://images.pexels.com/photos/3845548/pexels-photo-3845548.jpeg",
+        "tags": ["box breathing", "meditation", "stress", "focus", "guided", "10-minute"]
+      }
+    ],
+    "high": [
+      {
+        "id": "aud_high_02",
+        "title": "3 Minute Emergency Relaxation Guided Meditation",
+        "category": "high",
+        "type": "audio",
+        "duration": "00:03:00",
+        "sourceName": "YouTube",
+        "link": "https://www.youtube.com/watch?v=de6GWC9Jf-c",
+        "thumbnailUrl": "https://images.pexels.com/photos/1165999/pexels-photo-1165999.jpeg",
+        "tags": ["emergency meditation", "panic", "anxiety", "stress relief", "guided meditation", "3-minute"]
+      },
+      {
+        "id": "aud_high_03",
+        "title": "RAIN Mindfulness Meditation for Difficult Emotions",
+        "category": "high",
+        "type": "audio",
+        "duration": "00:04:45",
+        "sourceName": "YouTube",
+        "link": "https://www.youtube.com/watch?v=GFXDBmWLd6U",
+        "thumbnailUrl": "https://images.pexels.com/photos/2113566/pexels-photo-2113566.jpeg",
+        "tags": ["rain meditation", "mindfulness", "emotions", "anxiety", "guided meditation", "coping"]
+      },
+      {
+        "id": "aud_high_04",
+        "title": "396 Hz Music to Let Go of Anxiety, Worries & Fear",
+        "category": "high",
+        "type": "audio",
+        "duration": "02:56:25",
+        "sourceName": "YouTube",
+        "link": "https://www.youtube.com/watch?v=Nv07q-SFgNc",
+        "thumbnailUrl": "https://images.pexels.com/photos/235922/pexels-photo-235922.jpeg",
+        "tags": ["solfeggio", "healing frequency", "anxiety", "fear", "stress relief", "meditation"]
+      },
+      {
+        "id": "aud_high_05",
+        "title": "Crisis Text Line: Free, 24/7 Mental Health Support",
+        "category": "high",
+        "type": "audio",
+        "duration": "N/A",
+        "sourceName": "Crisis Text Line",
+        "link": "https://www.crisistextline.org/",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1625244699933-317a705129e9",
+        "tags": ["crisis support", "mental health", "chat", "text line", "emergency", "resource"]
+      },
+      {
+        "id": "aud_high_06",
+        "title": "NAMI HelpLine: Mental Health Support & Resources",
+        "category": "high",
+        "type": "audio",
+        "duration": "N/A",
+        "sourceName": "NAMI",
+        "link": "https://www.nami.org/help",
+        "thumbnailUrl": "https://images.pexels.com/photos/4098228/pexels-photo-4098228.jpeg",
+        "tags": ["helpline", "mental health", "support", "resources", "emergency", "resource"]
+      }
+    ]
+  }
+}

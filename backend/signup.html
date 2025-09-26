@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Wellness Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom right, #dbeafe, #c7d2fe); /* Gradient: blue-100 to indigo-200 */
+        }
+        @keyframes fadeInScaleUp {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .animate-fade-in-scale-up {
+            animation: fadeInScaleUp 0.5s ease-out forwards;
+        }
+
+        .submit-button .shine-effect {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 80px;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+            filter: blur(8px);
+            animation: shine 1s ease-in-out;
+        }
+
+        .submit-button:hover .shine-effect {
+            display: block;
+        }
+
+        @keyframes shine {
+            from {
+                left: -100%;
+            }
+            to {
+                left: 100%;
+            }
+        }
+        .role-btn[aria-checked="true"] {
+            background-color: #4f46e5; /* indigo-600 */
+            color: white;
+            border-color: #4f46e5;
+        }
+    </style>
+</head>
+<body class="min-h-screen w-full flex items-center justify-center main-container p-4">
+
+    <div class="w-full max-w-4xl flex bg-white shadow-xl rounded-2xl overflow-hidden animate-fade-in-scale-up">
+        
+        <!-- Left side - Animation -->
+        <div class="hidden md:block w-1/2 h-[750px] relative overflow-hidden border-r border-gray-100">
+            <div id="animation-container" class="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-100">
+                <canvas id="wellness-canvas" class="absolute inset-0 w-full h-full"></canvas>
+                
+                <!-- Logo and text overlay -->
+                <div class="absolute inset-0 flex flex-col items-center justify-center p-8 z-10">
+                    <div class="mb-6">
+                        <div class="h-12 w-12 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-200">
+                           <i data-lucide="shield-half" class="text-white h-6 w-6"></i>
+                        </div>
+                    </div>
+                    <h2 class="text-3xl font-bold mb-2 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                        Join our Community
+                    </h2>
+                    <p class="text-sm text-center text-gray-600 max-w-xs">
+                        Create an account to access resources and find the support you need.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right side - Sign Up Form -->
+        <div class="w-full md:w-1/2 p-8 md:p-10 flex flex-col justify-center bg-white overflow-y-auto">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold mb-1 text-gray-800">Create an Account</h1>
+                <p class="text-gray-500 mb-6">Let's get you started.</p>
+                
+                <form id="signup-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">I am a...</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button type="button" role="radio" aria-checked="true" data-role="student" class="role-btn text-center p-3 border rounded-lg font-medium transition-colors">Student</button>
+                            <button type="button" role="radio" aria-checked="false" data-role="counselor" class="role-btn text-center p-3 border rounded-lg font-medium transition-colors text-gray-600 bg-gray-50 hover:bg-gray-100">Counselor</button>
+                        </div>
+                    </div>
+
+                    <div id="student-fields" class="space-y-4">
+                        <div>
+                            <label for="institution" class="block text-sm font-medium text-gray-700 mb-1">Institution Name</label>
+                            <input id="institution" type="text" placeholder="e.g., University of Wellness" required class="flex h-10 w-full rounded-md border bg-gray-50 border-gray-200 px-3 py-2 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                         <div>
+                            <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                            <input id="username" type="text" placeholder="Choose a username" required class="flex h-10 w-full rounded-md border bg-gray-50 border-gray-200 px-3 py-2 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="age" class="block text-sm font-medium text-gray-700 mb-1">Age</label>
+                                <input id="age" type="number" placeholder="e.g., 21" required class="flex h-10 w-full rounded-md border bg-gray-50 border-gray-200 px-3 py-2 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                               <label for="language" class="block text-sm font-medium text-gray-700 mb-1">Language</label>
+                                <select id="language" required class="flex h-10 w-full rounded-md border bg-gray-50 border-gray-200 px-3 py-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                    <option>English</option>
+                                    <option>Hindi</option>
+                                    <option>Marathi</option>
+                                </select>
+                            </div>
+                        </div>
+                         <div>
+                            <label for="study-field" class="block text-sm font-medium text-gray-700 mb-1">Field of Study</label>
+                            <input id="study-field" type="text" placeholder="e.g., Computer Science" required class="flex h-10 w-full rounded-md border bg-gray-50 border-gray-200 px-3 py-2 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email <span class="text-blue-500">*</span></label>
+                        <input id="email" type="email" placeholder="Enter your email address" required class="flex h-10 w-full rounded-md border bg-gray-50 border-gray-200 px-3 py-2 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password <span class="text-blue-500">*</span></label>
+                        <div class="relative">
+                            <input id="password" type="password" placeholder="Create a password" required class="flex h-10 w-full rounded-md border bg-gray-50 border-gray-200 px-3 py-2 text-sm text-gray-800 placeholder:text-gray-400 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <button type="button" class="password-toggle absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-gray-700">
+                                <i data-lucide="eye" class="eye-icon h-[18px] w-[18px]"></i>
+                                <i data-lucide="eye-off" class="eye-off-icon h-[18px] w-[18px] hidden"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="pt-2">
+                        <button type="submit" class="submit-button w-full relative overflow-hidden bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-medium py-2 rounded-lg transition-all duration-300 shadow-lg hover:shadow-blue-200">
+                            <span class="flex items-center justify-center">
+                                Create Account
+                                <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+                            </span>
+                            <span class="shine-effect"></span>
+                        </button>
+                    </div>
+                </form>
+
+                <div class="mt-6 text-center">
+                    <p class="text-sm text-gray-600">
+                        Already have an account? <a href="login.html" class="font-medium text-blue-600 hover:text-blue-700">Sign in</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // --- Role Selection Logic ---
+        const roleButtons = document.querySelectorAll('.role-btn');
+        const studentFields = document.getElementById('student-fields');
+        roleButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                roleButtons.forEach(btn => {
+                    btn.setAttribute('aria-checked', 'false');
+                    btn.classList.remove('bg-indigo-600', 'text-white', 'border-indigo-600');
+                    btn.classList.add('text-gray-600', 'bg-gray-50', 'hover:bg-gray-100');
+                });
+                button.setAttribute('aria-checked', 'true');
+                button.classList.add('bg-indigo-600', 'text-white', 'border-indigo-600');
+                button.classList.remove('text-gray-600', 'bg-gray-50', 'hover:bg-gray-100');
+
+                if (button.dataset.role === 'counselor') {
+                    studentFields.style.display = 'none';
+                } else {
+                    studentFields.style.display = 'block';
+                }
+            });
+        });
+
+
+        // --- Password Visibility Toggle ---
+        document.querySelectorAll('.password-toggle').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const passwordInput = toggle.previousElementSibling;
+                const eyeIcon = toggle.querySelector('.eye-icon');
+                const eyeOffIcon = toggle.querySelector('.eye-off-icon');
+                
+                const isPassword = passwordInput.type === 'password';
+                passwordInput.type = isPassword ? 'text' : 'password';
+                eyeIcon.classList.toggle('hidden', isPassword);
+                eyeOffIcon.classList.toggle('hidden', !isPassword);
+            });
+        });
+        
+        // --- Form submission logic ---
+        document.getElementById('signup-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // In a real application, you would handle registration here.
+            // On success, redirect to the initial assessment.
+            window.location.href = 'initial_assessment.html';
+        });
+
+        // --- Navigation for HTML links ---
+        document.querySelectorAll('a[href]').forEach(link => {
+            if (link.href && link.href.endsWith('.html')) {
+                link.addEventListener('click', e => {
+                    e.preventDefault();
+                    window.location.href = link.href;
+                });
+            }
+        });
+
+        // --- Animated Wellness Canvas Logic ---
+        window.addEventListener('load', () => {
+            const canvas = document.getElementById('wellness-canvas');
+            const container = document.getElementById('animation-container');
+            if (!canvas || !container) return;
+
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return;
+            
+            let orbs = [];
+            let animationFrameId;
+
+            const setupCanvas = () => {
+                const { width, height } = container.getBoundingClientRect();
+                canvas.width = width;
+                canvas.height = height;
+                
+                orbs = [];
+                const orbCount = Math.floor(width / 30); 
+                for(let i = 0; i < orbCount; i++) {
+                    const radius = Math.random() * 3 + 2;
+                    orbs.push({
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        dx: (Math.random() - 0.5) * 0.5,
+                        dy: (Math.random() - 0.5) * 0.5,
+                        radius: radius,
+                        color: `rgba(59, 130, 246, ${Math.random() * 0.5 + 0.2})`
+                    });
+                }
+            };
+
+            function drawConnections() {
+                for (let i = 0; i < orbs.length; i++) {
+                    for (let j = i; j < orbs.length; j++) {
+                        const dist = Math.hypot(orbs[i].x - orbs[j].x, orbs[i].y - orbs[j].y);
+                        if (dist < 100) {
+                            ctx.beginPath();
+                            ctx.moveTo(orbs[i].x, orbs[i].y);
+                            ctx.lineTo(orbs[j].x, orbs[j].y);
+                            ctx.strokeStyle = `rgba(59, 130, 246, ${1 - dist / 100})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            function drawOrbs() {
+                orbs.forEach(orb => {
+                    ctx.beginPath();
+                    ctx.arc(orb.x, orb.y, orb.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = orb.color;
+                    ctx.fill();
+                    orb.x += orb.dx;
+                    orb.y += orb.dy;
+                    if (orb.x < 0 || orb.x > canvas.width) orb.dx *= -1;
+                    if (orb.y < 0 || orb.y > canvas.height) orb.dy *= -1;
+                });
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                drawConnections();
+                drawOrbs();
+                animationFrameId = requestAnimationFrame(animate);
+            }
+
+            const resizeObserver = new ResizeObserver(() => {
+                cancelAnimationFrame(animationFrameId);
+                setupCanvas();
+                animate();
+            });
+
+            resizeObserver.observe(container);
+            setupCanvas();
+            animate();
+        });
+    </script>
+</body>
+</html>
+

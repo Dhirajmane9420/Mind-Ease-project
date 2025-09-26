@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Safe Space - AI Assistant</title>
+    <link rel="stylesheet" href="chatbot.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="background-effects">
+        <div class="blur-orb orb1"></div>
+        <div class="blur-orb orb2"></div>
+        <div class="blur-orb orb3"></div>
+    </div>
+
+    <div class="chat-wrapper">
+        <div class="header-content">
+            <h1 class="title">Your Safe Space to Reflect</h1>
+            <div class="title-underline"></div>
+            <p class="subtitle">Your thoughts are safe here. Type or speak to begin.</p>
+        </div>
+
+        <div id="main-chat-container" class="chat-container">
+            <div id="chat-history-container" class="chat-history-container">
+                </div>
+
+            <div id="command-palette" class="command-palette"></div>
+            
+            <div id="voice-input-ui" class="voice-input-ui">
+                <button id="stop-recording-btn" class="stop-recording-btn" title="Stop recording">
+                    <div class="stop-icon"></div>
+                </button>
+                <span id="voice-timer" class="voice-timer">00:00</span>
+                <div id="voice-visualizer" class="voice-visualizer"></div>
+                <p id="voice-status" class="voice-status">Listening...</p>
+            </div>
+
+            <div id="text-input-ui">
+                <div class="textarea-container">
+                    <textarea id="chat-textarea" placeholder="Feel free to share anything..."></textarea>
+                </div>
+                 <div id="attachments-container" class="attachments-container"></div>
+            </div>
+            
+            <div class="footer-bar">
+                <div class="footer-actions">
+                     <button class="icon-button" id="voice-btn" title="Speak your message">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                    </button>
+                    <button class="icon-button" id="command-btn" title="Guided exercises">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3-3H9a3 3 0 0 0-3 3v4a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V3z"/><path d="M9 9V6.12A3 3 0 0 0 6.12 9H9"/><path d="M15 9V6.12A3 3 0 0 1 17.88 9H15"/><path d="M6.12 15A3 3 0 0 0 9 17.88V15h6v2.88A3 3 0 0 0 17.88 15H15h-2.25"/><path d="M9 15v2.88A3 3 0 0 1 6.12 15H9Z"/></svg>
+                    </button>
+                </div>
+                <button id="send-btn" class="send-button">
+                    <span id="send-btn-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    </span>
+                    <span id="send-btn-text">Send</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="suggested-commands">
+            </div>
+    </div>
+
+    <div id="thinking-indicator" class="thinking-indicator">
+        <div class="thinking-content">
+            <div class="thinking-logo">AI</div>
+            <span>Listening</span>
+            <div class="typing-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="chatbot.js"></script>
+</body>
+</html>
