@@ -5,6 +5,7 @@ const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
+const userRoutes = require('./routes/users');
 const connectDB = require('./config/db'); // Your DB connection function
 require('dotenv').config();
 
@@ -62,7 +63,7 @@ const startServer = async () => {
     app.use(express.static(__dirname));
     
     // 4. Define API Routes using Routers
-    app.use('/api/users', require('./routes/users'));
+   app.use('/api/users', userRoutes);
     // When you create bookings.js, you'll add: app.use('/api/bookings', require('./routes/bookings'));
 
     // --- Other specific API Endpoints ---

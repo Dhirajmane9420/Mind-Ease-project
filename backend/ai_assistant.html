@@ -15,47 +15,20 @@
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(to bottom right, #dbeafe, #c7d2fe);
-            /* Gradient: blue-100 to indigo-200 */
         }
-
         .sidebar {
             transition: transform 0.3s ease-in-out;
             transform: translateX(-100%);
             z-index: 50;
         }
-
         .sidebar.open {
             transform: translateX(0);
         }
-
         @media (min-width: 768px) {
             #main-panel {
                 transition: margin-left 0.3s ease-in-out;
             }
         }
-
-        #mobile-menu-button {
-            --transition-duration: 0.6s;
-        }
-
-        #mobile-menu-button svg {
-            transition: transform var(--transition-duration) ease-out;
-        }
-
-        #mobile-menu-button.open svg {
-            transform: rotate(-45deg);
-        }
-
-        #mobile-menu-button path:nth-child(1) {
-            transition: stroke-dasharray var(--transition-duration) ease-out, stroke-dashoffset var(--transition-duration) ease-out;
-            stroke-dasharray: 12 63;
-        }
-
-        #mobile-menu-button.open path:nth-child(1) {
-            stroke-dasharray: 20 300;
-            stroke-dashoffset: -32.42px;
-        }
-
         /* --- AI Assistant Light Theme Variables & Styles --- */
         :root {
             --container-bg: rgba(255, 255, 255, 0.6);
@@ -86,8 +59,7 @@
         .message .timestamp { display: block; font-size: 0.65rem; margin-top: 0.25rem; }
         .message.user .timestamp { color: rgba(255, 255, 255, 0.7); text-align: right; }
         .message.ai .timestamp { color: var(--text-secondary); text-align: left; }
-        .message .voice-icon { display: inline-block; margin-right: 0.5rem; }
-
+        
         #text-input-ui { min-height: 120px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; }
         .textarea-container { padding: 0.5rem 1rem; }
         textarea#chat-textarea { width: 100%; min-height: 60px; max-height: 200px; resize: none; background: transparent; border: none; color: var(--text-primary); font-size: 0.9rem; padding: 0.75rem 0; box-sizing: border-box; overflow-y: auto; }
@@ -104,6 +76,12 @@
         .suggested-commands { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.5rem; }
         .suggested-cmd-btn { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.75rem; background-color: rgba(255,255,255,0.4); border: 1px solid var(--border-color); border-radius: 0.5rem; font-size: 0.8rem; color: var(--text-secondary); cursor: pointer; transition: all 0.2s; }
         .suggested-cmd-btn:hover { background-color: var(--suggestion-hover-bg); color: var(--text-primary); }
+
+        /* --- Modal Styles --- */
+        .modal-overlay { transition: opacity 0.3s ease-in-out; }
+        .modal-content { transition: all 0.3s ease-in-out; transform: scale(0.95); opacity: 0; }
+        .modal-overlay.open { opacity: 1; pointer-events: auto; }
+        .modal-overlay.open .modal-content { transform: scale(1); opacity: 1; }
     </style>
 </head>
 
@@ -132,10 +110,12 @@
             <header class="sticky top-0 z-40 w-full border-b border-indigo-200/50 bg-indigo-300/80 backdrop-blur-lg">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between items-center h-16">
-                        <div class="flex-shrink-0 flex items-center"><i data-lucide="shield-half" class="h-8 w-auto text-indigo-600"></i><span class="ml-2 text-xl font-bold text-slate-900">Wellness Portal</span></div>
+                        <div class="flex items-center">
+                            <button id="mobile-menu-button" class="md:hidden mr-4"><i data-lucide="menu" class="h-6 w-6"></i></button>
+                            <div class="flex-shrink-0 flex items-center"><i data-lucide="shield-half" class="h-8 w-auto text-indigo-600"></i><span class="ml-2 text-xl font-bold text-slate-900">MindEase Portal</span></div>
+                        </div>
                         <div class="flex items-center gap-4">
                             <nav class="hidden md:flex items-center gap-8"><a href="student_home.html" class="text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors">Dashboard</a><a href="peer_support.html" class="text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors">Community</a><a href="bookings.html" class="text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors">Appointments</a></nav>
-                            <div class="md:hidden"><button id="mobile-menu-button"><svg stroke-width="2" fill="none" stroke="currentColor" viewBox="0 0 32 32" class="h-6 w-6 text-slate-800"><path d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path><path d="M7 16 27 16"></path></svg></button></div>
                             <div class="relative"><button id="profile-button" class="bg-slate-200 rounded-full h-10 w-10 flex items-center justify-center text-slate-600"><i data-lucide="user" class="w-5 h-5"></i></button><div id="profile-dropdown" class="origin-top-right absolute right-0 mt-2 w-64 rounded-xl shadow-lg bg-white text-slate-800 p-4 hidden z-50"></div></div>
                         </div>
                     </div>
@@ -155,14 +135,15 @@
                             <div class="textarea-container"><textarea id="chat-textarea" placeholder="Feel free to share anything..."></textarea></div>
                         </div>
                         <div class="footer-bar">
-                                <div class="footer-actions">
-                                    <button class="icon-button" id="voice-btn" title="Speak your message"><i data-lucide="mic"></i></button>
-                                    <button class="icon-button" id="command-btn" title="Guided exercises"><i data-lucide="sparkles"></i></button>
-                                </div>
-                                <button id="send-btn" class="send-button">
-                                    <span id="send-btn-text">Send</span>
-                                    <span id="send-btn-icon"><i data-lucide="send" class="w-4 h-4"></i></span>
-                                </button>
+                            <div class="footer-actions">
+                                <button class="icon-button" id="voice-btn" title="Speak your message"><i data-lucide="mic"></i></button>
+                                <button class="icon-button" id="command-btn" title="Guided exercises"><i data-lucide="sparkles"></i></button>
+                                <button class="icon-button" id="delete-chat-btn" title="Clear chat history"><i data-lucide="trash-2"></i></button>
+                            </div>
+                            <button id="send-btn" class="send-button">
+                                <span id="send-btn-text">Send</span>
+                                <span id="send-btn-icon"><i data-lucide="send" class="w-4 h-4"></i></span>
+                            </button>
                         </div>
                     </div>
                     <div class="suggested-commands"></div>
@@ -171,42 +152,79 @@
         </div>
     </div>
     
+    <div id="delete-confirmation-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none">
+        <div class="modal-content w-full max-w-sm bg-white rounded-2xl shadow-2xl p-8 text-center">
+            <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100">
+                <i data-lucide="alert-triangle" class="h-6 w-6 text-red-600"></i>
+            </div>
+            <h2 class="mt-5 text-2xl font-bold text-slate-900">Delete Chat History</h2>
+            <p class="mt-2 text-slate-600">Are you sure you want to permanently delete this conversation?</p>
+            <div class="mt-8 flex justify-center gap-4">
+                <button id="cancel-delete-btn" class="bg-slate-200 text-slate-700 font-semibold py-2 px-6 rounded-lg hover:bg-slate-300">Cancel</button>
+                <button id="confirm-delete-btn" class="bg-red-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-red-700">Delete</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             lucide.createIcons();
-            // Sidebar & Header UI Logic
+            
+            // --- Full Sidebar & Header UI Logic ---
             const profileButton = document.getElementById('profile-button');
             const profileDropdown = document.getElementById('profile-dropdown');
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const sidebar = document.getElementById('sidebar');
             const sidebarOverlay = document.getElementById('sidebar-overlay');
             const mainPanel = document.getElementById('main-panel');
+            const logoutButton = document.getElementById('logout-button');
+            
             if(profileButton) profileButton.addEventListener('click', (e) => { e.stopPropagation(); profileDropdown.classList.toggle('hidden'); });
             document.addEventListener('click', (e) => { if (profileDropdown && profileButton && !profileButton.contains(e.target)) profileDropdown.classList.add('hidden'); });
-            function toggleSidebar() { sidebar.classList.toggle('open'); sidebarOverlay.classList.toggle('hidden'); mobileMenuButton.classList.toggle('open'); }
+            
+            function toggleSidebar() { sidebar.classList.toggle('open'); sidebarOverlay.classList.toggle('hidden'); }
             if(mobileMenuButton) mobileMenuButton.addEventListener('click', (e) => { e.stopPropagation(); toggleSidebar(); });
             if(sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebar);
+
+            if (logoutButton) {
+                logoutButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    localStorage.removeItem('authToken');
+                    alert('You have been logged out.');
+                    window.location.href = 'login.html';
+                });
+            }
+             // Desktop hover logic
             if (window.innerWidth >= 768) {
                 const triggerZoneWidth = 20;
                 document.addEventListener('mousemove', function(e) {
-                    if (!sidebar || !mainPanel) return;
                     if (sidebar.classList.contains('open')) return;
                     const sidebarRect = sidebar.getBoundingClientRect();
-                    if (e.clientX <= triggerZoneWidth) { sidebar.style.transform = 'translateX(0)'; mainPanel.style.marginLeft = '256px'; }
-                    else if (e.clientX > sidebarRect.right + triggerZoneWidth) { sidebar.style.transform = 'translateX(-100%)'; mainPanel.style.marginLeft = '0'; }
+                    if (e.clientX <= triggerZoneWidth) {
+                        sidebar.style.transform = 'translateX(0)';
+                        mainPanel.style.marginLeft = '256px';
+                    } else if (e.clientX > sidebarRect.right + triggerZoneWidth) {
+                        sidebar.style.transform = 'translateX(-100%)';
+                        mainPanel.style.marginLeft = '0';
+                    }
                 });
-                document.body.addEventListener('mouseleave', function() { 
-                    if (!sidebar || !mainPanel) return;
-                    if (!sidebar.classList.contains('open')) { sidebar.style.transform = 'translateX(-100%)'; mainPanel.style.marginLeft = '0'; }
+                document.body.addEventListener('mouseleave', function() {
+                    if (!sidebar.classList.contains('open')) {
+                        sidebar.style.transform = 'translateX(-100%)';
+                        mainPanel.style.marginLeft = '0';
+                    }
                 });
             }
-            document.querySelectorAll('a[href]').forEach(link => { if (link.href && link.href.includes('.html')) { link.addEventListener('click', e => { e.preventDefault(); window.location.href = link.href; });}});
             
             // --- Chatbot Logic ---
             const textarea = document.getElementById("chat-textarea");
             const sendBtn = document.getElementById("send-btn");
             const suggestedCommandsContainer = document.querySelector(".suggested-commands");
             const chatHistoryContainer = document.getElementById("chat-history-container");
+            const deleteChatBtn = document.getElementById('delete-chat-btn');
+            const deleteModal = document.getElementById('delete-confirmation-modal');
+            const confirmDeleteBtn = document.getElementById('confirm-delete-btn');
+            const cancelDeleteBtn = document.getElementById('cancel-delete-btn');
             let chatHistory = [];
 
             const saveHistory = () => { localStorage.setItem('wellnessChatHistory', JSON.stringify(chatHistory)); };
@@ -243,22 +261,42 @@
             };
 
             const getAiResponse = (userInput) => {
-                // This is a mock response. Replace with your actual API call.
+                const normalizedInput = userInput.toLowerCase().trim();
+                let aiReply = "That's interesting. Could you tell me more about that?";
+                if (normalizedInput === "hii" || normalizedInput === "hello") {
+                    aiReply = "Hello there! It's good to hear from you. How are you feeling today?";
+                } else if (normalizedInput.includes("depressed")) {
+                    aiReply = "I'm really sorry to hear you're feeling this way. It takes a lot of strength to talk about it. Please know that your feelings are valid. I'm here to listen without judgment.";
+                } else if (normalizedInput.includes("what to do")) {
+                    aiReply = "That's a great question. A good first step can be focusing on your breath. Have you tried a simple breathing exercise? Or perhaps looking through the Resources section for some guided meditations might be helpful. We can also explore talking to a peer or a professional if you're open to it.";
+                }
                 setTimeout(() => {
-                    const aiReply = "Thank you for sharing that with me. Could you tell me a little more about what's been happening?";
                     chatHistory.push({ sender: 'ai', content: aiReply, timestamp: new Date().toISOString() });
                     saveHistory();
                     renderChatHistory();
-                }, 1500);
+                }, 1200);
             };
+
+            deleteChatBtn.addEventListener('click', () => {
+                deleteModal.classList.add('open');
+            });
+            cancelDeleteBtn.addEventListener('click', () => {
+                deleteModal.classList.remove('open');
+            });
+            deleteModal.addEventListener('click', (e) => {
+                if(e.target === deleteModal) deleteModal.classList.remove('open');
+            });
+            confirmDeleteBtn.addEventListener('click', () => {
+                localStorage.removeItem('wellnessChatHistory');
+                chatHistory = [{ sender: 'ai', content: "Conversation cleared. Feel free to start a new one whenever you're ready.", timestamp: new Date().toISOString() }];
+                saveHistory();
+                renderChatHistory();
+                deleteModal.classList.remove('open');
+            });
 
             const handleSendMessage = () => {
                 const text = textarea.value.trim();
-                if (text) {
-                    addUserMessage(text);
-                    textarea.value = "";
-                    adjustTextareaHeight();
-                }
+                if (text) { addUserMessage(text); textarea.value = ""; adjustTextareaHeight(); }
             };
 
             const adjustTextareaHeight = () => {
@@ -275,9 +313,7 @@
                 ];
                 suggestedCommandsContainer.innerHTML = commandSuggestions.map(cmd => `<button class="suggested-cmd-btn">${cmd.icon} <span>${cmd.label}</span></button>`).join('');
                 document.querySelectorAll('.suggested-cmd-btn').forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        addUserMessage(btn.textContent.trim());
-                    });
+                    btn.addEventListener('click', () => { addUserMessage(btn.textContent.trim()); });
                 });
             };
             
@@ -293,3 +329,4 @@
     </script>
 </body>
 </html>
+

@@ -1,6 +1,5 @@
 /* --- Global Styles & Variables --- */
 :root {
-    --bg-color: #ffffff;
     --text-color: #18181b;
     --text-muted-color: #71717a;
     --border-color: #e4e4e7;
@@ -9,21 +8,22 @@
     --gradient-start: #ffffff;
     --gradient-end: transparent;
     --unselected-color: #9ca3af;
+    --transition-fast: 0.2s ease-in-out;
+    --transition-medium: 0.3s ease-in-out;
 }
 
-html.dark {
-    --bg-color: #09090b;
-    --text-color: #ffffff;
-    --text-muted-color: #a1a1aa;
-    --border-color: #27272a;
-    --card-bg-color: #09090b;
-    --card-skeleton-bg: #18181b;
-    --gradient-start: #09090b;
-    --unselected-color: #4b5563;
+
+
+html {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to bottom right, #dbeafe, #c7d2fe);
+    min-height: 100%;
 }
-/* This is needed for the new overall page background */
+
 body {
-    background: linear-gradient(to bottom right, #dbeafe, #c7d2fe) !important;
+    background-color: var(--bg-color); /* Fallback solid color */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* --- Sidebar, Header, and other common styles --- */
@@ -31,11 +31,10 @@ body {
     transition: transform 0.3s ease-in-out;
     transform: translateX(-100%);
     z-index: 50;
-    /* Tailwind classes used in other files, replicated here */
-    background-color: #f5f3ff; /* bg-violet-50 */
-    color: #374151; /* text-slate-800 */
-    width: 16rem; /* w-64 */
-    padding: 1.75rem 0.5rem; /* py-7 px-2 */
+    background-color: #f5f3ff;
+    color: #374151;
+    width: 16rem;
+    padding: 1.75rem 0.5rem;
 }
 .sidebar.open { transform: translateX(0); }
 @media (min-width: 768px) { #main-panel { transition: margin-left 0.3s ease-in-out; } }
@@ -106,7 +105,12 @@ body {
 .selector-line[data-index="0"] { height: 0.25rem; }
 .selector-line[data-index="1"] { height: 0.3rem; }
 .selector-line[data-index="2"] { height: 0.35rem; }
-.selector-labels { gap: 0.8rem; }
+
+.selector-labels {
+    width: calc(100% - 2rem);
+    justify-content: space-between;
+    gap: 0.8rem;
+}
 .selector-label-item {
     display: flex;
     align-items: center;
@@ -114,12 +118,11 @@ body {
     width: 4rem;
     justify-content: center;
 }
-.selector-label-item:not(:last-child) { margin-right: 1rem; }
 .selector-label-item span {
     font-size: 0.8rem;
     font-weight: 500;
     cursor: pointer;
-    transition: color 0.2s ease-in-out;
+    transition: color var(--transition-fast);
 }
 .orbital-dot {
     position: absolute;
@@ -176,11 +179,18 @@ body {
     border-radius: 0.5rem;
 }
 @media (min-width: 768px) { .bento-grid { grid-template-columns: repeat(6, 1fr); } }
+
 .feature-card {
     grid-column: span var(--col-span-md, 1);
     position: relative;
     overflow: hidden;
     border-bottom: 1px solid var(--border-color);
+    transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+}
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+    z-index: 10;
 }
 .feature-card:last-child { border-bottom: none; }
 @media (min-width: 768px) {
@@ -237,10 +247,40 @@ body {
 #resource-search:focus { box-shadow: 0 0 0 2px var(--text-color); }
 .strip-container { margin-bottom: 3rem; padding: 0 20px; }
 .strip-container h3 { font-size: 1.5rem; font-weight: 500; margin-bottom: 1rem; color: var(--text-color); }
-.resource-strip { display: flex; overflow-x: auto; gap: 1.5rem; padding-bottom: 1rem; -ms-overflow-style: none; scrollbar-width: none; }
-.resource-strip::-webkit-scrollbar { display: none; }
-.resource-card { position: relative; flex-shrink: 0; width: 280px; height: 180px; border-radius: 0.5rem; overflow: hidden; cursor: pointer; transition: transform 0.2s ease-in-out; }
-.resource-card:hover { transform: scale(1.03); }
+.resource-strip {
+    display: flex;
+    overflow-x: auto;
+    gap: 1.5rem;
+    padding-bottom: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) transparent;
+}
+.resource-strip::-webkit-scrollbar {
+    height: 8px;
+}
+.resource-strip::-webkit-scrollbar-track {
+    background: transparent;
+}
+.resource-strip::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+    border-radius: 10px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+}
+.resource-card {
+    position: relative;
+    flex-shrink: 0;
+    width: 280px;
+    height: 180px;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.resource-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
 .resource-card img { width: 100%; height: 100%; object-fit: cover; }
 .card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1rem; opacity: 1; transition: opacity 0.2s ease; }
 .resource-card:hover .card-overlay { background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%); }

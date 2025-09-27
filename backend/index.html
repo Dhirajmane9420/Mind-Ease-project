@@ -1,73 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Safe Space for Your Mental Wellness</title>
+    <title>MindEase - A Safe Space for Your Mental Wellness</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* --- Combined and Cleaned Styles --- */
+        /* --- Base & Theme Styles --- */
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(to bottom right, #dbeafe, #c7d2fe); /* Gradient from student_home.html */
+            color: #1e293b; /* slate-800 */
         }
-
-        /* --- Dark Mode Background --- */
         .dark body {
-             background: #09090b;
-        }
-        
-        /* --- Shared Component Styles from student_home.html --- */
-        .custom-shadow {
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            background: #09090b;
+            color: #e2e8f0; /* slate-200 */
         }
 
-        #mobile-menu-button {
-            --transition-duration: 0.6s;
-        }
-        #mobile-menu-button svg {
-            transition: transform var(--transition-duration) ease-out;
-        }
-        #mobile-menu-button.open svg {
-            transform: rotate(-45deg);
-        }
-        #mobile-menu-button path:nth-child(1) {
-            transition: stroke-dasharray var(--transition-duration) ease-out, stroke-dashoffset var(--transition-duration) ease-out;
-            stroke-dasharray: 12 63;
-        }
-        #mobile-menu-button.open path:nth-child(1) {
-            stroke-dasharray: 20 300;
-            stroke-dashoffset: -32.42px;
-        }
-
-        .footer-grid-pattern {
-            background-image: linear-gradient(to right, #e5e7eb 1px, transparent 1px), linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);
-            background-size: 4rem 4rem;
-            mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%);
-        }
-
-        /* --- Timeline Card Animation Styles --- */
-        .timeline-card {
+        /* --- Animations --- */
+        .timeline-card, #journey-heading {
             opacity: 0;
             transform: translateY(40px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-
-        .timeline-card.is-visible {
+        .timeline-card.is-visible, #journey-heading.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* --- Journey Heading Animation Styles --- */
-        #journey-heading {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        
+        /* --- Footer --- */
+        .footer-grid-pattern {
+            background-image: linear-gradient(to right, rgba(203, 213, 225, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(203, 213, 225, 0.5) 1px, transparent 1px);
+            background-size: 4rem 4rem;
+            mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, black 70%, transparent 100%);
         }
-
-        #journey-heading.is-visible {
-            opacity: 1;
-            transform: translateY(0);
+        .dark .footer-grid-pattern {
+             background-image: linear-gradient(to right, rgba(51, 65, 85, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(51, 65, 85, 0.5) 1px, transparent 1px);
         }
     </style>
 </head>
@@ -78,37 +47,28 @@
         <div class="m-auto max-w-7xl px-6">
             <div class="flex flex-wrap items-center justify-between gap-6 py-3 xl:gap-0 xl:py-4">
                 <div class="flex w-full justify-between xl:w-auto">
-                    <a href="/" aria-label="home" class="flex items-center space-x-2">
-                        <svg viewBox="0 0 78 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-auto">
-                            <a href="index.html" aria-label="home" class="flex items-center space-x-2">
-                            <img src="./logo3.png" class="h-20 w-auto" alt="MindEase Logo"><h4><b> MindEase</b></h4>
-                        </a>
-                            <defs>
-                                <linearGradient id="logo-gradient" x1="10" y1="0" x2="10" y2="20" gradientUnits="userSpaceOnUse">
-                                    <stop stop-color="#9B99FE"></stop>
-                                    <stop offset="1" stop-color="#2BC8B7"></stop>
-                                </linearGradient>
-                            </defs>
-                        </svg>
+                    <a href="index.html" aria-label="home" class="flex items-center space-x-3">
+                        <img src="./logo.jpg" class="h-12 w-auto" alt="MindEase Logo">
+                        <span class="text-xl font-bold text-slate-900 dark:text-white">MindEase</span>
                     </a>
                     <button id="menu-toggle-btn" aria-label="Open Menu" class="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 xl:hidden">
-                        <svg class="group-data-[state=active]:rotate-180 group-data-[state=active]:scale-0 group-data-[state=active]:opacity-0 m-auto size-6 duration-200" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
-                        <svg class="group-data-[state=active]:rotate-0 group-data-[state=active]:scale-100 group-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                        <svg class="group-data-[state=active]:hidden m-auto size-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                        <svg class="group-data-[state=active]:block hidden absolute inset-0 m-auto size-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                     </button>
                 </div>
-                <div id="nav-menu" class="bg-white/50 dark:bg-zinc-900 group-data-[state=active]:block xl:group-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border border-white/30 p-6 shadow-2xl shadow-slate-300/20 md:flex-nowrap xl:m-0 xl:flex xl:w-fit xl:gap-6 xl:space-y-0 xl:border-transparent xl:bg-transparent xl:p-0 xl:shadow-none dark:border-zinc-700 dark:shadow-none xl:dark:bg-transparent">
+                <div id="nav-menu" class="bg-white/50 dark:bg-zinc-900/80 group-data-[state=active]:block xl:group-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border border-indigo-100/50 p-6 shadow-2xl shadow-slate-300/20 md:flex-nowrap xl:m-0 xl:flex xl:w-fit xl:gap-6 xl:space-y-0 xl:border-transparent xl:bg-transparent xl:p-0 xl:shadow-none dark:border-zinc-700 dark:shadow-none">
                     <div class="xl:pr-4">
                         <ul class="space-y-6 text-base xl:flex xl:gap-8 xl:space-y-0 xl:text-sm">
-                            <li><a href="how-it-works.html" class="text-slate-700 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white block duration-150"><span> How It Works </span></a></li>
-                            <li><a href="resources-page.html" class="text-slate-700 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white block duration-150"><span> Our Resources</span></a></li>
+                            <li><a href="how-it-works.html" class="text-slate-700 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white block duration-150"><span>How It Works</span></a></li>
+                            <li><a href="resources-page.html" class="text-slate-700 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white block duration-150"><span>Our Resources</span></a></li>
                             <li><a href="for-institutions.html" class="text-slate-700 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white block duration-150"><span>For Institutions</span></a></li>
                             <li><a href="about.html" class="text-slate-700 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white block duration-150"><span>About</span></a></li>
                         </ul>
                     </div>
                     <div class="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit xl:border-l xl:pl-6 border-slate-200 dark:xl:border-zinc-700">
                         <button id="theme-toggle" type="button" aria-label="Toggle theme" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium h-9 w-9 border border-white/30 bg-white/20 hover:bg-white/40 text-slate-700 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-800 dark:text-zinc-50 dark:hover:text-zinc-50">
-                            <svg id="theme-toggle-dark-icon" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                            <svg id="theme-toggle-light-icon" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                            <svg id="theme-toggle-dark-icon" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                            <svg id="theme-toggle-light-icon" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
                         </button>
                         <a href="login.html" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium h-9 px-3 border border-white/30 bg-white/20 hover:bg-white/40 text-slate-700 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-800 dark:text-zinc-50 dark:hover:text-zinc-50"><span>Login</span></a>
                         <a href="signup.html" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium h-9 px-3 bg-slate-800 text-slate-50 hover:bg-slate-900/90 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/90"><span>Sign Up</span></a>
@@ -124,26 +84,21 @@
         <div class="mx-auto flex max-w-7xl">
             <div class="w-full px-6 py-28 lg:w-1/2 lg:py-20">
                 <div class="relative mx-auto max-w-xl text-center lg:text-left">
-                    <a href="/" class="rounded-lg mx-auto flex w-fit items-center gap-2 border border-white/30 bg-white/20 p-1 pr-2 backdrop-blur-md dark:border-zinc-700 lg:ml-0">
+                    <a href="#" class="rounded-lg mx-auto flex w-fit items-center gap-2 border border-white/30 bg-white/20 p-1 pr-2 backdrop-blur-md dark:border-zinc-700 lg:ml-0">
                         <span class="bg-white/40 text-slate-700 dark:bg-zinc-800 rounded-md px-2 py-1 text-xs">New</span>
-                        <span class="text-sm text-slate-600"> Now available in regional languages!</span>
-                        <svg class="size-5 ml-1 text-slate-500 dark:text-zinc-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12.75 15l3-3m0 0l-3-3m3 3h-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
+                        <span class="text-sm text-slate-600 dark:text-zinc-400"> Now available in regional languages!</span>
+                        <i data-lucide="arrow-right-circle" class="size-5 ml-1 text-slate-500 dark:text-zinc-400"></i>
                     </a>
                     <h1 class="mt-10 text-balance text-4xl font-bold md:text-5xl xl:text-5xl text-slate-800 dark:text-white">A Safe Space for Your Mental Wellness</h1>
                     <p class="mt-8 text-slate-600 dark:text-zinc-400">A confidential, stigma-free platform offering AI-guided support, professional counseling, and peer connections to help you navigate the challenges of college life.</p>
                     <div>
-                        <form id="waitlist-form" action="" class="mx-auto my-10 max-w-sm lg:my-12 lg:ml-0 lg:mr-auto">
-                            <div class="has-[input:focus]:ring-blue-400 relative grid grid-cols-[1fr_auto] items-center rounded-2xl border border-white/30 bg-white/20 backdrop-blur-md pr-1 shadow-lg shadow-slate-400/10 has-[input-focus]:ring-2 dark:border-zinc-700 dark:bg-zinc-900/50 dark:shadow-none">
-                                <svg class="text-slate-500 pointer-events-none absolute inset-y-0 left-5 my-auto size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
-                                <input placeholder="Your mail address" class="h-14 w-full bg-transparent pl-12 focus:outline-none placeholder:text-slate-500" type="email" />
-                                <div class="md:pr-1.5 lg:pr-0">
-                                    <a href="signup.html" aria-label="Get Started" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium h-10 px-4 py-2 bg-slate-800 text-slate-50 hover:bg-slate-900/90 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/90">
-    <span class="hidden md:block">Get Started</span>
-    <svg class="relative mx-auto size-5 md:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 3 3 9-3 9 19-9Z"/><path d="M6 12h16"/></svg>
-</a>
-                                </div>
+                        <form id="waitlist-form" class="mx-auto my-10 max-w-sm lg:my-12 lg:ml-0 lg:mr-auto">
+                            <div class="relative grid grid-cols-[1fr_auto] items-center rounded-2xl border border-white/30 bg-white/20 backdrop-blur-md pr-1.5 shadow-lg shadow-slate-400/10 dark:border-zinc-700 dark:bg-zinc-900/50 dark:shadow-none">
+                                <i data-lucide="mail" class="text-slate-500 pointer-events-none absolute inset-y-0 left-5 my-auto size-5"></i>
+                                <input placeholder="Your mail address" class="h-14 w-full bg-transparent pl-12 focus:outline-none placeholder:text-slate-500 dark:placeholder:text-zinc-400" type="email" />
+                                <a href="signup.html" aria-label="Get Started" class="inline-flex items-center justify-center whitespace-nowrap rounded-xl text-sm font-medium h-10 px-4 py-2 bg-slate-800 text-slate-50 hover:bg-slate-900/90 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/90">
+                                    <span>Get Started</span>
+                                </a>
                             </div>
                         </form>
                         <ul class="list-inside list-disc space-y-2 text-slate-600 dark:text-zinc-400">
@@ -164,16 +119,15 @@
         </div>
     </section>
 
-    </main>
-
     <section>
-        <div id="timeline-container" class="w-full md:px-10 overflow-x-hidden"> <div class="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
-                <h2 id="journey-heading" class="text-lg md:text-4xl mb-4 text-slate-800 dark:text-white max-w-4xl">Our Journey to Support Student Wellness</h2>
-                <p class="text-slate-600 dark:text-neutral-300 text-sm md:text-base max-w-lg"><h3>We recognized the growing mental health challenges students face and have been passionately building a platform to provide accessible and stigma-free support.</h3></p>
+        <div id="timeline-container" class="w-full md:px-10 overflow-x-hidden">
+             <div class="max-w-4xl mx-auto py-20 px-4 text-center">
+                <h2 id="journey-heading" class="text-4xl md:text-5xl font-bold text-slate-800 dark:text-white">Our Journey to Support Student Wellness</h2>
+                <p class="mt-4 text-lg text-slate-600 dark:text-neutral-300">We recognized the growing mental health challenges students face and have been passionately building a platform to provide accessible and stigma-free support.</p>
             </div>
             <div id="timeline-content" class="relative max-w-7xl mx-auto pb-20">
                 
-                <div class="flex justify-start pt-10 md:pt-40 md:gap-10">
+                <div class="flex justify-start pt-10 md:pt-20 md:gap-10">
                     <div class="sticky flex flex-col md:flex-row z-10 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
                         <div class="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-white/40 backdrop-blur-md dark:bg-black flex items-center justify-center">
                             <div class="h-4 w-4 rounded-full bg-blue-300 dark:bg-neutral-800 border border-blue-400/50 dark:border-neutral-700 p-2"></div>
@@ -182,11 +136,11 @@
                     </div>
                     <div class="relative pl-20 pr-4 md:pl-4 w-full timeline-card">
                         <h3 class="md:hidden block text-2xl mb-4 text-left font-bold text-slate-500 dark:text-neutral-500">The Challenge</h3>
-                        <div>
-                            <p class="text-slate-700 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">Students today face immense academic pressure, social anxiety, and the stress of balancing life and education. Traditional support systems are often hard to access and carry a stigma.</p>
+                        <div class="bg-white/30 dark:bg-zinc-900/30 p-6 rounded-xl backdrop-blur-sm">
+                            <p class="text-slate-800 dark:text-zinc-200 text-lg leading-relaxed font-normal mb-8">Students today face immense academic pressure, social anxiety, and the stress of balancing life and education. Traditional support systems are often hard to access and carry a stigma.</p>
                             <div class="grid grid-cols-2 gap-4">
-                                <img src="https://images.unsplash.com/photo-1516534775068-ba3e7458af70?q=80&w=2940&auto=format&fit=crop" alt="Stressed student studying" class="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-lg">
-                                <img src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?q=80&w=2835&auto=format&fit=crop" alt="Student feeling isolated" class="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-lg">
+                               <img src="index1.jpg" alt="Student overwhelmed by books and academic pressure" class="rounded-lg object-cover h-40 md:h-44 lg:h-60 w-full shadow-lg">
+                                <img src="index2.jpg" alt="Student feeling isolated and anxious in a university hallway" class="rounded-lg object-cover h-40 md:h-44 lg:h-60 w-full shadow-lg">
                             </div>
                         </div>
                     </div>
@@ -201,79 +155,75 @@
                     </div>
                      <div class="relative pl-20 pr-4 md:pl-4 w-full timeline-card">
                         <h3 class="md:hidden block text-2xl mb-4 text-left font-bold text-slate-500 dark:text-neutral-500">Our Solution</h3>
-                          <div>
-                            <p class="text-slate-700 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">We created a digital-first platform offering a suite of tools designed for students. From an AI companion for immediate support to confidential booking with counselors, our goal is to provide help whenever and wherever it's needed.</p>
+                        <div class="bg-white/30 dark:bg-zinc-900/30 p-6 rounded-xl backdrop-blur-sm">
+                            <p class="text-slate-800 dark:text-zinc-200 text-lg leading-relaxed font-normal mb-8">We created a digital-first platform offering a suite of tools designed for students. From an AI companion for immediate support to confidential booking with counselors, our goal is to provide help whenever and wherever it's needed.</p>
                             <div class="grid grid-cols-2 gap-4">
-                                <img src="image.png" alt="Person using laptop for therapy" class="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-lg">
-                                <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2940&auto=format&fit=crop" alt="Supportive community of students" class="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-lg">
+                                <img src="index.3.jpg" alt="Person using laptop for therapy" class="rounded-lg object-cover h-40 md:h-44 lg:h-60 w-full shadow-lg">
+                                <img src="index4.jpg" alt="Supportive community of students" class="rounded-lg object-cover h-40 md:h-44 lg:h-60 w-full shadow-lg">
                             </div>
                         </div>
                     </div>
                 </div>
-
-               <div class="flex justify-start pt-10 md:pt-40 md:gap-10">
-    <div class="sticky flex flex-col md:flex-row z-10 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
-        <div class="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-white/40 backdrop-blur-md dark:bg-black flex items-center justify-center">
-            <div class="h-4 w-4 rounded-full bg-blue-300 dark:bg-neutral-800 border border-blue-400/50 dark:border-neutral-700 p-2"></div>
-        </div>
-        <h3 class="hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-slate-500 dark:text-neutral-500">How We Help</h3>
-    </div>
-    <div class="relative pl-20 pr-4 md:pl-4 w-full timeline-card">
-        <h3 class="md:hidden block text-2xl mb-4 text-left font-bold text-slate-500 dark:text-neutral-500">How We Help</h3>
-        <div>
-            <p class="text-slate-700 dark:text-neutral-200 text-sm md:text-base font-normal mb-6">Our platform is built on pillars of accessibility, confidentiality, and community. Core features include:</p>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div class="bg-white/50 dark:bg-zinc-900/50 p-6 rounded-xl border border-white/50 dark:border-zinc-800 shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="flex items-center gap-4">
-                        <div class="bg-indigo-100 dark:bg-indigo-900/50 p-3 rounded-full">
-                            <i data-lucide="bot" class="w-6 h-6 text-indigo-600 dark:text-indigo-400"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-800 dark:text-white">AI-Powered First Aid</h4>
-                            <p class="text-sm text-slate-600 dark:text-zinc-400">Instant coping strategies.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white/50 dark:bg-zinc-900/50 p-6 rounded-xl border border-white/50 dark:border-zinc-800 shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="flex items-center gap-4">
-                        <div class="bg-indigo-100 dark:bg-indigo-900/50 p-3 rounded-full">
-                            <i data-lucide="calendar-plus" class="w-6 h-6 text-indigo-600 dark:text-indigo-400"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-800 dark:text-white">Confidential Booking</h4>
-                            <p class="text-sm text-slate-600 dark:text-zinc-400">Schedule with counselors.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white/50 dark:bg-zinc-900/50 p-6 rounded-xl border border-white/50 dark:border-zinc-800 shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="flex items-center gap-4">
-                        <div class="bg-indigo-100 dark:bg-indigo-900/50 p-3 rounded-full">
-                            <i data-lucide="book-open-check" class="w-6 h-6 text-indigo-600 dark:text-indigo-400"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-800 dark:text-white">Resource Hub</h4>
-                            <p class="text-sm text-slate-600 dark:text-zinc-400">Videos, audios, and guides.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white/50 dark:bg-zinc-900/50 p-6 rounded-xl border border-white/50 dark:border-zinc-800 shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="flex items-center gap-4">
-                        <div class="bg-indigo-100 dark:bg-indigo-900/50 p-3 rounded-full">
-                            <i data-lucide="users" class="w-6 h-6 text-indigo-600 dark:text-indigo-400"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-800 dark:text-white">Peer Support Forum</h4>
-                            <p class="text-sm text-slate-600 dark:text-zinc-400">Connect with other students.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
                 
+                <!-- ========== START: UPDATED "HOW WE HELP" SECTION ========== -->
+                <div class="flex justify-start pt-10 md:pt-40 md:gap-10">
+                    <div class="sticky flex flex-col md:flex-row z-10 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
+                         <div class="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-white/40 backdrop-blur-md dark:bg-black flex items-center justify-center">
+                            <div class="h-4 w-4 rounded-full bg-blue-300 dark:bg-neutral-800 border border-blue-400/50 dark:border-neutral-700 p-2"></div>
+                        </div>
+                        <h3 class="hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-slate-500 dark:text-neutral-500">How We Help</h3>
+                    </div>
+                     <div class="relative pl-20 pr-4 md:pl-4 w-full">
+                        <h3 class="md:hidden block text-2xl mb-4 text-left font-bold text-slate-500 dark:text-neutral-500">How We Help</h3>
+                        <div class="bg-white/30 dark:bg-zinc-900/30 p-6 rounded-xl backdrop-blur-sm timeline-card">
+                            <p class="text-slate-800 dark:text-zinc-200 text-lg leading-relaxed font-normal mb-6">Our platform is built on pillars of accessibility, confidentiality, and community. Core features include:</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <!-- Card 1: AI Assistant -->
+                                <div class="timeline-card bg-white/50 dark:bg-zinc-900/50 p-6 rounded-xl border border-white/50 dark:border-zinc-800 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300" style="transition-delay: 100ms;">
+                                    <div class="flex items-center gap-4">
+                                        <div class="bg-indigo-100 dark:bg-indigo-900/50 p-3 rounded-full"><i data-lucide="bot" class="w-6 h-6 text-indigo-600 dark:text-indigo-400"></i></div>
+                                        <div>
+                                            <h4 class="font-bold text-slate-800 dark:text-white">AI-Powered First Aid</h4>
+                                            <p class="text-sm text-slate-600 dark:text-zinc-400">Instant coping strategies.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Card 2: Booking -->
+                                <div class="timeline-card bg-white/50 dark:bg-zinc-900/50 p-6 rounded-xl border border-white/50 dark:border-zinc-800 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300" style="transition-delay: 200ms;">
+                                    <div class="flex items-center gap-4">
+                                        <div class="bg-indigo-100 dark:bg-indigo-900/50 p-3 rounded-full"><i data-lucide="calendar-plus" class="w-6 h-6 text-indigo-600 dark:text-indigo-400"></i></div>
+                                        <div>
+                                            <h4 class="font-bold text-slate-800 dark:text-white">Confidential Booking</h4>
+                                            <p class="text-sm text-slate-600 dark:text-zinc-400">Schedule with counselors.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Card 3: Resources -->
+                                <div class="timeline-card bg-white/50 dark:bg-zinc-900/50 p-6 rounded-xl border border-white/50 dark:border-zinc-800 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300" style="transition-delay: 300ms;">
+                                    <div class="flex items-center gap-4">
+                                        <div class="bg-indigo-100 dark:bg-indigo-900/50 p-3 rounded-full"><i data-lucide="book-open-check" class="w-6 h-6 text-indigo-600 dark:text-indigo-400"></i></div>
+                                        <div>
+                                            <h4 class="font-bold text-slate-800 dark:text-white">Resource Hub</h4>
+                                            <p class="text-sm text-slate-600 dark:text-zinc-400">Videos, audios, and guides.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Card 4: Peer Support -->
+                                <div class="timeline-card bg-white/50 dark:bg-zinc-900/50 p-6 rounded-xl border border-white/50 dark:border-zinc-800 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300" style="transition-delay: 400ms;">
+                                    <div class="flex items-center gap-4">
+                                        <div class="bg-indigo-100 dark:bg-indigo-900/50 p-3 rounded-full"><i data-lucide="users" class="w-6 h-6 text-indigo-600 dark:text-indigo-400"></i></div>
+                                        <div>
+                                            <h4 class="font-bold text-slate-800 dark:text-white">Peer Support Forum</h4>
+                                            <p class="text-sm text-slate-600 dark:text-zinc-400">Connect with other students.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ========== END: UPDATED SECTION ========== -->
+
                 <div id="static-line-container" class="absolute md:left-8 left-8 top-0 overflow-hidden w-[2px] bg-gradient-to-b from-transparent from-0% via-slate-300 dark:via-neutral-700 to-transparent to-99% [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]">
                     <div id="animated-line" class="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-t from-purple-500 via-blue-500 to-transparent from-0% via-10% rounded-full"></div>
                 </div>
@@ -281,10 +231,60 @@
         </div>
     </section>
 </main>
+
+<footer class="relative bg-indigo-200/70 dark:bg-zinc-900/50 pt-16 pb-12 overflow-hidden mt-auto backdrop-blur-sm z-10">
+    <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute inset-0 footer-grid-pattern"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="group flex items-center">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white shadow-lg group-hover:scale-105 transition-transform duration-300">
+                    <i data-lucide="shield-half" class="h-6 w-6"></i>
+                </div>
+                <div class="ml-4">
+                    <span class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">MindEase</span>
+                    <p class="text-slate-600 dark:text-zinc-400 text-sm">Your space for confidential support.</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 text-sm text-slate-700 dark:text-zinc-300 font-medium">
+                <a href="#" class="hover:text-black dark:hover:text-white transition-colors">About</a>
+                <a href="#" class="hover:text-black dark:hover:text-white transition-colors">Privacy</a>
+                <a href="#" class="hover:text-black dark:hover:text-white transition-colors">Terms</a>
+            </div>
+            <div class="flex space-x-4">
+                <a href="#" class="w-10 h-10 rounded-xl bg-white/90 dark:bg-zinc-800 border border-black/10 dark:border-zinc-700 flex items-center justify-center text-gray-600 dark:text-zinc-400 hover:bg-gradient-to-br hover:from-blue-500 hover:to-purple-500 hover:text-white hover:border-transparent transition-all duration-300 shadow-sm hover:shadow-lg">
+                    <i data-lucide="facebook" class="h-[18px] w-[18px]"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-xl bg-white/90 dark:bg-zinc-800 border border-black/10 dark:border-zinc-700 flex items-center justify-center text-gray-600 dark:text-zinc-400 hover:bg-gradient-to-br hover:from-blue-500 hover:to-purple-500 hover:text-white hover:border-transparent transition-all duration-300 shadow-sm hover:shadow-lg">
+                    <i data-lucide="twitter" class="h-[18px] w-[18px]"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-xl bg-white/90 dark:bg-zinc-800 border border-black/10 dark:border-zinc-700 flex items-center justify-center text-gray-600 dark:text-zinc-400 hover:bg-gradient-to-br hover:from-blue-500 hover:to-purple-500 hover:text-white hover:border-transparent transition-all duration-300 shadow-sm hover:shadow-lg">
+                    <i data-lucide="instagram" class="h-[18px] w-[18px]"></i>
+                </a>
+            </div>
+        </div>
+        <div class="mt-12 text-center">
+            <h3 class="text-lg font-bold tracking-tight text-slate-800 dark:text-white">Join Our Newsletter</h3>
+            <p class="text-slate-600 dark:text-zinc-400 text-sm mt-2 mb-4 max-w-md mx-auto">Get updates on new resources, wellness tips, and upcoming events directly to your inbox.</p>
+            <form class="flex justify-center max-w-sm mx-auto mt-6">
+                <input type="email" placeholder="Enter your email" class="w-full px-4 py-2 text-gray-700 bg-white border border-slate-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white">
+                <button type="submit" class="px-6 py-2 text-white bg-indigo-600 rounded-r-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400">Subscribe</button>
+            </form>
+        </div>
+        <div class="mt-12 pt-8 border-t border-black/10 dark:border-white/10 text-center">
+            <p class="text-slate-500 dark:text-zinc-500 text-sm font-medium">
+                © 2024 MindEase. All rights reserved.
+            </p>
+        </div>
+    </div>
+</footer>
     
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // --- Theme Toggle Script ---
+        lucide.createIcons();
+        
+        // --- Theme Toggle, Navbar, Form, and Animation Scripts ---
         const themeToggleBtn = document.getElementById('theme-toggle');
         const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
         const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
@@ -293,13 +293,13 @@
         const setTheme = (theme) => {
             if (theme === 'dark') {
                 htmlEl.classList.add('dark');
-                themeToggleLightIcon.classList.remove('hidden');
-                themeToggleDarkIcon.classList.add('hidden');
+                if(themeToggleLightIcon) themeToggleLightIcon.classList.remove('hidden');
+                if(themeToggleDarkIcon) themeToggleDarkIcon.classList.add('hidden');
                 localStorage.setItem('theme', 'dark');
             } else {
                 htmlEl.classList.remove('dark');
-                themeToggleDarkIcon.classList.remove('hidden');
-                themeToggleLightIcon.classList.add('hidden');
+                if(themeToggleDarkIcon) themeToggleDarkIcon.classList.remove('hidden');
+                if(themeToggleLightIcon) themeToggleLightIcon.classList.add('hidden');
                 localStorage.setItem('theme', 'light');
             }
         };
@@ -314,7 +314,6 @@
             });
         }
         
-        // --- Navbar Toggle Script ---
         const menuToggleBtn = document.getElementById('menu-toggle-btn');
         const navbar = document.getElementById('navbar');
         if(menuToggleBtn && navbar) {
@@ -322,18 +321,15 @@
                 const currentState = navbar.getAttribute('data-state');
                 if (currentState === 'active') {
                     navbar.removeAttribute('data-state');
-                    menuToggleBtn.setAttribute('aria-label', 'Open Menu');
                 } else {
                     navbar.setAttribute('data-state', 'active');
-                    menuToggleBtn.setAttribute('aria-label', 'Close Menu');
                 }
             });
         }
 
-        // --- Form Submission Script ---
         const waitlistForm = document.getElementById('waitlist-form');
         if(waitlistForm) {
-            waitlistForm.addEventListener('submit', async function(event) {
+            waitlistForm.addEventListener('submit', function(event) {
                 event.preventDefault(); 
                 const emailInput = waitlistForm.querySelector('input[type="email"]');
                 const email = emailInput.value;
@@ -341,22 +337,32 @@
                     alert('Please enter a valid email address.');
                     return;
                 }
-                console.log('Form submitted with email:', email);
                 alert('Thank you for joining our community! We will be in touch.');
                 emailInput.value = '';
             });
         }
         
-        // --- Timeline Line Animation Script ---
+        const journeyHeading = document.getElementById('journey-heading');
+        const timelineCards = document.querySelectorAll('.timeline-card');
         const timelineContainer = document.getElementById('timeline-container');
         const timelineContent = document.getElementById('timeline-content');
         const staticLineContainer = document.getElementById('static-line-container');
         const animatedLine = document.getElementById('animated-line');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        if (journeyHeading) observer.observe(journeyHeading);
+        timelineCards.forEach(card => observer.observe(card));
 
         if (timelineContainer && timelineContent && staticLineContainer && animatedLine) {
-            let contentHeight = 0;
             const setLineHeight = () => {
-                contentHeight = timelineContent.offsetHeight;
+                const contentHeight = timelineContent.offsetHeight;
                 staticLineContainer.style.height = `${contentHeight}px`;
             };
             
@@ -379,56 +385,14 @@
                 progress = Math.min(1, Math.max(0, progress));
 
                 const newHeight = progress * contentHeight;
-                const newOpacity = progress > 0.05 ? 1 : progress / 0.05;
-
-                requestAnimationFrame(() => {
-                    animatedLine.style.height = `${newHeight}px`;
-                    animatedLine.style.opacity = newOpacity;
-                });
+                animatedLine.style.height = `${newHeight}px`;
             };
 
             window.addEventListener('scroll', animateLine);
             animateLine();
         }
-
-        // --- Timeline Card Animation Script ---
-        const timelineCards = document.querySelectorAll('.timeline-card');
-        if (timelineCards.length > 0) {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.2
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            timelineCards.forEach(card => {
-                observer.observe(card);
-            });
-        }
-
-        // --- Journey Heading Animation Script ---
-        const journeyHeading = document.getElementById('journey-heading');
-        if (journeyHeading) {
-            const headingObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 }); // Trigger when 50% of the element is visible
-
-            headingObserver.observe(journeyHeading);
-        }
     });
 </script>
 </body>
 </html>
+

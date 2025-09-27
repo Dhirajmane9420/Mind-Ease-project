@@ -37,14 +37,42 @@
         <!-- Main content -->
         <div id="main-panel" class="flex flex-col min-h-screen overflow-hidden">
             <!-- Header -->
-             <header class="sticky top-0 z-40 w-full border-b border-indigo-200/50 bg-blue-200/70 backdrop-blur-xl">
+             <header class="sticky top-0 z-40 w-full border-b border-indigo-200/50 bg-indigo-300/80 backdrop-blur-lg">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between items-center h-16">
-                        <div class="flex-shrink-0 flex items-center"><i data-lucide="shield-half" class="h-8 w-auto text-indigo-600"></i><span class="ml-2 text-xl font-bold text-slate-900">Wellness Portal</span></div>
+                        <div class="flex-shrink-0 flex items-center">
+                            <i data-lucide="shield-half" class="h-8 w-auto text-indigo-600"></i>
+                            <span class="ml-2 text-xl font-bold text-slate-900">MindEase Portal</span>
+                        </div>
                         <div class="flex items-center gap-4">
-                            <nav class="hidden md:flex items-center gap-8"><a href="student_home.html" class="text-sm font-medium text-slate-700 hover:text-indigo-600">Dashboard</a><a href="peer_support.html" class="text-sm font-medium text-slate-700 hover:text-indigo-600">Community</a><a href="bookings.html" class="text-sm font-medium text-slate-700 hover:text-indigo-600">Appointments</a></nav>
-                            <div class="md-hidden"><button id="mobile-menu-button"><svg stroke-width="2" fill="none" stroke="currentColor" viewBox="0 0 32 32" class="h-6 w-6 text-slate-800"><path d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path><path d="M7 16 27 16"></path></svg></button></div>
-                            <div class="relative"><button id="profile-button" class="bg-slate-200 rounded-full h-10 w-10 flex items-center justify-center text-slate-600"><i data-lucide="user" class="w-5 h-5"></i></button><div id="profile-dropdown" class="origin-top-right absolute right-0 mt-2 w-64 rounded-xl shadow-lg bg-white p-4 hidden z-50"></div></div>
+                            <nav class="hidden md:flex items-center gap-8">
+                                 <a href="student_home.html" class="text-sm font-medium text-slate-700 hover:text-indigo-600 transition-colors">Dashboard</a>
+                                 <a href="peer_support.html" class="text-sm font-medium text-slate-700 hover:text-indigo-600 transition-colors">Community</a>
+                                 <a href="bookings.html" class="text-sm font-medium text-slate-700 hover:text-indigo-600 transition-colors">Appointments</a>
+                            </nav>
+                            <div class="md:hidden">
+                                <button id="mobile-menu-button" class="flex cursor-pointer items-center justify-center">
+                                    <svg stroke-width="2" fill="none" stroke="currentColor" viewBox="0 0 32 32" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-slate-800">
+                                        <path d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path>
+                                        <path d="M7 16 27 16"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="relative">
+                                <button id="profile-button" class="bg-slate-200 rounded-full h-10 w-10 flex items-center justify-center text-slate-600 hover:bg-slate-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    <span class="sr-only">Open user menu</span>
+                                    <i data-lucide="user" class="w-5 h-5"></i>
+                                </button>
+                                <div id="profile-dropdown" class="origin-top-right absolute right-0 mt-2 w-64 rounded-xl shadow-lg bg-white ring-1 ring-black ring-opacity-5 p-4 hidden z-50">
+                                    <div class="text-center border-b pb-3 mb-3">
+                                        <h3 class="font-semibold text-slate-900">Anonymized Profile</h3>
+                                        <p class="text-sm text-slate-500">Your information is kept confidential.</p>
+                                    </div>
+                                    <div class="space-y-2 text-sm text-slate-700">
+                                        <p><strong>Student ID:</strong> U-2024-****1234</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -129,10 +157,13 @@
                             </div>
                             <div class="feature-card" style="--col-span-md: 3; --col-span-lg: 3;">
                                 <div class="card-content">
-                                    <h2 class="feature-title">Global Community</h2>
-                                    <p class="feature-description">Connect with a supportive global community dedicated to mental wellness.</p>
-                                    <div class="skeleton-four">
-                                       <img src="https://cdn.dribbble.com/users/434314/screenshots/3610280/media/de6c7c5d414f850723a2318685897115.gif" class="community-gif" alt="Animation of community connection cards">
+                                    <h2 class="feature-title">Exercises</h2>
+                                    <p class="feature-description">Perform this exercises on daily basis for improving you mental health.</p>
+                                    <div class="community-gif-container">
+                                       <video autoplay loop muted playsinline class="community-gif">
+                                            <source src="Breathing_Exercise_Animation_Prompt.mp4" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                       </video>
                                     </div>
                                 </div>
                             </div>

@@ -64,7 +64,7 @@
 
         <div id="main-panel" class="flex flex-col min-h-screen">
             <header class="sticky top-0 z-40 w-full border-b border-indigo-200/50 bg-indigo-300/80 backdrop-blur-lg">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-16"><div class="flex items-center"><button id="mobile-menu-button" class="md:hidden mr-4"><i data-lucide="menu" class="h-6 w-6"></i></button><div class="flex-shrink-0 flex items-center"><i data-lucide="shield-half" class="h-8 w-auto text-indigo-600"></i><span class="ml-2 text-xl font-bold text-slate-900">Wellness Portal</span></div></div><div class="flex items-center gap-4"><nav class="hidden md:flex items-center gap-8"><a href="student_home.html" class="text-sm font-medium text-slate-800 hover:text-indigo-600">Dashboard</a><a href="peer_support.html" class="text-sm font-medium text-slate-800 hover:text-indigo-600">Community</a><a href="bookings.html" class="text-sm font-medium text-slate-800 hover:text-indigo-600">Appointments</a></nav><div class="relative"><button id="profile-button" class="bg-slate-200 rounded-full h-10 w-10 flex items-center justify-center text-slate-600"><i data-lucide="user" class="w-5 h-5"></i></button><div id="profile-dropdown" class="origin-top-right absolute right-0 mt-2 w-64 rounded-xl shadow-lg bg-white p-4 hidden z-50"></div></div></div></div></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-16"><div class="flex items-center"><button id="mobile-menu-button" class="md:hidden mr-4"><i data-lucide="menu" class="h-6 w-6"></i></button><div class="flex-shrink-0 flex items-center"><i data-lucide="shield-half" class="h-8 w-auto text-indigo-600"></i><span class="ml-2 text-xl font-bold text-slate-900">MindEase Portal</span></div></div><div class="flex items-center gap-4"><nav class="hidden md:flex items-center gap-8"><a href="student_home.html" class="text-sm font-medium text-slate-800 hover:text-indigo-600">Dashboard</a><a href="peer_support.html" class="text-sm font-medium text-slate-800 hover:text-indigo-600">Community</a><a href="bookings.html" class="text-sm font-medium text-slate-800 hover:text-indigo-600">Appointments</a></nav><div class="relative"><button id="profile-button" class="bg-slate-200 rounded-full h-10 w-10 flex items-center justify-center text-slate-600"><i data-lucide="user" class="w-5 h-5"></i></button><div id="profile-dropdown" class="origin-top-right absolute right-0 mt-2 w-64 rounded-xl shadow-lg bg-white p-4 hidden z-50"></div></div></div></div></div>
             </header>
             <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
             
@@ -160,8 +160,8 @@
             logoutButton.addEventListener('click', (e) => {
                 e.preventDefault();
                 localStorage.removeItem('authToken');
-                alert('You have been logged out.');
-                window.location.href = 'login.html';
+                //alert('You have been logged out.');
+                window.location.href = 'index.html';
             });
         }
         
@@ -268,35 +268,51 @@
             });
             
             async function handleFinalBooking() {
-                const [hours, minutes] = selectedTime.split(':');
-                const appointmentDate = new Date(selectedDate);
-                appointmentDate.setUTCHours(hours, minutes, 0, 0);
+    // Correctly create the appointment date using the selected local date and time
+    const appointmentDate = new Date(`${selectedDate}T${selectedTime}:00`);
 
-                try {
-                    const response = await fetch(`${API_URL}/bookings`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
-                        body: JSON.stringify({
-                            counselorId: selectedCounselor._id,
-                            appointmentDate: appointmentDate.toISOString() 
-                        })
-                    });
-                    if (!response.ok) throw new Error('Failed to book appointment');
-                    
-                    confirmationModal.style.display = 'none';
-                    successMessage.textContent = 'Appointment booked successfully!';
-                    successMessage.classList.remove('hidden');
-                    bookingForm.reset();
-                    document.querySelectorAll('.time-slot').forEach(btn => btn.classList.remove('selected'));
-                    document.querySelectorAll('input[name="counselor"]').forEach(radio => radio.checked = false);
-                    step2DateTime.classList.add('opacity-40', 'pointer-events-none');
-                    confirmBookingBtn.disabled = true;
-                    setTimeout(() => successMessage.classList.add('hidden'), 5000);
-                } catch (error) {
-                    console.error('Booking error:', error);
-                    alert(`Booking failed: ${error.message}`);
-                }
-            }
+    try {
+        const response = await fetch(`${API_URL}/bookings`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                counselorId: selectedCounselor._id,
+                // .toISOString() correctly converts the local time to a UTC string for the server
+                appointmentDate: appointmentDate.toISOString()
+            })
+        });
+
+        /*if (!response.ok) {
+            // It's helpful to see what error the server returned
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to book appointment');
+        }*/
+
+        confirmationModal.style.display = 'none';
+        successMessage.textContent = 'Appointment booked successfully!';
+        successMessage.classList.remove('hidden');
+        bookingForm.reset();
+        
+        // Clear selections visually
+        document.querySelectorAll('.time-slot').forEach(btn => btn.classList.remove('selected'));
+        const checkedCounselor = document.querySelector('input[name="counselor"]:checked');
+        if (checkedCounselor) checkedCounselor.checked = false;
+        
+        // Reset the UI state
+        step2DateTime.classList.add('opacity-40', 'pointer-events-none');
+        confirmBookingBtn.disabled = true;
+        
+        setTimeout(() => successMessage.classList.add('hidden'), 5000);
+
+    } catch (error) {
+        console.error('Booking error:', error);
+        alert(`Booking failed: ${error.message}`);
+        // Keep the modal open so the user can try again without re-selecting everything
+    }
+}
             
             confirmModalBtn.addEventListener('click', handleFinalBooking);
             cancelModalBtn.addEventListener('click', () => confirmationModal.style.display = 'none');

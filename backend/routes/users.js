@@ -13,7 +13,7 @@ const JWT_SECRET = 'your-very-secret-key-that-is-long-and-random';
 // @desc    Register a new user
 router.post('/register', async (req, res) => {
   // 1. Destructure ALL possible fields from the request body
-  const { name, email, password, role, institution, age, language, fieldOfStudy } = req.body;
+  const { name, email, password, role } = req.body;
 
   try {
     let user = await User.findOne({ email });
@@ -30,13 +30,6 @@ router.post('/register', async (req, res) => {
     };
 
     // 3. If the user is a student, add the extra fields to the SAME object
-    if (role === 'student') {
-      userData.institution = institution;
-      userData.age = age;
-      userData.language = language;
-      userData.fieldOfStudy = fieldOfStudy;
-    }
-    
     // 4. Create the new User instance from the complete userData object
     user = new User(userData);
 
